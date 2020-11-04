@@ -1,2 +1,2 @@
-# InMotion
-The project consists of creating a serious game that can help patients with hand rehabilitation. The game will replace some exercises that would be done in therapy or with a doctor, therefore the game must be both engaging and motivating for the user and faithful to the standard therapy procedures. The patient has to use a hand tracking device (leap motion controller) while performing the exercises, from which we will get the data to report to the therapist. The final product will be a website that both patients and clinicians may access.
+# InMotion - Backend development
+
