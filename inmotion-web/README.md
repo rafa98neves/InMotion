@@ -2,16 +2,22 @@
 
 This directory contains the web side logic of InMotion
 
-Requirements:
+## Requirements:
 
+```bash
 Install python
+```
 
-To run:
+## To run:
 
-> .\env\Scripts\activate
-(env) > python pip.py
+```bash
+.\env\Scripts\activate
+(env) python pip.py
+```
 
-Packages used:
+##Packages used:
 
+```bash
 pip install virtualenv
 pip install flask
+```
