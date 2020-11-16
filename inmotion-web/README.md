@@ -1,23 +1,24 @@
-# InMotion - Frontend development
+# inmotion-web
 
-This directory contains the web side logic of InMotion
-
-## Requirements:
-
-```bash
-Install python
+## Project setup
+```
+npm install
 ```
 
-## To run:
-
-```bash
-.\env\Scripts\activate
-(env) python pip.py
+### Compiles and hot-reloads for development
+```
+npm run serve
 ```
 
-## Packages used:
-
-```bash
-pip install virtualenv
-pip install flask
+### Compiles and minifies for production
 ```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
