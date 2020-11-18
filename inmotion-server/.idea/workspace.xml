@@ -23,13 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd54263a-3db0-456f-a152-b565543de3f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/UserRestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inmotion-web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inmotion-web/app.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inmotion-web/static/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../inmotion-web/templates/index.html" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/InMotion.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/aws.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inmotion.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inmotion-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inmotion-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inmotion-web/src/App.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/src/App.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inmotion-web/src/components/HelloWorld.vue" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/src/components/HelloWorld.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../inmotion-web/src/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/src/main.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +52,7 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="mavenHome" value="C:\Users\joaom\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
+        <option name="mavenHome" value="C:\Users\Rafael\.m2\wrapper\dists\apache-maven-3.6.3-bin\1iopthnavndlasol9gbrbg6bf2\apache-maven-3.6.3" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -65,28 +68,16 @@
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IS/projeto2-parent" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager" selected="Spring Boot.InmotionApplication">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration default="true" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -162,6 +153,9 @@
       <workItem from="1605476098761" duration="2781000" />
       <workItem from="1605479099736" duration="5449000" />
       <workItem from="1605529865423" duration="3279000" />
+      <workItem from="1605554950950" duration="659000" />
+      <workItem from="1605616169452" duration="3081000" />
+      <workItem from="1605713157612" duration="5000" />
     </task>
     <servers />
   </component>
@@ -185,49 +179,59 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="440" y="99" key="#Project_Structure/0.0.1920.1050@0.0.1920.1050" timestamp="1605483341647" />
-    <state x="783" y="287" width="1113" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605484165242">
+    <state x="613" y="219" width="1113" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605555434095">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="613" y="219" width="1113" height="714" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605555434095" />
     <state x="783" y="287" width="1113" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605484165242" />
     <state x="756" y="305" key="FileChooserDialogImpl" timestamp="1605530001849">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="756" y="305" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605530001849" />
-    <state width="1877" height="280" key="GridCell.Tab.0.bottom" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom" timestamp="1605639818217">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818217" />
     <state width="1877" height="280" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.0.center" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.0.center" timestamp="1605639818217">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.center/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818217" />
     <state width="1877" height="280" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.0.left" timestamp="1605535581854">
+    <state width="1877" height="285" key="GridCell.Tab.0.left" timestamp="1605639818217">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.left/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818217" />
     <state width="1877" height="280" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581854" />
-    <state width="1877" height="280" key="GridCell.Tab.0.right" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.0.right" timestamp="1605639818217">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.0.right/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818217" />
     <state width="1877" height="280" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.1.bottom" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom" timestamp="1605639818218">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818218" />
     <state width="1877" height="280" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.1.center" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.1.center" timestamp="1605639818218">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.center/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818218" />
     <state width="1877" height="280" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.1.left" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.1.left" timestamp="1605639818217">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.left/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818217" />
     <state width="1877" height="280" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state width="1877" height="280" key="GridCell.Tab.1.right" timestamp="1605535581855">
+    <state width="1877" height="285" key="GridCell.Tab.1.right" timestamp="1605639818218">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state width="1877" height="285" key="GridCell.Tab.1.right/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605639818218" />
     <state width="1877" height="280" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605535581855" />
-    <state x="456" y="124" key="SettingsEditor" timestamp="1605483167293">
+    <state x="456" y="124" key="SettingsEditor" timestamp="1605555079971">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
+    <state x="456" y="124" key="SettingsEditor/0.0.1920.1050/1920.0.1920.1050@0.0.1920.1050" timestamp="1605555079971" />
     <state x="456" y="124" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1605483167293" />
   </component>
 </project>

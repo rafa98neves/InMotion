@@ -1,17 +1,35 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <nav class="navbar" v-if="account">
+        <div class="navbar-nav">
+            <router-link to="/" class="nav-item">Home</router-link>
+        </div>
+    </nav>
+
+    <!-- main app container -->
+    <div class="container">
+        <router-view></router-view>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import { ref } from 'vue';
+
+import { accountService } from './_services/account.service';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    setup() {
+        const account = ref(null);
+        accountService.account.subscribe(x => account.value = x);
+
+        return {
+            account,
+            logout: accountService.logout
+        }
+    }
 }
+
+
 </script>
 
 <style>
