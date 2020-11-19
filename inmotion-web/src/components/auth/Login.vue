@@ -19,6 +19,11 @@
       </div>
     </form>
 
+    <p class="not-registered">
+      Not registered?
+      <router-link to="/registerpatient">Register</router-link>
+    </p>
+
   </div>
 </template>
 
