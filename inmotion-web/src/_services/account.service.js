@@ -1,25 +1,21 @@
-import { BehaviorSubject } from 'rxjs';
 import axios from 'axios';
-//mport { router } from '../_helpers/router';
 
+const api = axios.create({
+    baseURL: 'http://localhost:9000/'
+  });
 
-const baseUrl = 'localhost:9000/api/';
-const accountSubject = new BehaviorSubject(null);
-
+  
 export const accountService = {
-    login,
-    //logout,
-    account: accountSubject.asObservable(),
-    get accountValue () { return accountSubject.value; }
+    login
 };
 
-async function login() {
-    //axios.get(baseUrl + "user/test").then(response => response.data).catch(error => console.log(error));
+async function login(credentials) {
+    
+    const response = await api.post('api/user/login',credentials)
+        .then( response => response.data )
+        .catch(error => console.log(error))
+        .finally();
+
+    console.log(response)
 }
 
-/*
-function logout() {
-    accountSubject.next(null);
-    router.push('/login');
-}
-*/

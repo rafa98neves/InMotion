@@ -1,13 +1,11 @@
 import { createRouter, createWebHistory} from 'vue-router';
-
+import { authGuard } from './auth.guard';
 import Login from '../components/auth/Login';
 import HelloWorld from '../components/HelloWorld';
-import { authGuard } from './auth.guard';
 
 const routes = [
-    { path: '/', component: HelloWorld, beforeEnter: authGuard },
-    { path: '/login', component: Login },
-    { path: '/api/user/test', component: Login },
+    { path: '/', component: HelloWorld, name: 'home', beforeEnter: authGuard},
+    { path: '/login', component: Login, name: 'login' },
 
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', redirect: '/' }
@@ -18,4 +16,4 @@ export const router = createRouter({
     routes
 });
 
-export default routes
+export default router
