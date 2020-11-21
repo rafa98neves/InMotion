@@ -1,13 +1,13 @@
-//import { accountService } from '../_services/account.service';
+import { accountService } from '../_services/account.service';
 import { router } from './router';
 
-export function authGuard(to) {
-    /*
+export function authGuard() {
+    
     const account = accountService.accountValue;
     if (account) {
         return true;
     }
-*/
-    router.push({ path: '/login', query: { returnUrl: to.fullPath } });
+
+    router.push('/login');
     return false;
 }
