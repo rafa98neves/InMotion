@@ -10,18 +10,23 @@
     <form class="form-box">
       <div class="form-control">
         <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name">
+        <input type="text" name="name" id="name" class="register-input" v-model="name" required>
       </div>
 
       <div class="form-control">
-        <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email">
-      </div>
+        <label>Patient's ID</label>
+        <input type="text" name="patient_id" class="register-input" v-model="patient_id" required>
 
-      <div class="form-control">
-        <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password">
+        <label>Data of Birth</label>
+        <input type="date" name="date" id="name" class="register-input" v-model="birth_date" required>
       </div>
+      
+      <div class="form-control-nav">
+        <label>Gender</label>    
+        <button style="background: #5dbcd2;">Male</button>
+        <button>Female</button>
+      </div>
+      
 
       <div class="form-control">
         <label>Diagnosis</label>    
@@ -43,12 +48,16 @@
         </select>
       </div>
 
-      <div class="form-control-nav">
-        <label>Gender</label>    
-        <button style="background: #5dbcd2;">Male</button>
-        <button>Female</button>
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" name="email" id="email" class="register-input" v-model="email" required>
       </div>
-      
+
+      <div class="form-control">
+        <label>Password</label>
+        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+      </div>
+
       <div class="form-footer">
         <div class="form-submit" id="submit">
           <button type="submit" class="btn-submit" v-on:click="register()">Create Account</button>
@@ -85,7 +94,7 @@ export default {
 
 .form-control-nav{
   display: inline-block;
-  margin: 0 0 1% 0;
+  margin: 0 0 .2% 0;
   width: 50%;
 }
 
@@ -95,15 +104,6 @@ export default {
 
 .form-control-nav button{
   padding: 1% 2% 1% 2%;
-  border: 2px solid black;
-  background: white;
-  margin: -0.2%;
-  box-shadow: 3px 2px;
-}
-
-.form-control-nav button a{
-  text-decoration: none;
-  color: black;
 }
 
 .form-box{
@@ -125,14 +125,10 @@ export default {
 }
 
 .form-control input {
-  border: 3px solid black;
-  border-radius: 3px;
   width: 70%;
 }
 
 .form-control select {
-  border: 3px solid black;
-  border-radius: 3px;
   width: 20%;
   margin-right: 51%;
 }
@@ -140,7 +136,7 @@ export default {
 .form-footer{
   display: inline-block;
   position: absolute;
-  bottom: 15%;
+  bottom: 9%;
   left: 7%;
   width: 86%;
 }
@@ -148,14 +144,6 @@ export default {
 .form-footer button {  
   padding-bottom: 10%;
   padding-top: 10%;
-  border: 2px solid black;
-  background: white;
-  box-shadow: 3px 2px;
-}
-
-.form-footer button a{
-  text-decoration: none;
-  color: black;
 }
 
 #submit{

@@ -11,17 +11,17 @@
 
       <div class="form-control">
         <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name">
+        <input type="text" name="name" id="name" class="register-input" v-model="name" required>
       </div>
 
       <div class="form-control">
         <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email">
+        <input type="email" name="email" id="email" class="register-input" v-model="email" required>
       </div>
 
       <div class="form-control">
         <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password">
+        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
       </div>
 
       <div class="form-control">
@@ -42,7 +42,6 @@
           <button><router-link class="btn btn-patient" to="/login">Back</router-link></button>
         </div>
       </div>
-
     </form>    
   </div>
 </template>
@@ -76,15 +75,6 @@ export default {
 
 .form-control-nav button{
   padding: 1% 2% 1% 2%;
-  border: 2px solid black;
-  background: white;
-  margin: -0.2%;
-  box-shadow: 3px 2px;
-}
-
-.form-control-nav button a{
-  text-decoration: none;
-  color: black;
 }
 
 .form-box{
@@ -107,14 +97,10 @@ export default {
 }
 
 .form-control input {
-  border: 3px solid black;
-  border-radius: 3px;
   width: 70%;
 }
 
 .form-control select {
-  border: 3px solid black;
-  border-radius: 3px;
   width: 20%;
   margin-right: 51%;
 }
@@ -123,11 +109,10 @@ export default {
   margin-right: 70%;
 }
 
-
 .form-footer{
   display: inline-block;
   position: absolute;
-  bottom: 15%;
+  bottom: 9%;
   left: 7%;
   width: 86%;
 }
@@ -135,14 +120,6 @@ export default {
 .form-footer button{  
   padding-bottom: 10%;
   padding-top: 10%;
-  border: 2px solid black;
-  background: white;
-  box-shadow: 3px 2px;
-}
-
-.form-footer button a{
-  text-decoration: none;
-  color: black;
 }
 
 #submit{
