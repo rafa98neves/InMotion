@@ -1,57 +1,49 @@
 <template>
   <div class="Register">
 
-    <h2 class="register-heading">Register Therapist</h2>
+    <div class="form-control-nav">
+        <label>Type of Account</label>
+        <button><router-link class="btn btn-patient" to="/registerpatient">Patient</router-link></button>
+        <button style="background: #5dbcd2;"><router-link class="btn btn-therapist" to="/registertherapist">Therapist</router-link></button>
+    </div>
 
-    <form>
+    <form class="form-box">
 
-      <div class="form-control-nav">
-          <label>Account type</label>
-          <router-link class="btn btn-patient" to="/registerpatient" style="margin-right: 20px; 
-          margin-left: 20px">Patient</router-link>
-          <router-link class="btn btn-therapist" to="/registertherapist">Therapist</router-link>
-      </div>
-
-      <div class="form-control-n">
+      <div class="form-control">
         <label>Name</label>
         <input type="text" name="name" id="name" class="register-input" v-model="name">
-        <p>test name: {{ name }}</p>
       </div>
 
-      <div class="form-control-e">
+      <div class="form-control">
         <label>Email</label>
         <input type="email" name="email" id="email" class="register-input" v-model="email">
-        <p>test email: {{ email }}</p>
       </div>
 
-      <div class="form-control-p">
+      <div class="form-control">
         <label>Password</label>
         <input type="password" name="password" id="password" class="register-input" v-model="password">
-        <p>test pass: {{ password }}</p>
       </div>
 
-      <div class="form-control-g">
+      <div class="form-control">
         <label>Gender</label>    
         <select v-model="gender">
           <option disabled value="">Please select one</option>
           <option>Male</option>
           <option>Female</option>
         </select>
-      <p>test gender: {{gender}}</p>
       </div>
 
+      <div class="form-footer">
+        <div class="form-submit" id="submit">
+          <button type="submit" class="btn-submit" v-on:click="register()">Create Account</button>
+        </div>
 
-      <div class="form-control">
-        <button type="submit" class="btn-submit" v-on:click="register()">register</button>
+        <div class="form-submit" id="back">
+          <button><router-link class="btn btn-patient" to="/login">Back</router-link></button>
+        </div>
       </div>
 
-    </form>
-
-    <p class="already-registered">
-      Already registered?
-      <router-link to="/login">Login</router-link>
-    </p>
-    
+    </form>    
   </div>
 </template>
 
@@ -70,7 +62,96 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.form-control-nav{
+  display: inline-block;
+  margin: 0 0 1% 0;
+  width: 50%;
+}
+
+.form-control-nav label{
+  margin: 2%;
+}
+
+.form-control-nav button{
+  padding: 1% 2% 1% 2%;
+  border: 2px solid black;
+  background: white;
+  margin: -0.2%;
+  box-shadow: 3px 2px;
+}
+
+.form-control-nav button a{
+  text-decoration: none;
+  color: black;
+}
+
+.form-box{
+  display: table;
+  margin-left: 10%;
+  width: 80%;
+  height: 90%;
+  margin-top: 2%;
+}
+
+.form-control label,input {  
+  display: inline-block;
+  vertical-align: baseline;
+  width: 20%;
+  margin-bottom: 2%;
+}
+
+.form-control label{
+  width: 20%;
+}
+
+.form-control input {
+  border: 3px solid black;
+  border-radius: 3px;
+  width: 70%;
+}
+
+.form-control select {
+  border: 3px solid black;
+  border-radius: 3px;
+  width: 20%;
+  margin-right: 51%;
+}
+
+.form-control button {
+  margin-right: 70%;
+}
+
+
+.form-footer{
+  display: inline-block;
+  position: absolute;
+  bottom: 15%;
+  left: 7%;
+  width: 86%;
+}
+
+.form-footer button{  
+  padding-bottom: 10%;
+  padding-top: 10%;
+  border: 2px solid black;
+  background: white;
+  box-shadow: 3px 2px;
+}
+
+.form-footer button a{
+  text-decoration: none;
+  color: black;
+}
+
+#submit{
+  float: right;
+}
+
+#back{
+  float: left;
+}
+
 
 </style>
