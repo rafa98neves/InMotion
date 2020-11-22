@@ -3,7 +3,7 @@
 
     <h2 class="login-heading">Login</h2>
 
-    <form>
+    <form @submit.prevent="login">
       <div class="form-control-e">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="login-input" v-model="email">
@@ -15,7 +15,7 @@
       </div>
 
       <div class="form-control">
-        <button type="submit" class="btn-submit" v-on:click="login()">Entrar</button>
+        <button type="submit" class="btn-submit">Entrar</button>
       </div>
     </form>
 
@@ -28,22 +28,28 @@
 </template>
 
 <script>
-//import { router } from '../../_helpers/router';
-import { accountService } from '../../_services/account.service';
+
+import { accountService } from "../../_services/account.service"
 
 export default {
   data() {
     return {
       email: '',
-      password: '',
+      password: ''
     }
   },
   methods: {
-    login : function () {
-        accountService.login
+    login() {
+
+      let credentials = {
+        email : this.email,
+        password : this.password
+      }
+      accountService.login(credentials);      
     }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

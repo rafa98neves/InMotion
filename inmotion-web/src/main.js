@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-
 import { router } from './_helpers/router';
 import App from './App.vue';
 

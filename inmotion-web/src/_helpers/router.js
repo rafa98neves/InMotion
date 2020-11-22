@@ -1,14 +1,11 @@
 import { createRouter, createWebHistory} from 'vue-router';
-
-import Login from '../components/auth/Login';
-import HelloWorld from '../components/HelloWorld';
 import { authGuard } from './auth.guard';
 import RegisterPatient from '../components/auth/RegisterPatient';
 import RegisterTherapist from '../components/auth/RegisterTherapist';
 
 const routes = [
-    { path: '/', component: HelloWorld, beforeEnter: authGuard },
-    { path: '/login', component: Login },
+    { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
+    { path: '/login', component: Login, name: 'Login' },
     { path: '/api/user/test', component: Login },
     { path: '/registerpatient', component: RegisterPatient},
     { path: '/registertherapist', component: RegisterTherapist},
@@ -22,4 +19,4 @@ export const router = createRouter({
     routes
 });
 
-export default routes
+export default router
