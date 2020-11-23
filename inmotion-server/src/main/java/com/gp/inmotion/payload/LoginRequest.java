@@ -10,6 +10,8 @@ public class LoginRequest {
     @NotBlank
     private String password;
 
+    public LoginRequest() {
+    }
 
     public void setEmail(String email) {
         this.email = email;

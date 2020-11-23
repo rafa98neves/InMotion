@@ -11,3 +11,8 @@ spring:
         hibernate:
             ddl-auto: update
         database-platform: org.hibernate.dialect.MySQL8Dialect
+application:
+    jwt:
+        secret-key: ^7f*<<rPyU(pmt+-=sGQ(bFw2U'P$khA
+        token-expiration-after-days: 14
+        token-prefix: Bearer
