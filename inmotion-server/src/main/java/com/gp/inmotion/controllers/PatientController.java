@@ -2,6 +2,7 @@ package com.gp.inmotion.controllers;
 
 import com.gp.inmotion.models.Patient;
 import com.gp.inmotion.repository.PatientRepository;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,10 @@ public class PatientController {
 
     @GetMapping(path = "/{patientId}")
     public Patient getPatient(@PathVariable("patientId") Long patientId){
-        return patientRepository.findByPatientId(patientId);
+        return patientRepository.findById(patientId).orElseThrow(
+                () -> new UsernameNotFoundException("Patient with id " + patientId + " not found!")
+        );
     }
+
+
 }

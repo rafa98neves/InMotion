@@ -5,14 +5,10 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "terapists")
-public class Terapist extends User{
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long terapistId;
-
+@Table(name = "therapists")
+public class Therapist extends User{
     @Column(length = 64)
-    private String terapistName;
+    private String therapistName;
 
     @Column(length = 9)
     private String therapistContact;
@@ -20,32 +16,24 @@ public class Terapist extends User{
     @OneToMany(mappedBy = "therapist")
     private List<Patient> patientList;
 
-    public Terapist(){
+    public Therapist(){
 
     }
 
-    public Terapist(String email, String password, Long terapistId, String terapistName, String therapistContact, List<Patient> patientList) {
+    public Therapist(String email, String password,  String therapistName, String therapistContact, List<Patient> patientList) {
         super(email, password);
-        this.terapistId = terapistId;
-        this.terapistName = terapistName;
+        this.therapistName = therapistName;
         this.therapistContact = therapistContact;
         this.patientList = patientList;
     }
 
-    public Long getTerapistId() {
-        return terapistId;
+
+    public String getTherapistName() {
+        return therapistName;
     }
 
-    public String getTerapistName() {
-        return terapistName;
-    }
-
-    public void setTerapistName(String terapistName) {
-        this.terapistName = terapistName;
-    }
-
-    public void setTerapistId(Long terapistId) {
-        this.terapistId = terapistId;
+    public void setTherapistName(String terapistName) {
+        this.therapistName = terapistName;
     }
 
     public List<Patient> getPatientList() {

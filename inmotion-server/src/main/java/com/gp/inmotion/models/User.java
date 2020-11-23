@@ -1,18 +1,17 @@
 package com.gp.inmotion.models;
 
-import com.gp.inmotion.security.ApplicationUserRole;
-import org.checkerframework.common.value.qual.IntRangeFromNonNegative;
-
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.TABLE)
+    private Long id;
+
     @Column(length = 60)
     private String email;
 
@@ -20,7 +19,7 @@ public class User {
     @Column(length = 100)
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     private Role role;
 
     public User(){};
@@ -28,6 +27,14 @@ public class User {
     public User(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Role getRole() {
@@ -52,5 +59,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

@@ -8,13 +8,15 @@ import java.util.Collection;
 import java.util.Set;
 
 public class ApplicationUser implements UserDetails {
+    private Long id;
     private String email;
     private String password;
     private Set<? extends GrantedAuthority> grantedAuthorities;
 
-    public ApplicationUser(String email,
+    public ApplicationUser(Long id, String email,
                            String password,
                            Set<? extends GrantedAuthority> grantedAuthorities) {
+        this.id = id;
         this.grantedAuthorities = grantedAuthorities;
         this.password = password;
         this.email = email;
@@ -24,7 +26,7 @@ public class ApplicationUser implements UserDetails {
 
 
         return new ApplicationUser(
-                user.getEmail(),
+                user.getId(), user.getEmail(),
                 user.getPassword(),
                 user.getRole().getName().getGrantedAuthorities()
         );
@@ -38,6 +40,10 @@ public class ApplicationUser implements UserDetails {
     @Override
     public String getPassword() {
         return password;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getEmail() {

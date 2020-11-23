@@ -23,40 +23,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd54263a-3db0-456f-a152-b565543de3f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_findbugs_jsr305_3_0_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_3_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_failureaccess_1_0_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_28_1_jre.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_listenablefuture_9999_0_empty_to_avoid_conflict_with_guava.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_qual_2_8_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_18.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_boot_spring_boot_starter_security_2_4_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_config_5_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_core_5_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_test_5_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_security_spring_security_web_5_4_1.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Medication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Terapist.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/PatientRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationSecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationUserPermission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationUserRole.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/PasswordConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_1_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_common_hibernate_commons_annotations_5_0_3_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_2_11_Final.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hibernate_hibernate_core_5_3_1_Final.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_20_0_GA.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_22_0_GA.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_jboss_spec_javax_transaction_jboss_transaction_api_1_2_spec_1_0_1_Final.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__io_jsonwebtoken_jjwt_0_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/payload/JwtAuthenticationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/payload/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/payload/RegisterRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/jwt/JwtAuthenticationEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/jwt/JwtAuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/c4e904f5-4ecb-4155-b576-0dabf1f1f2ad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/c4e904f5-4ecb-4155-b576-0dabf1f1f2ad.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/inmotion-server.iml" beforeDir="false" afterPath="$PROJECT_DIR$/inmotion-server.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/UserRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/PatientController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/auth/ApplicationUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/PatientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/controllers/PatientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Patient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Terapist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/Therapist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/models/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/PatientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/PatientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationUserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/gp/inmotion/security/ApplicationUserRole.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../inmotion-web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../inmotion-web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../inmotion-web/package.json" afterDir="false" />
@@ -72,6 +61,7 @@
       <list>
         <option value="Enum" />
         <option value="Interface" />
+        <option value="HTML File" />
         <option value="Class" />
       </list>
     </option>
@@ -93,6 +83,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RequestMappingsPanelOrder0" value="0" />
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
@@ -102,10 +93,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../IS/projeto2-parent" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="restartRequiresConfirmation" value="false" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RecentsManager">
@@ -211,7 +204,9 @@
       <workItem from="1605554876309" duration="825000" />
       <workItem from="1605922193706" duration="1185000" />
       <workItem from="1605986774070" duration="7727000" />
-      <workItem from="1605994950219" duration="19830000" />
+      <workItem from="1605994950219" duration="20144000" />
+      <workItem from="1606051290440" duration="12677000" />
+      <workItem from="1606080156044" duration="11060000" />
     </task>
     <servers />
   </component>
@@ -231,10 +226,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="668" y="309" key="#Assign_Data_Sources" timestamp="1606017164070">
+    <state x="668" y="309" key="#Assign_Data_Sources" timestamp="1606053581000">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="668" y="309" key="#Assign_Data_Sources/0.0.1536.834@0.0.1536.834" timestamp="1606017164070" />
+    <state x="668" y="309" key="#Assign_Data_Sources/0.0.1536.834@0.0.1536.834" timestamp="1606053581000" />
+    <state x="540" y="0" key="#Auto_Import" timestamp="1606090845273">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="540" y="0" key="#Auto_Import/0.0.1536.834@0.0.1536.834" timestamp="1606090845273" />
     <state x="440" y="99" key="#Project_Structure" timestamp="1605483341647">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -243,10 +242,10 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="783" y="287" width="1113" height="690" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1605484165242" />
-    <state x="951" y="216" key="#com.intellij.ide.util.MemberChooser" timestamp="1606013459681">
+    <state x="951" y="216" key="#com.intellij.ide.util.MemberChooser" timestamp="1606092920252">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="951" y="216" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1606013459681" />
+    <state x="951" y="216" key="#com.intellij.ide.util.MemberChooser/0.0.1536.834@0.0.1536.834" timestamp="1606092920252" />
     <state x="471" y="342" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1605996955420">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
@@ -255,66 +254,82 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="936" y="289" width="433" height="267" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.834@0.0.1536.834" timestamp="1605990028544" />
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606009079273">
+    <state x="158" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1606051422635">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1606009079273" />
+    <state x="158" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.834@0.0.1536.834" timestamp="1606051422635" />
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606092655070">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="499" y="164" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.834@0.0.1536.834" timestamp="1606092655070" />
+    <state x="516" y="262" width="502" height="310" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1606068362083">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="516" y="262" width="502" height="310" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.834@0.0.1536.834" timestamp="1606068362083" />
     <state x="605" y="242" key="FileChooserDialogImpl" timestamp="1606013009626">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="605" y="242" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1606013009626" />
     <state x="756" y="305" key="FileChooserDialogImpl/0.0.1920.1050@0.0.1920.1050" timestamp="1605530001849" />
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1606019807613">
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1606019807613" />
+    <state width="1493" height="203" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.0.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
-    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1606019807613">
+    <state width="1493" height="203" key="GridCell.Tab.0.center" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1606019807613" />
+    <state width="1493" height="203" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.0.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323578" />
-    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1606019807613">
+    <state width="1493" height="203" key="GridCell.Tab.0.left" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1606019807613" />
+    <state width="1493" height="203" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.0.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323578" />
-    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1606019807613">
+    <state width="1493" height="203" key="GridCell.Tab.0.right" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1606019807613" />
+    <state width="1493" height="203" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.0.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1606019807614">
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1606019807614" />
+    <state width="1493" height="203" key="GridCell.Tab.1.bottom/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.1.bottom/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
-    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1606019807614">
+    <state width="1493" height="203" key="GridCell.Tab.1.center" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1606019807614" />
+    <state width="1493" height="203" key="GridCell.Tab.1.center/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.1.center/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
-    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1606019807614">
+    <state width="1493" height="203" key="GridCell.Tab.1.left" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1606019807614" />
+    <state width="1493" height="203" key="GridCell.Tab.1.left/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.1.left/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
-    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1606019807614">
+    <state width="1493" height="203" key="GridCell.Tab.1.right" timestamp="1606095396199">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1606019807614" />
+    <state width="1493" height="203" key="GridCell.Tab.1.right/0.0.1536.834@0.0.1536.834" timestamp="1606095396199" />
     <state width="1271" height="279" key="GridCell.Tab.1.right/0.0.1920.1050@0.0.1920.1050" timestamp="1605545323579" />
+    <state x="536" y="120" key="RollbackChangesDialog" timestamp="1606051787143">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="536" y="120" key="RollbackChangesDialog/0.0.1536.834@0.0.1536.834" timestamp="1606051787143" />
     <state x="816" y="199" key="SettingsEditor" timestamp="1605543967928">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="816" y="199" key="SettingsEditor/0.0.1920.1050@0.0.1920.1050" timestamp="1605543967928" />
-    <state x="947" y="169" key="refactoring.ChangeSignatureDialog" timestamp="1605992177844">
+    <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606093944674">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="947" y="169" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1605992177844" />
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1606007662062">
+    <state x="586" y="331" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.834@0.0.1536.834" timestamp="1606093944674" />
+    <state x="947" y="169" key="refactoring.ChangeSignatureDialog" timestamp="1606091542830">
       <screen x="0" y="0" width="1536" height="834" />
     </state>
-    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1606007662062" />
+    <state x="947" y="169" key="refactoring.ChangeSignatureDialog/0.0.1536.834@0.0.1536.834" timestamp="1606091542830" />
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup" timestamp="1606084574718">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state x="431" y="155" width="672" height="678" key="search.everywhere.popup/0.0.1536.834@0.0.1536.834" timestamp="1606084574718" />
   </component>
 </project>

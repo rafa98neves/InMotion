@@ -17,11 +17,22 @@ public class ApplicationUserService implements UserDetailsService {
     public ApplicationUserService(UserRepository applicationUserRepository) {
         this.userRepository = applicationUserRepository;
     }
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         User user = userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User with email " + email + " not found!")
         );
+        System.out.println(user);
         return ApplicationUser.create(user);
     }
+
+    public UserDetails loadUserById(Long id){
+        User user = userRepository.findById(id).orElseThrow(
+                () -> new UsernameNotFoundException("User with id " + id + " not found!")
+        );
+        System.out.println(user);
+        return ApplicationUser.create(user);
+    }
+
 }

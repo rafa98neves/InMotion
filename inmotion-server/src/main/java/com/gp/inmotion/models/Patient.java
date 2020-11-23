@@ -7,9 +7,6 @@ import java.util.List;
 @Table(name = "patients")
 public class Patient extends User{
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long patientId;
-
     @Column(length = 64)
     private String patientName;
 
@@ -23,21 +20,17 @@ public class Patient extends User{
     private List<Medication> patientMedication;
 
     @ManyToOne()
-    private Terapist therapist;
+    private Therapist therapist;
 
 
     public Patient(){
     }
 
-    public Patient(String email, String password, Long patientId, String patientName) {
+    public Patient(String email, String password, String patientName) {
         super(email, password);
-        this.patientId = patientId;
         this.patientName = patientName;
     }
 
-    public Long getPatientId() {
-        return patientId;
-    }
 
     public String getPatientName() {
         return patientName;
