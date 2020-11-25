@@ -21,7 +21,7 @@
     <button><router-link class="btn btn-therapist" to="/registertherapist">I forgot my password</router-link></button>
     
     <div class="footer-back" id="back">
-      <button><router-link class="btn btn-patient" to="/login">Back</router-link></button>
+      <button><router-link class="btn btn-patient" to="/ladingpage">Back</router-link></button>
     </div>
 
   </div>
@@ -45,7 +45,7 @@ export default {
         email : this.email,
         password : this.password
       }
-      accountService.login(credentials);      
+      accountService.login(credentials);
     }
   }
 }

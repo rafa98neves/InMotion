@@ -8,6 +8,6 @@ export function authGuard() {
         return true;
     }
 
-    router.push('/login');
+    router.push('/landingpage');
     return false;
 }
