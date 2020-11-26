@@ -3,8 +3,8 @@
 
     <div class="form-control-nav">
         <label>Type of Account</label>
-        <button style="background: #5dbcd2;"><router-link class="btn btn-patient" to="/registerpatient">Patient</router-link></button>
-        <button><router-link class="btn btn-therapist" to="/registertherapist">Therapist</router-link></button>
+        <router-link class="btn btn-patient" to="/registerpatient"><button style="background: #5dbcd2;">Patient</button></router-link>
+        <router-link class="btn btn-therapist" to="/registertherapist"><button>Therapist</button></router-link>
     </div>
     
     <form class="form-box">
@@ -18,13 +18,16 @@
         <input type="text" name="patient_id" class="register-input" v-model="patient_id" required>
 
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birth_date" required>
+        <input type="date" name="date" id="name" class="register-input" v-model="birthdate" required>
       </div>
       
-      <div class="form-control-nav">
+      <div class="form-control">
         <label>Gender</label>    
-        <button style="background: #5dbcd2;">Male</button>
-        <button>Female</button>
+        <select v-model="gender">
+          <option disabled value="">Please select one</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
       </div>
       
 
@@ -60,18 +63,24 @@
 
       <div class="form-control">
         <label>Confirm password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+        <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
+        <h4>{{ msg }}</h4>
       </div>
-      
-      <p v-if="$validator.email.email">Please provide a valid email adress</p>
       
       <div class="form-footer">
         <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit" v-on:click="register()">Create Account</button>
+          <button type="submit" class="btn-submit" v-on:click="register()" 
+              v-bind:disabled ="name === '' || 
+                                patient_id === '' ||
+                                birthdate === '' ||
+                                password === '' || 
+                                email === '' || 
+                                gender === '' || 
+                                msg !== ''">Create Account</button>
         </div>
 
         <div class="form-submit" id="back">
-          <button><router-link class="btn btn-patient" to="/landingpage">Back</router-link></button>
+          <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
         </div>
       </div>
 
@@ -82,14 +91,46 @@
 </template>
 
 <script>
+
+import { accountService } from "../../_services/account.service"
+
 export default {
   data() {
     return {
+      msg: '',
       name: '',
+      patient_id: '',
+      birthdate: '',
+      email: '',
       password: '',
+      password2: '',
       diagnosis: [],
       medication: [],
       gender:'',
+    }
+  },
+  methods: {
+    register() {
+      let user = {
+        type : 'patient',
+        name : this.name,
+        password : this.password,
+        diagnosis : this.diagnosis,
+        medication : this.medication,
+        gender : this.gender
+      }
+      accountService.register(user);
+    },    
+    validate() {
+      if(this.password != this.password2){
+        this.msg = 'Password does not corresponde!'
+      }
+      else{
+        this.msg = ''
+      }
+    },
+    filled(){
+      return (this.name.length > 0 && this.password.length > 0 && this.gender.length > 0 &&  this.msg.length == 0)
     }
   }
 
@@ -98,67 +139,14 @@ export default {
 
 
 <style scoped>
+  @import url('auth.css');
 
-.form-control-nav{
-  display: inline-block;
-  margin: 0 0 .2% 0;
-  width: 50%;
-}
-
-.form-control-nav label{
-  margin: 2%;
-}
-
-.form-control-nav button{
-  padding: 1% 2% 1% 2%;
-}
-
-.form-box{
-  display: table;
-  margin-left: 10%;
-  width: 80%;
-  margin-top: 2%;
-}
-
-.form-control label,input {  
-  display: inline-block;
-  vertical-align: baseline;
-  width: 20%;
-  margin-bottom: 2%;
-}
-
-.form-control label{
-  width: 20%;
-}
-
-.form-control input {
-  width: 70%;
-}
-
-.form-control select {
-  width: 20%;
-  margin-right: 51%;
-}
-
-.form-footer{
-  display: inline-block;
-  position: absolute;
-  bottom: 9%;
-  left: 7%;
-  width: 86%;
-}
-
-.form-footer button {  
-  padding-bottom: 10%;
-  padding-top: 10%;
-}
-
-#submit{
-  float: right;
-}
-
-#back{
-  float: left;
-}
-
+  .form-box{
+    margin-top: 2%;
+  }
+  
+  .form-control input {
+    width: 70%;
+  }
+  
 </style>

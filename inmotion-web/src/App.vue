@@ -16,21 +16,9 @@
 
 <script>
 
-import { ref } from 'vue';
-import { accountService } from "./_services/account.service"
-
 export default {
-  name : 'App',
-  setup() {
-      const account = ref(null);
-      accountService.account.subscribe(x => account.value = x);
-
-      return {
-          account
-      }
-  }
+  name : 'App'
 }
-
 
 </script>
 
@@ -76,6 +64,8 @@ html {
 }
 
 button{
+  display: inline-block;
+  cursor: pointer;
   position: relative;
   border: 2px solid black;
   background: white;
@@ -93,6 +83,13 @@ button:hover,
 button:focus {
   box-shadow: 0.48em .4em;
   transform: translate(-0.25em, -0.25em);
+}
+
+button:disabled {
+  cursor: default;
+  border: 1px solid black;
+  box-shadow: 0 0;
+  transform: translate(0, 0);
 }
 
 input, select{  

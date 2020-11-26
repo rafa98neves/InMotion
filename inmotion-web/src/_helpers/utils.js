@@ -1,12 +1,29 @@
 import axios from 'axios';
 
+const base =  'http://localhost:9000/';
+const token = '';
+
 export const utils = {
-    api,
+    createHttp,
     token
 }
 
-const api = axios.create({
-    baseURL: 'http://localhost:9000/'
-  });
+function createHttp(){
 
-const token = '';
+  let api;
+
+  if(token.length > 0){
+    api = axios.create({
+      headers: { "Authorization": `bearer ${token}` },
+      baseURL: base
+    });
+  }
+
+  else{
+    api = axios.create({
+      baseURL: base
+    });
+  }
+
+  return api;
+}

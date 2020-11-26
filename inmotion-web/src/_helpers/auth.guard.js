@@ -2,8 +2,8 @@ import { accountService } from '../_services/account.service';
 import { router } from './router';
 
 export function authGuard() {
-    
-    if (accountService.isAuthenticated) {
+
+    if (accountService.isAuthenticated()) {
         return true;
     }
 

@@ -18,10 +18,11 @@
       
     </form>
 
-    <button><router-link class="btn btn-therapist" to="/registertherapist">I forgot my password</router-link></button>
+    <br>
+    <router-link class="btn btn-therapist" to="/registertherapist"><button>I forgot my password</button></router-link>
     
     <div class="footer-back" id="back">
-      <button><router-link class="btn btn-patient" to="/ladingpage">Back</router-link></button>
+      <router-link class="btn btn-patient" to="/ladingpage"><button>Back</button></router-link>
     </div>
 
   </div>
@@ -53,32 +54,5 @@ export default {
 </script>
 
 <style scoped>
-
-.form-box{
-  display: table;
-  margin-left: 10%;
-  width: 80%;
-  margin-top: 17%;
-}
-
-.form-control label,input {  
-  display: inline-block;
-  vertical-align: baseline;
-  width: 20%;
-  margin-bottom: 2%;
-}
-
-.form-control label{
-  width: 20%;
-}
-
-.form-control input {
-  width: 60%;
-}
-
-button{
-  padding: 0.5% 1% 0.5% 1%;
-  margin-top: 2%;
-}
-
+  @import url('auth.css');
 </style>

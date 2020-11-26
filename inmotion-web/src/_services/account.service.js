@@ -7,26 +7,35 @@ export const accountService = {
     register
 };
 
+const api = utils.createHttp();
+
 function isAuthenticated() {
     return (utils.token.length > 0);
 }
 
 async function login(credentials) {
   
-    const response = await utils.api.post('api/user/login', credentials)
-        .then(response => response.data)
+    await api.post('api/user/login', credentials)
+        .then(response => {
+            if(response.status == 200){
+                window.localStorage.setItem('token', response.data.token)
+                utils.token = response.data.token            
+                router.push("/home")
+            }
+            else{
+                console.log(response)
+            }})
         .catch(error => console.log(error));
-    
-    window.localStorage.setItem('token', response.token)
-    utils.token = response.token
-
-    router.push("/")
 }
 
 async function register(user) {
-
-    const response = await api.post('api/user/register', user)
+    await api.post('api/user/register', user)
+        .then(response => {
+            if(response.status == 200){
+                router.push("/login")
+            }
+            else{
+                console.log(response)
+            }})
         .catch(error => console.log(error));
-    
-        console.log(response)
 }

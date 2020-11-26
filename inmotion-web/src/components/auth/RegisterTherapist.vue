@@ -3,8 +3,8 @@
 
     <div class="form-control-nav">
         <label>Type of Account</label>
-        <button><router-link class="btn btn-patient" to="/registerpatient">Patient</router-link></button>
-        <button style="background: #5dbcd2;"><router-link class="btn btn-therapist" to="/registertherapist">Therapist</router-link></button>
+        <router-link class="btn btn-patient" to="/registerpatient"><button>Patient</button></router-link>
+        <router-link class="btn btn-therapist" to="/registertherapist"><button style="background: #5dbcd2;">Therapist</button></router-link>
     </div>
 
     <form class="form-box">
@@ -26,7 +26,8 @@
 
       <div class="form-control">
         <label>Confirm password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+        <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
+        <h4>{{ msg }}</h4>
       </div>
 
       <div class="form-control">
@@ -40,11 +41,15 @@
 
       <div class="form-footer">
         <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit" v-on:click="register()">Create Account</button>
+          <button type="submit" class="btn-submit" v-on:click="register()" 
+              v-bind:disabled ="name === '' || 
+                                password === '' || 
+                                email === '' || 
+                                gender === '' || 
+                                msg !== ''">Create Account</button>
         </div>
-
         <div class="form-submit" id="back">
-          <button><router-link class="btn btn-patient" to="/landingpage">Back</router-link></button>
+          <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
         </div>
       </div>
     </form>    
@@ -52,88 +57,65 @@
 </template>
 
 <script>
+
+import { accountService } from "../../_services/account.service"
+
 export default {
   data() {
     return {
+      msg : '',
       name: '',
+      email: '',
       password: '',
-      diagnosis: [],
-      medication: [],
+      password2 : '',
       gender:'',
+      filled: false
+    }
+  },
+  methods: {
+    register() {
+      let user = {
+        type : 'therapist',
+        name : this.name,
+        email : this.email,
+        password : this.password,
+      }
+
+      accountService.register(user);
+    },    
+    validate() {
+      if(this.password != this.password2){
+        this.msg = 'Password does not corresponde!'
+      }
+      else{
+        this.msg = ''
+      }
+    },
+    verify(){
+      return (this.name.length > 0 && this.password.length > 0 && this.email.length > 0 && this.gender > 0 && this.msg.length == 0)
     }
   }
-
 }
 </script>
 
 <style scoped>
+  @import url('auth.css');
 
-.form-control-nav{
-  display: inline-block;
-  margin: 0 0 1% 0;
-  width: 50%;
-}
-
-.form-control-nav label{
-  margin: 2%;
-}
-
-.form-control-nav button{
-  padding: 1% 2% 1% 2%;
-}
-
-.form-box{
-  display: table;
-  margin-left: 10%;
-  width: 80%;
-  height: 90%;
-  margin-top: 2%;
-}
-
-.form-control label,input {  
-  display: inline-block;
-  vertical-align: baseline;
-  width: 20%;
-  margin-bottom: 2%;
-}
-
-.form-control label{
-  width: 20%;
-}
-
-.form-control input {
-  width: 70%;
-}
-
-.form-control select {
-  width: 20%;
-  margin-right: 51%;
-}
-
-.form-control button {
-  margin-right: 70%;
-}
-
-.form-footer{
-  display: inline-block;
-  position: absolute;
-  bottom: 9%;
-  left: 7%;
-  width: 86%;
-}
-
-.form-footer button{  
-  padding-bottom: 10%;
-  padding-top: 10%;
-}
-
-#submit{
-  float: right;
-}
-
-#back{
-  float: left;
-}
-
+  .form-box{
+    height: 90%;
+    margin-top: 2%;
+  }
+  
+  .form-control-nav{
+    margin: 0 0 1% 0;
+  }
+  
+  .form-control input {
+    width: 70%;
+  }
+      
+  .form-control button {
+    margin-right: 70%;
+  }
 
 </style>
