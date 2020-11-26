@@ -40,10 +40,10 @@ html {
 }
 
 #pagename{
-  position: fixed;
+  position: absolute;
   font-size: 15px;
   background: white;
-  top: 1%;
+  top: 1.5%;
   left: 7%;
   padding: 5px;
 }

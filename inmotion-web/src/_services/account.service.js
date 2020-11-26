@@ -15,7 +15,7 @@ function isAuthenticated() {
 
 async function login(credentials) {
   
-    await api.post('api/user/login', credentials)
+    await api.post('/api/user/login', credentials)
         .then(response => {
             if(response.status == 200){
                 window.localStorage.setItem('token', response.data.token)
@@ -25,11 +25,15 @@ async function login(credentials) {
             else{
                 console.log(response)
             }})
-        .catch(error => console.log(error));
+        .catch(error => {
+            console.log(error)
+            router.push({name: "error", params: {msg : error}})
+
+        });
 }
 
 async function register(user) {
-    await api.post('api/user/register', user)
+    await api.post('/api/user/register', user)
         .then(response => {
             if(response.status == 200){
                 router.push("/login")

@@ -5,8 +5,10 @@ import RegisterTherapist from '../components/auth/RegisterTherapist';
 import LandingPage from '../components/auth/LandingPage'
 import Login from '../components/auth/Login'
 import Home from '../components/Homepage'
+import ErrorPage from '../components/Error-page'
 
 const routes = [
+    { path: '/error', component: ErrorPage, name: 'error' },
     { path: '/landingpage', component: LandingPage, name: 'Landing Page' },
     { path: '/login', component: Login, name: 'Login' },
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
