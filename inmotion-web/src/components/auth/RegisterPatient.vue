@@ -71,7 +71,7 @@
         </div>
 
         <div class="form-submit" id="back">
-          <button><router-link class="btn btn-patient" to="/login">Back</router-link></button>
+          <button><router-link class="btn btn-patient" to="/landingpage">Back</router-link></button>
         </div>
       </div>
 
