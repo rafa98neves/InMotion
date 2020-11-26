@@ -25,6 +25,11 @@
       </div>
 
       <div class="form-control">
+        <label>Confirm password</label>
+        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+      </div>
+
+      <div class="form-control">
         <label>Gender</label>    
         <select v-model="gender">
           <option disabled value="">Please select one</option>

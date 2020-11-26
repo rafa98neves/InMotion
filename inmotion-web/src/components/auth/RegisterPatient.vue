@@ -58,6 +58,13 @@
         <input type="password" name="password" id="password" class="register-input" v-model="password" required>
       </div>
 
+      <div class="form-control">
+        <label>Confirm password</label>
+        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+      </div>
+      
+      <p v-if="$validator.email.email">Please provide a valid email adress</p>
+      
       <div class="form-footer">
         <div class="form-submit" id="submit">
           <button type="submit" class="btn-submit" v-on:click="register()">Create Account</button>

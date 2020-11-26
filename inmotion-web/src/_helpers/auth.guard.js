@@ -3,8 +3,7 @@ import { router } from './router';
 
 export function authGuard() {
     
-    const account = accountService.accountValue;
-    if (account) {
+    if (accountService.isAuthenticated) {
         return true;
     }
 
