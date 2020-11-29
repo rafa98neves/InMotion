@@ -31,7 +31,7 @@ public class User {
     private Date birthdate;
 
     @NotNull
-    @ManyToOne()
+    @ManyToOne(fetch = FetchType.EAGER)
     private Role role;
 
 

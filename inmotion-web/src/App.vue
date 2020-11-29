@@ -79,8 +79,7 @@ button a{
   color: black;
 }
 
-button:hover,
-button:focus {
+button:hover {
   box-shadow: 0.48em .4em;
   transform: translate(-0.25em, -0.25em);
 }
@@ -111,5 +110,13 @@ label{
 .footer-back button{
   padding: 15.5% 25.5%;
 }
-
+  
+.error-msg{
+    text-align: left;
+    margin-top: -1%;
+    margin-left: 25%;
+    font-size: 10px;
+    color: red;
+}
+  
 </style>

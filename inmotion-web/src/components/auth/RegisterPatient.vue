@@ -7,7 +7,7 @@
         <router-link class="btn btn-therapist" to="/registertherapist"><button>Therapist</button></router-link>
     </div>
     
-    <form class="form-box">
+    <form class="form-box" @submit.prevent="register">
       <div class="form-control">
         <label>Name</label>
         <input type="text" name="name" id="name" class="register-input" v-model="name" required>
@@ -30,7 +30,7 @@
         </select>
       </div>
       
-
+<!--
       <div class="form-control">
         <label>Diagnosis</label>    
         <select>
@@ -50,7 +50,7 @@
           <option>Medication C</option>
         </select>
       </div>
-
+-->
       <div class="form-control">
         <label>Email</label>
         <input type="email" name="email" id="email" class="register-input" v-model="email" required>
@@ -64,12 +64,12 @@
       <div class="form-control">
         <label>Confirm password</label>
         <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
-        <h4>{{ msg }}</h4>
+        <h4 class="error-msg">{{ msg }}</h4>
       </div>
       
       <div class="form-footer">
         <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit" v-on:click="register()" 
+          <button type="submit" class="btn-submit"
               v-bind:disabled ="name === '' || 
                                 patient_id === '' ||
                                 birthdate === '' ||
@@ -104,22 +104,24 @@ export default {
       email: '',
       password: '',
       password2: '',
-      diagnosis: [],
-      medication: [],
+      //diagnosis: [],
+      //medication: [],
       gender:'',
     }
   },
   methods: {
     register() {
+      console.log(1)
       let user = {
-        type : 'patient',
         name : this.name,
+        id : this.patient_id,
+        birthdate : this.birthdate,
+        gender : this.gender,
+        email : this.email,
         password : this.password,
-        diagnosis : this.diagnosis,
-        medication : this.medication,
-        gender : this.gender
+        role : 'PATIENT'
       }
-      accountService.register(user);
+      accountService.register(user,this);
     },    
     validate() {
       if(this.password != this.password2){
