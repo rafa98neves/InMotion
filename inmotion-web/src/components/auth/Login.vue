@@ -11,12 +11,12 @@
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="login-input" v-model="password">
       </div>
+      <h4 class="error-msg">{{ msg }}</h4>
 
       <div class="form-control">
         <button type="submit" class="btn-submit">Login</button>
       </div>
       
-      <h4 :msg="msg">{{ msg }}</h4>
     </form>
 
     <br>
@@ -48,7 +48,7 @@ export default {
         email : this.email,
         password : this.password
       }
-      accountService.login(credentials);
+      accountService.login(credentials, this);
     }
   }
 }
@@ -57,4 +57,8 @@ export default {
 
 <style scoped>
   @import url('auth.css');
+
+  .error-msg{
+    margin-left: 30%;
+  }
 </style>

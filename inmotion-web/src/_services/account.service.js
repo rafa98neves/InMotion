@@ -18,36 +18,43 @@ function isAuthenticated() {
     return (utils.token.length > 0);
 }
 
-async function login(credentials) {
+async function login(credentials, context) {
   
     await api.post('/login', credentials)
         .then(function(response) {
             if(response.status == 200){
                 window.localStorage.setItem('token', response.headers['authorization'])
-                utils.token = response.headers['authorization']            
+                utils.token = response.headers['authorization']   
+                context.$toast.success("Login successed", { position: "bottom"})       
                 router.push("/home")
             }
             else{
                 console.log("status not expected -" + response)
             }})
         .catch(error => {
-            if(error.response.status == 403){
-                router.push({name: "Login", params: {msg : error}})
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else if(error.response.status == 403){
+                context.$toast.error("Invalid credentials", { position: "bottom"} )
+                //router.push({name: "Login", params: {msg : "Invalid credentials"}})
             }
             else{
-                router.push({name: "error", params: {msg : error}})
+                router.push({name: "error", params: {msg : error.response}})
             }
         });
 }
 
-async function register(user) {
+async function register(user, context) {
+    console.log(2)
     await api.post('/register', user)
         .then(response => {
             if(response.status == 200){
+                context.$toast.success("Registration successed", { position: "bottom"})   
                 router.push("/login")
             }
             else{
-                console.log(response)
+                context.$toast.error("Invalid credentials", { position: "bottom"} )
             }})
         .catch(error => console.log(error));
 }

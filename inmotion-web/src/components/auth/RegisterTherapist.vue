@@ -7,11 +7,28 @@
         <router-link class="btn btn-therapist" to="/registertherapist"><button style="background: #5dbcd2;">Therapist</button></router-link>
     </div>
 
-    <form class="form-box">
+    <form class="form-box" @submit.prevent="register">
 
       <div class="form-control">
         <label>Name</label>
         <input type="text" name="name" id="name" class="register-input" v-model="name" required>
+      </div>
+
+      <div class="form-control">
+        <label>Therapist's ID</label>
+        <input type="text" name="therapist_id" class="register-input" v-model="therapist_id" required>
+     
+        <label>Data of Birth</label>
+        <input type="date" name="date" id="name" class="register-input" v-model="birthdate" required>
+      </div>
+
+      <div class="form-control">
+        <label>Gender</label>    
+        <select v-model="gender">
+          <option disabled value="">Please select one</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
       </div>
 
       <div class="form-control">
@@ -27,27 +44,19 @@
       <div class="form-control">
         <label>Confirm password</label>
         <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
-        <h4>{{ msg }}</h4>
-      </div>
-
-      <div class="form-control">
-        <label>Gender</label>    
-        <select v-model="gender">
-          <option disabled value="">Please select one</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
+        <h4 class="error-msg">{{ msg }}</h4>
       </div>
 
       <div class="form-footer">
         <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit" v-on:click="register()" 
+          <button type="submit" class="btn-submit" 
               v-bind:disabled ="name === '' || 
                                 password === '' || 
                                 email === '' || 
                                 gender === '' || 
                                 msg !== ''">Create Account</button>
         </div>
+
         <div class="form-submit" id="back">
           <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
         </div>
@@ -63,25 +72,30 @@ import { accountService } from "../../_services/account.service"
 export default {
   data() {
     return {
-      msg : '',
+      msg: '',
       name: '',
+      therapist_id: '',
+      birthdate: '',
       email: '',
       password: '',
-      password2 : '',
+      password2: '',
       gender:'',
       filled: false
     }
   },
   methods: {
     register() {
+      
       let user = {
-        type : 'therapist',
         name : this.name,
+        id : this.therapist_id,
+        birthdate : this.birthdate,
+        gender : this.gender,
         email : this.email,
         password : this.password,
+        role : 'THERAPIST'
       }
-
-      accountService.register(user);
+      accountService.register(user,this);
     },    
     validate() {
       if(this.password != this.password2){
