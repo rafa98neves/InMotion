@@ -5,7 +5,8 @@ export const accountService = {
     login,
     isAuthenticated,
     register,
-    whoami
+    whoami,
+    recoverPassword
 };
 
 const api = utils.createHttp();
@@ -63,4 +64,23 @@ async function whoami(){
     
     router.push('/landingpage');
     return false;    
+}
+
+async function recoverPassword(email) {
+    //não sei o que colocar a seguir a user para enviar e-mail
+    await api.post('/api/user/login', email)
+        .then(response => {
+            if(response.status == 200){
+                window.localStorage.setItem('token', response.data.token)
+                utils.token = response.data.token
+                router.push("/home")
+            }
+            else{
+                console.log(response)
+            }})
+        .catch(error => {
+            console.log(error)
+            router.push({name: "error", params: {msg : error}})
+
+        });
 }

@@ -85,7 +85,7 @@ export default {
     },    
     validate() {
       if(this.password != this.password2){
-        this.msg = 'Password does not corresponde!'
+        this.msg = 'Password does not correspond!'
       }
       else{
         this.msg = ''
