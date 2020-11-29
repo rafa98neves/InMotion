@@ -20,7 +20,7 @@
     </form>
 
     <br>
-    <router-link class="btn btn-therapist" to="/registertherapist"><button>I forgot my password</button></router-link>
+    <router-link class="btn btn-therapist" to="/recoverpassword"><button>I forgot my password</button></router-link>
     
     <div class="footer-back" id="back">
       <router-link class="btn btn-patient" to="/ladingpage"><button>Back</button></router-link>
