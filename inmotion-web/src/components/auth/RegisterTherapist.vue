@@ -11,15 +11,15 @@
 
       <div class="form-control">
         <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name" required>
+        <input type="text" name="name" id="name" class="register-input" v-model="name">
       </div>
 
       <div class="form-control">
         <label>Therapist's ID</label>
-        <input type="text" name="therapist_id" class="register-input" v-model="therapist_id" required>
+        <input type="text" name="therapist_id" class="register-input" v-model="therapist_id">
      
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate" required>
+        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
       </div>
 
       <div class="form-control">
@@ -33,33 +33,30 @@
 
       <div class="form-control">
         <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email" required>
+        <input type="email" name="email" id="email" class="register-input" v-model="email">
       </div>
 
       <div class="form-control">
         <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+        <input type="password" name="password" id="password" class="register-input" v-model="password">
       </div>
 
       <div class="form-control">
         <label>Confirm password</label>
-        <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
+        <input type="password" name="password" id="password" class="register-input" v-model="password2">
         <h4 class="error-msg">{{ msg }}</h4>
       </div>
 
       <div class="form-footer">
         <div class="form-submit" id="submit">
           <button type="submit" class="btn-submit" 
-              v-bind:disabled ="name === '' || 
-                                password === '' || 
-                                email === '' || 
-                                gender === '' || 
-                                msg !== ''">Create Account</button>
+              v-bind:disabled="verify() == false">Create Account</button>
         </div>
-
+    
         <div class="form-submit" id="back">
           <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
         </div>
+        
       </div>
     </form>    
   </div>
@@ -79,8 +76,7 @@ export default {
       email: '',
       password: '',
       password2: '',
-      gender:'',
-      filled: false
+      gender:''
     }
   },
   methods: {
@@ -96,17 +92,26 @@ export default {
         role : 'THERAPIST'
       }
       accountService.register(user,this);
-    },    
-    validate() {
+    }, 
+    verify(){
+
+      let pass_check = false
       if(this.password != this.password2){
         this.msg = 'Password does not correspond!'
+        pass_check = false
       }
       else{
         this.msg = ''
+        pass_check = true
       }
-    },
-    verify(){
-      return (this.name.length > 0 && this.password.length > 0 && this.email.length > 0 && this.gender > 0 && this.msg.length == 0)
+      
+      return (this.name.length > 0 &&
+              this.therapist_id.length > 0 &&
+              this.birthdate.length > 0 &&
+              this.password.length > 0 &&
+              this.email.length > 0 &&
+              this.gender.length > 0 &&
+              pass_check)
     }
   }
 }
@@ -117,7 +122,7 @@ export default {
 
   .form-box{
     height: 90%;
-    margin-top: 2%;
+    margin-top: 4.2%;
   }
   
   .form-control-nav{

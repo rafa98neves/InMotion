@@ -8,17 +8,18 @@
     </div>
     
     <form class="form-box" @submit.prevent="register">
+
       <div class="form-control">
         <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name" required>
+        <input type="text" name="name" id="name" class="register-input" v-model="name">
       </div>
 
       <div class="form-control">
         <label>Patient's ID</label>
-        <input type="text" name="patient_id" class="register-input" v-model="patient_id" required>
+        <input type="text" name="patient_id" class="register-input" v-model="patient_id">
 
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate" required>
+        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
       </div>
       
       <div class="form-control">
@@ -53,30 +54,24 @@
 -->
       <div class="form-control">
         <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email" required>
+        <input type="email" name="email" id="email" class="register-input" v-model="email">
       </div>
 
       <div class="form-control">
         <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
+        <input type="password" name="password" id="password" class="register-input" v-model="password">
       </div>
 
       <div class="form-control">
         <label>Confirm password</label>
-        <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
+        <input type="password" name="password" id="password" class="register-input" v-model="password2">
         <h4 class="error-msg">{{ msg }}</h4>
       </div>
       
       <div class="form-footer">
         <div class="form-submit" id="submit">
           <button type="submit" class="btn-submit"
-              v-bind:disabled ="name === '' || 
-                                patient_id === '' ||
-                                birthdate === '' ||
-                                password === '' || 
-                                email === '' || 
-                                gender === '' || 
-                                msg !== ''">Create Account</button>
+              v-bind:disabled="verify() == false">Create Account</button>
         </div>
 
         <div class="form-submit" id="back">
@@ -106,12 +101,11 @@ export default {
       password2: '',
       //diagnosis: [],
       //medication: [],
-      gender:'',
+      gender:''
     }
   },
   methods: {
     register() {
-      console.log(1)
       let user = {
         name : this.name,
         id : this.patient_id,
@@ -122,17 +116,24 @@ export default {
         role : 'PATIENT'
       }
       accountService.register(user,this);
-    },    
-    validate() {
+    },
+    verify(){
+      let pass_check = false
       if(this.password != this.password2){
         this.msg = 'Password does not correspond!'
+        pass_check = false
       }
       else{
         this.msg = ''
+        pass_check = true
       }
-    },
-    filled(){
-      return (this.name.length > 0 && this.password.length > 0 && this.gender.length > 0 &&  this.msg.length == 0)
+      return (this.name.length > 0 && 
+              this.patient_id.length > 0 &&              
+              this.birthdate.length > 0 && 
+              this.password.length > 0 && 
+              this.email.length > 0 && 
+              this.gender.length > 0 && 
+              pass_check)
     }
   }
 
@@ -144,7 +145,7 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 2%;
+    margin-top: 5%;
   }
   
   .form-control input {
