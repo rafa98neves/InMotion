@@ -7,11 +7,6 @@ import java.util.List;
 @Entity
 @Table(name = "therapists")
 public class Therapist extends User{
-    @Column(length = 64)
-    private String therapistName;
-
-    @Column(length = 9)
-    private String therapistContact;
 
     @OneToMany(mappedBy = "therapist")
     private List<Patient> patientList;
@@ -20,20 +15,8 @@ public class Therapist extends User{
 
     }
 
-    public Therapist(String email, String password,  String therapistName, String therapistContact, List<Patient> patientList) {
-        super(email, password);
-        this.therapistName = therapistName;
-        this.therapistContact = therapistContact;
-        this.patientList = patientList;
-    }
-
-
-    public String getTherapistName() {
-        return therapistName;
-    }
-
-    public void setTherapistName(String terapistName) {
-        this.therapistName = terapistName;
+    public Therapist(User user){
+        super(user.getId(), user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
     }
 
     public List<Patient> getPatientList() {
@@ -44,11 +27,4 @@ public class Therapist extends User{
         this.patientList = patientList;
     }
 
-    public String getTherapistContact() {
-        return therapistContact;
-    }
-
-    public void setTherapistContact(String therapistContact) {
-        this.therapistContact = therapistContact;
-    }
 }

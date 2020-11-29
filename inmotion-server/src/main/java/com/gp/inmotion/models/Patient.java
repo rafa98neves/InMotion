@@ -1,6 +1,7 @@
 package com.gp.inmotion.models;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -8,16 +9,10 @@ import java.util.List;
 public class Patient extends User{
 
     @Column(length = 64)
-    private String patientName;
-
-    @Column(length = 20)
-    private String patientGender;
-
-    @Column(length = 64)
     private String patientDiagnosis;
 
-    @ManyToMany()
-    private List<Medication> patientMedication;
+    @ManyToOne()
+    private Medication medication;
 
     @ManyToOne()
     private Therapist therapist;
@@ -26,17 +21,39 @@ public class Patient extends User{
     public Patient(){
     }
 
-    public Patient(String email, String password, String patientName) {
-        super(email, password);
-        this.patientName = patientName;
+    public Patient(User user){
+        super(user.getId(), user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
     }
 
-
-    public String getPatientName() {
-        return patientName;
+    public Medication getMedication() {
+        return medication;
     }
 
-    public void setPatientName(String patientName) {
-        this.patientName = patientName;
+    public void setMedication(Medication medication) {
+        this.medication = medication;
+    }
+
+    public String getPatientDiagnosis() {
+        return patientDiagnosis;
+    }
+
+    public void setPatientDiagnosis(String patientDiagnosis) {
+        this.patientDiagnosis = patientDiagnosis;
+    }
+
+    public Medication getPatientMedication() {
+        return medication;
+    }
+
+    public void setPatientMedication(Medication medication) {
+        this.medication = medication;
+    }
+
+    public Therapist getTherapist() {
+        return therapist;
+    }
+
+    public void setTherapist(Therapist therapist) {
+        this.therapist = therapist;
     }
 }
