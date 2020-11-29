@@ -16,6 +16,7 @@
         <button type="submit" class="btn-submit">Login</button>
       </div>
       
+      <h4 :msg="msg">{{ msg }}</h4>
     </form>
 
     <br>
@@ -35,6 +36,7 @@ import { accountService } from "../../_services/account.service"
 export default {
   data() {
     return {
+      msg: '',
       email: '',
       password: ''
     }

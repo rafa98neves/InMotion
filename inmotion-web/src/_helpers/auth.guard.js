@@ -4,9 +4,14 @@ import { router } from './router';
 export function authGuard() {
 
     if (accountService.isAuthenticated()) {
-        return true;
+        /*if(accountService.user==undefined){            
+            return accountService.whoami()
+        }
+        else{ return true; }*/
+        return true
     }
-
-    router.push('/landingpage');
-    return false;
+    else{
+        router.push('/landingpage');
+        return false;        
+    }
 }

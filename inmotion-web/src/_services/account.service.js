@@ -4,36 +4,43 @@ import { utils } from "../_helpers/utils"
 export const accountService = {
     login,
     isAuthenticated,
-    register
+    register,
+    whoami
 };
 
 const api = utils.createHttp();
 
 function isAuthenticated() {
+    if(utils.token == undefined){
+        return false
+    }
     return (utils.token.length > 0);
 }
 
 async function login(credentials) {
   
-    await api.post('/api/user/login', credentials)
-        .then(response => {
+    await api.post('/login', credentials)
+        .then(function(response) {
             if(response.status == 200){
-                window.localStorage.setItem('token', response.data.token)
-                utils.token = response.data.token            
+                window.localStorage.setItem('token', response.headers['authorization'])
+                utils.token = response.headers['authorization']            
                 router.push("/home")
             }
             else{
-                console.log(response)
+                console.log("status not expected -" + response)
             }})
         .catch(error => {
-            console.log(error)
-            router.push({name: "error", params: {msg : error}})
-
+            if(error.response.status == 403){
+                router.push({name: "Login", params: {msg : error}})
+            }
+            else{
+                router.push({name: "error", params: {msg : error}})
+            }
         });
 }
 
 async function register(user) {
-    await api.post('/api/user/register', user)
+    await api.post('/register', user)
         .then(response => {
             if(response.status == 200){
                 router.push("/login")
@@ -42,4 +49,18 @@ async function register(user) {
                 console.log(response)
             }})
         .catch(error => console.log(error));
+}
+
+async function whoami(){
+    await api.get('/whoami')
+            .then(response => {
+                if(response.status == 200){
+                    accountService.user=response.data.user
+                    console.log("user = " + accountService.user)
+                    return true
+                }})
+            .catch(error => console.log(error));
+    
+    router.push('/landingpage');
+    return false;    
 }

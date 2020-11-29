@@ -1,11 +1,13 @@
 import axios from 'axios';
 
-const base =  'http://localhost:8080';
+const base =  'http://localhost:9000';
 const token = '';
+const user = '';
 
 export const utils = {
     createHttp,
-    token
+    token,
+    user
 }
 
 function createHttp(){
@@ -14,7 +16,7 @@ function createHttp(){
 
   if(token.length > 0){
     api = axios.create({
-      headers: { "Authorization": `bearer ${token}` },
+      headers: { "Authorization": token, "Content-Type" : "application/json"},
       baseURL: base
     });
   }
