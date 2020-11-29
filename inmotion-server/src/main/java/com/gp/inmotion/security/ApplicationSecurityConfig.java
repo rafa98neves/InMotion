@@ -1,6 +1,6 @@
 package com.gp.inmotion.security;
 
-import com.gp.inmotion.auth.ApplicationUserService;
+import com.gp.inmotion.service.ApplicationUserService;
 import com.gp.inmotion.jwt.JwtConfig;
 import com.gp.inmotion.jwt.JwtTokenVerifier;
 import com.gp.inmotion.jwt.JwtUsernameAndPasswordAuthenticationFilter;
@@ -55,6 +55,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/api/").hasRole(PATIENT.name())
                 .anyRequest()
                 .authenticated();

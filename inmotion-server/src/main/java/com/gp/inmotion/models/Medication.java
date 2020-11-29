@@ -13,7 +13,7 @@ public class Medication {
     @Column()
     private String medicationName;
 
-    @ManyToMany(mappedBy = "patientMedication")
+    @OneToMany(mappedBy = "medication")
     private List<Patient> patientList;
 
 
@@ -38,5 +38,13 @@ public class Medication {
 
     public String getMedicationName() {
         return medicationName;
+    }
+
+    public List<Patient> getPatientList() {
+        return patientList;
+    }
+
+    public void setPatientList(List<Patient> patientList) {
+        this.patientList = patientList;
     }
 }

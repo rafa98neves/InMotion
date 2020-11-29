@@ -1,5 +1,6 @@
-package com.gp.inmotion.auth;
+package com.gp.inmotion.service;
 
+import com.gp.inmotion.auth.ApplicationUser;
 import com.gp.inmotion.models.User;
 import com.gp.inmotion.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +27,4 @@ public class ApplicationUserService implements UserDetailsService {
         System.out.println(user);
         return ApplicationUser.create(user);
     }
-
-    public UserDetails loadUserById(Long id){
-        User user = userRepository.findById(id).orElseThrow(
-                () -> new UsernameNotFoundException("User with id " + id + " not found!")
-        );
-        System.out.println(user);
-        return ApplicationUser.create(user);
-    }
-
 }
