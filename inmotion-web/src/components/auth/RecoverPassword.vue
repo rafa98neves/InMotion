@@ -15,11 +15,6 @@
     <div class="footer-back" id="back">
       <router-link class="btn btn-patient" to="/login"><button>Back</button></router-link>
     </div>
-    <div class="form-footer">
-      <div class="form-submit" id="submit">
-        <router-link class="btn btn-patient" to="/registerpatient"><button>Create account</button></router-link>
-      </div>
-    </div>
 
   </div>
 
