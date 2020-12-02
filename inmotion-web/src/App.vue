@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -47,6 +48,7 @@ html {
   left: 7%;
   padding: 5px;
 }
+
 #header-images div{
   position: absolute;
   display: inline-block;
@@ -91,7 +93,7 @@ button:disabled {
   transform: translate(0, 0);
 }
 
-input, select{  
+input, select, textarea{  
   border: 2px solid black;
   border-radius: 3px;
 }
