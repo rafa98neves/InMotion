@@ -8,7 +8,7 @@
       </div>
 
       <div class="form-control">
-        <router-link class="btn btn-patient" to="/newpassword"><button type="submit" class="btn-submit">Send notification</button></router-link>
+        <button type="submit" class="btn-submit">Send notification</button>
       </div>
     </form>
 
