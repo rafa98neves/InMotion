@@ -14,7 +14,7 @@
         <input type="text" name="name" id="name" class="register-input" v-model="name">
 
         <label>Patient's ID</label>
-        <input type="text" name="patient_id" class="register-input" v-model="patient_id">
+        <input type="number" name="patient_id" class="register-input" v-model="patient_id">
 
         <label>Data of Birth</label>
         <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
@@ -22,7 +22,7 @@
       
       <div class="form-control">
         <label>Diagnosis</label>    
-        <textarea placeholder="Enter the patient's diagnosis in this filed"></textarea>
+        <input v-model="diagnosis">
       </div>
 
       <div class="form-control">
@@ -65,9 +65,7 @@
         </div>
       </div>
 
-    </form>
-
-    
+    </form>     
   </div>
 </template>
 
@@ -85,7 +83,7 @@ export default {
       patient_id: '',
       birthdate: '',
       email: '',
-      medication: '',
+      medication: [],
       password: '',
       password2: '',
       diagnosis: '',
@@ -136,7 +134,7 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 5%;
+    margin-top: 8px;
   }
   
   .form-control input {

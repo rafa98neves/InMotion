@@ -7,16 +7,17 @@ export const accountService = {
     register,
     whoami,
     recoverPassword,
-    recover
+    recover,
+    logout
 };
 
 const api = utils.createHttp();
 
 function isAuthenticated() {
-    if(utils.token == undefined){
+    if(utils.getToken() == ''){
         return false
     }
-    return (utils.token.length > 0);
+    return true;
 }
 
 async function login(credentials, context) {
@@ -95,4 +96,9 @@ async function recover(user, context) {
                 context.$toast.error("Couldn't change your password", { position: "bottom"} )
             }})
         .catch(error => console.log(error));
+}
+
+async function logout(){
+    window.localStorage.clear();
+    router.push("/landingpage")
 }
