@@ -6,47 +6,47 @@ export const accountService = {
     isAuthenticated,
     register,
     whoami,
-    recoverPassword
+    recoverPassword,
+    recover,
+    logout
 };
 
 const api = utils.createHttp();
 
 function isAuthenticated() {
-    if(utils.token == undefined){
+    if(utils.getToken() == ''){
         return false
     }
-    return (utils.token.length > 0);
+    return true;
 }
 
 async function login(credentials, context) {
   
     await api.post('/login', credentials)
-        .then(function(response) {
-            if(response.status == 200){
-                window.localStorage.setItem('token', response.headers['authorization'])
-                utils.token = response.headers['authorization']   
-                context.$toast.success("Login successed", { position: "bottom"})       
-                router.push("/home")
-            }
-            else{
-                console.log("status not expected -" + response)
-            }})
-        .catch(error => {
-            if(error.response == undefined){
-                router.push({name: "error", params: {msg : "404 - Server side error"}})
-            }
-            else if(error.response.status == 403){
-                context.$toast.error("Invalid credentials", { position: "bottom"} )
-                //router.push({name: "Login", params: {msg : "Invalid credentials"}})
-            }
-            else{
-                router.push({name: "error", params: {msg : error.response}})
-            }
-        });
+            .then(function(response) {
+                if(response.status == 200){
+                    window.localStorage.setItem('token', response.headers['authorization'])
+                    utils.token = response.headers['authorization']   
+                    context.$toast.success("Login successed", { position: "bottom"})       
+                    router.push("/")
+                }
+                else{
+                    console.log("status not expected -" + response)
+                }})
+            .catch(error => {
+                if(error.response == undefined){
+                    router.push({name: "error", params: {msg : "404 - Server side error"}})
+                }
+                else if(error.response.status == 403){
+                    context.$toast.error("Invalid credentials", { position: "bottom"} )
+                }
+                else{
+                    router.push({name: "error", params: {msg : error.response}})
+                }
+            });
 }
 
 async function register(user, context) {
-    console.log(2)
     await api.post('/register', user)
         .then(response => {
             if(response.status == 200){
@@ -73,21 +73,32 @@ async function whoami(){
     return false;    
 }
 
-async function recoverPassword(email) {
-    //não sei o que colocar a seguir a user para enviar e-mail
-    await api.post('/api/user/login', email)
+async function recoverPassword(email, context) {
+    await api.post('/recover', email)
         .then(response => {
             if(response.status == 200){
-                window.localStorage.setItem('token', response.data.token)
-                utils.token = response.data.token
-                router.push("/home")
+                context.form_display = !context.form_display
             }
             else{
-                console.log(response)
+                context.$toast.error("Email not found", { position: "bottom"} )
             }})
-        .catch(error => {
-            console.log(error)
-            router.push({name: "error", params: {msg : error}})
+        .catch(error => console.log(error));
+}
 
-        });
+async function recover(user, context) {
+    await api.post('/newpassword', user)
+        .then(response => {
+            if(response.status == 200){
+                context.$toast.success("Recover password successed", { position: "bottom"})   
+                router.push("/login")
+            }
+            else{
+                context.$toast.error("Couldn't change your password", { position: "bottom"} )
+            }})
+        .catch(error => console.log(error));
+}
+
+async function logout(){
+    window.localStorage.clear();
+    router.push("/landingpage")
 }

@@ -1,18 +1,18 @@
 import axios from 'axios';
 
-const base =  'http://localhost:9000';
-const token = '';
+const base = 'http://localhost:9000';
 const user = '';
 
 export const utils = {
     createHttp,
-    token,
+    getToken,
     user
 }
 
 function createHttp(){
 
   let api;
+  let token = getToken();
 
   if(token.length > 0){
     api = axios.create({
@@ -28,4 +28,13 @@ function createHttp(){
   }
 
   return api;
+}
+
+function getToken() {
+
+  if(window.localStorage.getItem('token') != null){
+    return window.localStorage.getItem('token')
+  } 
+
+  return ''
 }

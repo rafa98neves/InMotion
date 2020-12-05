@@ -10,28 +10,6 @@
     <form class="form-box" @submit.prevent="register">
 
       <div class="form-control">
-        <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name">
-      </div>
-
-      <div class="form-control">
-        <label>Therapist's ID</label>
-        <input type="text" name="therapist_id" class="register-input" v-model="therapist_id">
-     
-        <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
-      </div>
-
-      <div class="form-control">
-        <label>Gender</label>    
-        <select v-model="gender">
-          <option disabled value="">Please select one</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
-      </div>
-
-      <div class="form-control">
         <label>Email</label>
         <input type="email" name="email" id="email" class="register-input" v-model="email">
       </div>
@@ -70,23 +48,15 @@ export default {
   data() {
     return {
       msg: '',
-      name: '',
-      therapist_id: '',
-      birthdate: '',
       email: '',
       password: '',
-      password2: '',
-      gender:''
+      password2: ''
     }
   },
   methods: {
     register() {
-      
+
       let user = {
-        name : this.name,
-        id : this.therapist_id,
-        birthdate : this.birthdate,
-        gender : this.gender,
         email : this.email,
         password : this.password,
         role : 'THERAPIST'
@@ -105,12 +75,8 @@ export default {
         pass_check = true
       }
       
-      return (this.name.length > 0 &&
-              this.therapist_id.length > 0 &&
-              this.birthdate.length > 0 &&
+      return (this.email.length > 0 &&
               this.password.length > 0 &&
-              this.email.length > 0 &&
-              this.gender.length > 0 &&
               pass_check)
     }
   }

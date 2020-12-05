@@ -12,16 +12,19 @@
       <div class="form-control">
         <label>Name</label>
         <input type="text" name="name" id="name" class="register-input" v-model="name">
-      </div>
 
-      <div class="form-control">
         <label>Patient's ID</label>
-        <input type="text" name="patient_id" class="register-input" v-model="patient_id">
+        <input type="number" name="patient_id" class="register-input" v-model="patient_id">
 
         <label>Data of Birth</label>
         <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
       </div>
       
+      <div class="form-control">
+        <label>Diagnosis</label>    
+        <input v-model="diagnosis">
+      </div>
+
       <div class="form-control">
         <label>Gender</label>    
         <select v-model="gender">
@@ -29,40 +32,23 @@
           <option>Male</option>
           <option>Female</option>
         </select>
-      </div>
-      
-<!--
-      <div class="form-control">
-        <label>Diagnosis</label>    
-        <select>
-          <option selected="selected">None</option>
-          <option>Diagnosis A</option>
-          <option>Diagnosis B</option>
-          <option>Diagnosis C</option>
+        
+        <label>Medication</label>    
+        <select v-model="medication" multiple size=4>
+          <option v-for="med in medications" v-bind:key="med">
+            {{ med }}
+          </option>
         </select>
       </div>
 
-      <div class="form-control">
-        <label>Medication</label>    
-        <select>
-          <option selected="selected">None</option>
-          <option>Medication A</option>
-          <option>Medication B</option>
-          <option>Medication C</option>
-        </select>
-      </div>
--->
       <div class="form-control">
         <label>Email</label>
         <input type="email" name="email" id="email" class="register-input" v-model="email">
-      </div>
 
-      <div class="form-control">
         <label>Password</label>
         <input type="password" name="password" id="password" class="register-input" v-model="password">
-      </div>
 
-      <div class="form-control">
+
         <label>Confirm password</label>
         <input type="password" name="password" id="password" class="register-input" v-model="password2">
         <h4 class="error-msg">{{ msg }}</h4>
@@ -79,33 +65,34 @@
         </div>
       </div>
 
-    </form>
-
-    
+    </form>     
   </div>
 </template>
 
 <script>
 
 import { accountService } from "../../_services/account.service"
+import { resourcesService } from "../../_services/resources.service"
 
 export default {
   data() {
     return {
       msg: '',
+      medications: resourcesService.getMedications(),
       name: '',
       patient_id: '',
       birthdate: '',
       email: '',
+      medication: [],
       password: '',
       password2: '',
-      //diagnosis: [],
-      //medication: [],
+      diagnosis: '',
       gender:''
     }
   },
-  methods: {
+  methods: {    
     register() {
+
       let user = {
         name : this.name,
         id : this.patient_id,
@@ -115,28 +102,30 @@ export default {
         password : this.password,
         role : 'PATIENT'
       }
+
       accountService.register(user,this);
     },
     verify(){
+
       let pass_check = false
       if(this.password != this.password2){
         this.msg = 'Password does not correspond!'
         pass_check = false
-      }
-      else{
+      }else{
         this.msg = ''
         pass_check = true
       }
+
       return (this.name.length > 0 && 
               this.patient_id.length > 0 &&              
               this.birthdate.length > 0 && 
               this.password.length > 0 && 
+              this.diagnosis.length > 0 && 
               this.email.length > 0 && 
               this.gender.length > 0 && 
               pass_check)
     }
   }
-
 }
 </script>
 
@@ -145,7 +134,7 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 5%;
+    margin-top: 8px;
   }
   
   .form-control input {

@@ -2,6 +2,7 @@
   <div class="login-form">
     
     <form class="form-box" @submit.prevent="login">
+
       <div class="form-control">
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="login-input" v-model="email">
