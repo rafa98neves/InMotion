@@ -7,6 +7,7 @@ export const accountService = {
     register,
     whoami,
     recoverPassword,
+    validateToken,
     recover,
     logout
 };
@@ -74,28 +75,63 @@ async function whoami(){
 }
 
 async function recoverPassword(email, context) {
-    await api.post('/recover', email)
+    let email_json = { 'email' : email }
+    await api.post('/resetPassword', email_json)
         .then(response => {
             if(response.status == 200){
-                context.form_display = !context.form_display
+                context.showForm=false;
+            }})
+        .catch(error => {
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else if(error.response.status == 400){
+                context.$toast.error("This account doen't exist, want to register?", { position: "bottom"})
             }
             else{
-                context.$toast.error("Email not found", { position: "bottom"} )
-            }})
-        .catch(error => console.log(error));
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        });
 }
 
-async function recover(user, context) {
-    await api.post('/newpassword', user)
+async function validateToken(token, context) {
+    let token_json = { 'token' : token }
+    await api.post('/validateToken', token_json)
         .then(response => {
             if(response.status == 200){
-                context.$toast.success("Recover password successed", { position: "bottom"})   
-                router.push("/login")
+                context.form_display = true;
+            }})
+        .catch(error => {
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else if(error.response.status == 400){
+                context.$toast.error("Link is no longer valid", { position: "bottom"} )
             }
             else{
-                context.$toast.error("Couldn't change your password", { position: "bottom"} )
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        });
+}
+
+async function recover(request, context) {
+    await api.post('/changePassword', request)
+        .then(response => {
+            if(response.status == 200){
+                router.push("/login")
+                context.$toast.success("Your password has been changed successfully", { position: "bottom"} )
             }})
-        .catch(error => console.log(error));
+        .catch(error => {
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else if(error.response.status == 400){
+                context.$toast.error("Link is no longer valid", { position: "bottom"} )
+            }
+            else{
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        });
 }
 
 async function logout(){

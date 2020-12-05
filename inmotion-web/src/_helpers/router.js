@@ -14,7 +14,7 @@ const routes = [
     { path: '/landingpage', component: LandingPage, name: 'Landing Page' },
     { path: '/login', component: Login, name: 'Login' },
     { path: '/recoverpassword', component: RecoverPassword, name: 'Recover Password' },
-    { path: '/newpassword', component: NewPassword, name: 'New Password' },
+    { path: '/resetPassword', component: NewPassword, name: 'New Password'},
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
