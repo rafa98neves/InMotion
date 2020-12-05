@@ -4,9 +4,11 @@ import com.gp.inmotion.security.ApplicationUserRole;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Entity
+@Transactional
 @Table(name = "roles")
 public class Role {
     @Id
@@ -57,7 +59,6 @@ public class Role {
         return "Role{" +
                 "id=" + id +
                 ", name=" + name +
-                ", userList=" + userList +
                 '}';
     }
 }

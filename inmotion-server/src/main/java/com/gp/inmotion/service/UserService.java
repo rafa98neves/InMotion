@@ -18,7 +18,7 @@ import static com.gp.inmotion.security.ApplicationUserRole.PATIENT;
 import static com.gp.inmotion.security.ApplicationUserRole.THERAPIST;
 
 @Service
-public class RegisterService {
+public class UserService {
 
     private final UserRepository userRepository;
     private final PatientRepository patientRepository;
@@ -27,7 +27,7 @@ public class RegisterService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegisterService(UserRepository userRepository, PatientRepository patientRepository, TherapistRepository therapistRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
+    public UserService(UserRepository userRepository, PatientRepository patientRepository, TherapistRepository therapistRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.patientRepository = patientRepository;
         this.therapistRepository = therapistRepository;

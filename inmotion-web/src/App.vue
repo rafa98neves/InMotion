@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -40,13 +41,14 @@ html {
 }
 
 #pagename{
-  position: fixed;
+  position: absolute;
   font-size: 15px;
   background: white;
-  top: 1%;
+  top: 1.5%;
   left: 7%;
   padding: 5px;
 }
+
 #header-images div{
   position: absolute;
   display: inline-block;
@@ -79,8 +81,7 @@ button a{
   color: black;
 }
 
-button:hover,
-button:focus {
+button:hover {
   box-shadow: 0.48em .4em;
   transform: translate(-0.25em, -0.25em);
 }
@@ -92,7 +93,7 @@ button:disabled {
   transform: translate(0, 0);
 }
 
-input, select{  
+input, select, textarea{  
   border: 2px solid black;
   border-radius: 3px;
 }
@@ -111,5 +112,13 @@ label{
 .footer-back button{
   padding: 15.5% 25.5%;
 }
-
+  
+.error-msg{
+    text-align: left;
+    margin-top: -1%;
+    margin-left: 25%;
+    font-size: 10px;
+    color: red;
+}
+  
 </style>

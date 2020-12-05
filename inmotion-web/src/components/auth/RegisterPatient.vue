@@ -7,20 +7,24 @@
         <router-link class="btn btn-therapist" to="/registertherapist"><button>Therapist</button></router-link>
     </div>
     
-    <form class="form-box">
+    <form class="form-box" @submit.prevent="register">
+
       <div class="form-control">
         <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name" required>
-      </div>
+        <input type="text" name="name" id="name" class="register-input" v-model="name">
 
-      <div class="form-control">
         <label>Patient's ID</label>
-        <input type="text" name="patient_id" class="register-input" v-model="patient_id" required>
+        <input type="number" name="patient_id" class="register-input" v-model="patient_id">
 
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate" required>
+        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
       </div>
       
+      <div class="form-control">
+        <label>Diagnosis</label>    
+        <input v-model="diagnosis">
+      </div>
+
       <div class="form-control">
         <label>Gender</label>    
         <select v-model="gender">
@@ -28,55 +32,32 @@
           <option>Male</option>
           <option>Female</option>
         </select>
-      </div>
-      
-
-      <div class="form-control">
-        <label>Diagnosis</label>    
-        <select>
-          <option selected="selected">None</option>
-          <option>Diagnosis A</option>
-          <option>Diagnosis B</option>
-          <option>Diagnosis C</option>
-        </select>
-      </div>
-
-      <div class="form-control">
+        
         <label>Medication</label>    
-        <select>
-          <option selected="selected">None</option>
-          <option>Medication A</option>
-          <option>Medication B</option>
-          <option>Medication C</option>
+        <select v-model="medication" multiple size=4>
+          <option v-for="med in medications" v-bind:key="med">
+            {{ med }}
+          </option>
         </select>
       </div>
 
       <div class="form-control">
         <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email" required>
-      </div>
+        <input type="email" name="email" id="email" class="register-input" v-model="email">
 
-      <div class="form-control">
         <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password" required>
-      </div>
+        <input type="password" name="password" id="password" class="register-input" v-model="password">
 
-      <div class="form-control">
+
         <label>Confirm password</label>
-        <input v-on:blur="validate" type="password" name="password" id="password" class="register-input" v-model="password2" required>
-        <h4>{{ msg }}</h4>
+        <input type="password" name="password" id="password" class="register-input" v-model="password2">
+        <h4 class="error-msg">{{ msg }}</h4>
       </div>
       
       <div class="form-footer">
         <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit" v-on:click="register()" 
-              v-bind:disabled ="name === '' || 
-                                patient_id === '' ||
-                                birthdate === '' ||
-                                password === '' || 
-                                email === '' || 
-                                gender === '' || 
-                                msg !== ''">Create Account</button>
+          <button type="submit" class="btn-submit"
+              v-bind:disabled="verify() == false">Create Account</button>
         </div>
 
         <div class="form-submit" id="back">
@@ -84,56 +65,67 @@
         </div>
       </div>
 
-    </form>
-
-    
+    </form>     
   </div>
 </template>
 
 <script>
 
 import { accountService } from "../../_services/account.service"
+import { resourcesService } from "../../_services/resources.service"
 
 export default {
   data() {
     return {
       msg: '',
+      medications: resourcesService.getMedications(),
       name: '',
       patient_id: '',
       birthdate: '',
       email: '',
+      medication: [],
       password: '',
       password2: '',
-      diagnosis: [],
-      medication: [],
-      gender:'',
+      diagnosis: '',
+      gender:''
     }
   },
-  methods: {
+  methods: {    
     register() {
+
       let user = {
-        type : 'patient',
         name : this.name,
+        id : this.patient_id,
+        birthdate : this.birthdate,
+        gender : this.gender,
+        email : this.email,
         password : this.password,
-        diagnosis : this.diagnosis,
-        medication : this.medication,
-        gender : this.gender
+        role : 'PATIENT'
       }
-      accountService.register(user);
-    },    
-    validate() {
-      if(this.password != this.password2){
-        this.msg = 'Password does not corresponde!'
-      }
-      else{
-        this.msg = ''
-      }
+
+      accountService.register(user,this);
     },
-    filled(){
-      return (this.name.length > 0 && this.password.length > 0 && this.gender.length > 0 &&  this.msg.length == 0)
+    verify(){
+
+      let pass_check = false
+      if(this.password != this.password2){
+        this.msg = 'Password does not correspond!'
+        pass_check = false
+      }else{
+        this.msg = ''
+        pass_check = true
+      }
+
+      return (this.name.length > 0 && 
+              this.patient_id.length > 0 &&              
+              this.birthdate.length > 0 && 
+              this.password.length > 0 && 
+              this.diagnosis.length > 0 && 
+              this.email.length > 0 && 
+              this.gender.length > 0 && 
+              pass_check)
     }
   }
-
 }
 </script>
 
@@ -142,7 +134,7 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 2%;
+    margin-top: 8px;
   }
   
   .form-control input {
