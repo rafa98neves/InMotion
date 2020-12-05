@@ -106,7 +106,7 @@ public class UserService{
     }
 
     private SimpleMailMessage constructResetTokenEmail(String contextPath, String token, User user){
-        String url = contextPath + "?token=" + token;
+        String url = contextPath + "?token=" + token + "&email=" + user.getEmail();
         String subject = "Reset your password";
         String message = "Hello, \n\n Click on the link below to reset your password.\n\n " + url + "\n\n Sincerely,\n Inmotion Team";
         return constructEmail(subject, message, user);
@@ -126,9 +126,9 @@ public class UserService{
 
         String result =  !isTokenFound(passwordResetToken) ? "invalid"
                 : isTokenExpired(passwordResetToken) ? "expired"
-                : null;
+                : "valid";
 
-        if(result != null){
+        if(!result.equals("valid")){
             throw new BadTokenException("Password Reset Token is " + result);
         }
     }
@@ -142,12 +142,16 @@ public class UserService{
         return passwordResetToken.getExpiryDate().before(cal.getTime());
     }
 
-    public void changePassword(String token, String password) throws BadTokenException{
+    public void changePassword(String token, String email, String password) throws BadTokenException{
         validateResetPasswordToken(token);
-        PasswordResetToken passwordResetToken = passwordTokenRepository.findByToken(token);
-        User user = passwordResetToken.getUser();
-        user.setPassword(passwordEncoder.encode(password));
-        userRepository.save(user);
-        passwordTokenRepository.delete(passwordResetToken);
+        final PasswordResetToken passwordResetToken = passwordTokenRepository.findByToken(token);
+        final User user = passwordResetToken.getUser();
+        if(user.getEmail().equals(email)){
+            user.setPassword(passwordEncoder.encode(password));
+            userRepository.save(user);
+            passwordTokenRepository.delete(passwordResetToken);
+        }else{
+            throw new BadTokenException("Password Reset Token for user with email " + email + " not found!");
+        }
     }
 }
