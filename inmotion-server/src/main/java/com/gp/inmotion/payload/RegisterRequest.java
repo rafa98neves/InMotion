@@ -1,29 +1,37 @@
 package com.gp.inmotion.payload;
 
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class RegisterRequest {
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private Long id;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private String role;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private Date birthdate;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private String gender;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private String email;
 
-    @NotBlank
+    @NotNull
+    @NotEmpty
     private String password;
 
 
