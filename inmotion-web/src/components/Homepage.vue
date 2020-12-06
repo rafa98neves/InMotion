@@ -1,9 +1,6 @@
 <template>
-  <div class="container">
-    <img src="../assets/avatar.png" class="avatar">
-    <label class="name">Name Surname</label>
-    <img src="../assets/logout.png" class="logout" @click="logout">
-  </div>
+
+  <MainLayout :loggedIn="true"></MainLayout>
 
   <div class="menu">
     <div class="row">
@@ -31,23 +28,19 @@
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
 
-import { accountService } from "../_services/account.service"
+import MainLayout from './layout/main_layout'
 
 export default {
-  methods : {
-    logout() {
-        accountService.logout()
-    }
+  components: {
+    MainLayout,
   }
 }
-</script>
 
+</script>
 <style scoped>
 
 .menu{
@@ -72,37 +65,6 @@ export default {
   float: left;
   font-size: 30px;
   padding: 10px;
-}
-
-.container {
-  position: relative;
-  display: inline-block;
-  margin-right: -90%;
-  margin-top: -2%;
-}
-.avatar {
-  width: 60px;
-  margin-bottom: 15%;
-  cursor: pointer;
-}
-
-.name {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  padding: 5px;
-  margin-top: -14px;
-  margin-left: -50px;
-  width: 100px;
-  background-color: white;
-  text-align: center;
-}
-.logout {
-  position: absolute;
-  width: 50px;
-  top: 140%;
-  left: 15%;
-  cursor: pointer;
 }
 
 .column img{

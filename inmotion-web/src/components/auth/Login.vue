@@ -1,4 +1,5 @@
 <template>
+  <MainLayout :loggedIn="false"></MainLayout>
   <div class="login-form">
     
     <form class="form-box" @submit.prevent="login">
@@ -33,6 +34,7 @@
 <script>
 
 import { accountService } from "../../_services/account.service"
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
@@ -41,6 +43,9 @@ export default {
       email: '',
       password: ''
     }
+  },
+  components: {
+    MainLayout,
   },
   methods: {
     login() {

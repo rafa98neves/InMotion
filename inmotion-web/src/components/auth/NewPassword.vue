@@ -1,6 +1,12 @@
 <template>
   <div>
+    <MainLayout :loggedIn="false"></MainLayout>
     <form class="form-box" @submit.prevent="recover" v-if="form_display">
+
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" name="email" class="register-input" id="disabled-input" v-model="email" disabled>
+      </div>
       
       <div class="form-control">
         <label>Password</label>
@@ -28,6 +34,7 @@
 
 import { accountService } from "../../_services/account.service"
 import { useRoute } from "vue-router";
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
@@ -35,10 +42,13 @@ export default {
       token: useRoute().query.token,
       msg: '',
       form_display: false,
-      email: '',
+      email: useRoute().query.email,
       password: '',
       password2: ''
     }
+  },
+  components: {
+    MainLayout,
   },
   mounted(){
     accountService.validateToken(this.token,this)
@@ -46,6 +56,7 @@ export default {
   methods: {
     recover() {
       let user = {
+          'email': this.email,
           'token': this.token,
           'password': this.password
       }
@@ -70,4 +81,10 @@ export default {
 
 <style scoped>
 @import url('auth.css');
+
+#disabled-input{
+  background: white;
+  color: black;
+  border: none;
+}
 </style>

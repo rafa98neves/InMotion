@@ -5,11 +5,11 @@ export const accountService = {
     login,
     isAuthenticated,
     register,
-    whoami,
     recoverPassword,
     validateToken,
     recover,
-    logout
+    logout,
+    whoami
 };
 
 const api = utils.createHttp();
@@ -28,7 +28,8 @@ async function login(credentials, context) {
                 if(response.status == 200){
                     window.localStorage.setItem('token', response.headers['authorization'])
                     utils.token = response.headers['authorization']   
-                    context.$toast.success("Login successed", { position: "bottom"})       
+                    context.$toast.success("Login successed", { position: "bottom"}) 
+                    context.loggedIn = true;      
                     router.push("/")
                 }
                 else{
@@ -55,23 +56,19 @@ async function register(user, context) {
                 router.push("/login")
             }
             else{
-                context.$toast.error("Invalid credentials", { position: "bottom"} )
+                console.log("status not expected -" + response)
             }})
-        .catch(error => console.log(error));
-}
-
-async function whoami(){
-    await api.get('/whoami')
-            .then(response => {
-                if(response.status == 200){
-                    accountService.user=response.data.user
-                    console.log("user = " + accountService.user)
-                    return true
-                }})
-            .catch(error => console.log(error));
-    
-    router.push('/landingpage');
-    return false;    
+            .catch(error => {
+                if(error.response == undefined){
+                    router.push({name: "error", params: {msg : "404 - Server side error"}})
+                }
+                else if(error.response.status == 403){
+                    context.$toast.error("Email already exists", { position: "bottom"} )
+                }
+                else{
+                    router.push({name: "error", params: {msg : error.response}})
+                }
+            });
 }
 
 async function recoverPassword(email, context) {
@@ -86,7 +83,7 @@ async function recoverPassword(email, context) {
                 router.push({name: "error", params: {msg : "404 - Server side error"}})
             }
             else if(error.response.status == 400){
-                context.$toast.error("This account doen't exist, want to register?", { position: "bottom"})
+                context.$toast.error("This account doens't exist", { position: "bottom"})
             }
             else{
                 router.push({name: "error", params: {msg : error.response}})
@@ -127,6 +124,7 @@ async function recover(request, context) {
             }
             else if(error.response.status == 400){
                 context.$toast.error("Link is no longer valid", { position: "bottom"} )
+                router.push("/recoverpassword")
             }
             else{
                 router.push({name: "error", params: {msg : error.response}})
@@ -137,4 +135,17 @@ async function recover(request, context) {
 async function logout(){
     window.localStorage.clear();
     router.push("/landingpage")
+}
+
+async function whoami(){
+    await api.get('/whoami')
+            .then(response => {
+                if(response.status == 200){
+                    accountService.user=response.data.user
+                    return true
+                }})
+            .catch(error => console.log(error));
+    
+    router.push('/landingpage');
+    return false;    
 }

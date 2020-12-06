@@ -1,25 +1,14 @@
 <template>
     <!-- main app container -->
-    <h1 id="pagename">{{ $route.name }}</h1>
-    <div id="header-images">
-        <div id="inmotion-logo">
-          <img src="./assets/inmotion-logo.jpg">
-        </div> 
-        <div id="Phys-logo">
-          <img src="./assets/LIBPhys-logo.jpg">
-        </div> 
-    </div>
     <div class="container">
         <router-view/>
     </div>
 </template>
 
 <script>
-
 export default {
-  name : 'App'
+  name : 'App',
 }
-
 </script>
 
 <style>
@@ -38,31 +27,6 @@ html {
   height: 91%;
   width: 95.3%;
   border: 5px solid black;
-}
-
-#pagename{
-  position: absolute;
-  font-size: 15px;
-  background: white;
-  top: 1.5%;
-  left: 7%;
-  padding: 5px;
-}
-
-#header-images div{
-  position: absolute;
-  display: inline-block;
-  margin: auto;
-  top: 8%;
-  left: 6%;
-}
-#inmotion-logo img{
-  width: 15%;
-  margin: 0 100% 0 0;
-}
-#Phys-logo img {
-  width: 35%;
-  margin: 2% -20% 0 0;
 }
 
 button{
@@ -120,5 +84,4 @@ label{
     font-size: 10px;
     color: red;
 }
-  
 </style>
