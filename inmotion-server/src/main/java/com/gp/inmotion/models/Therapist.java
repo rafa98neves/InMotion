@@ -16,7 +16,7 @@ public class Therapist extends User{
     }
 
     public Therapist(User user){
-        super(user.getId(), user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
+        super(user.getEmail(), user.getPassword(), user.getName(), user.getRole());
     }
 
     public List<Patient> getPatientList() {

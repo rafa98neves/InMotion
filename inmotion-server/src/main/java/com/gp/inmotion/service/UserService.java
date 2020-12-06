@@ -50,8 +50,7 @@ public class UserService{
 
         if(!exists){
             Role role = null;
-            User user = new User(registerRequest.getId(),
-                    registerRequest.getEmail(),
+            User user = new User(registerRequest.getEmail(),
                     passwordEncoder.encode(registerRequest.getPassword()),
                     registerRequest.getName(),
                     registerRequest.getGender(),
@@ -68,7 +67,7 @@ public class UserService{
             }else if(requestRole.equals("PATIENT")){
                 role = findRole(PATIENT);
                 user.setRole(role);
-                patientRepository.save(new Patient(user));
+                patientRepository.save(new Patient(user, registerRequest.getPatientId()));
             }
         }else{
             throw new UserAlreadyExistsException("An account with that email already exists!");

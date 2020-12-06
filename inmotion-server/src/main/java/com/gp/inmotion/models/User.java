@@ -1,5 +1,6 @@
 package com.gp.inmotion.models;
 
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -9,9 +10,6 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
-    private Long id;
-
-    @NotNull
     @Column(length = 60)
     private String email;
 
@@ -35,8 +33,7 @@ public class User {
 
     public User(){}
 
-    public User(Long id, @NotNull String email, @NotNull String password, @NotNull String name, String gender, Date birthdate, Role role) {
-        this.id = id;
+    public User(@NotNull String email, @NotNull String password, @NotNull String name, String gender, Date birthdate, Role role) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -45,12 +42,11 @@ public class User {
         this.role = role;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public User(@NotNull String email, @NotNull String password, @NotNull String name, Role role){
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.role = role;
     }
 
     public Role getRole() {

@@ -1,10 +1,15 @@
 package com.gp.inmotion.models;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "patients")
 public class Patient extends User{
+
+    @Column
+    @NotNull
+    private Long id;
 
     @Column(length = 64)
     private String patientDiagnosis;
@@ -19,8 +24,9 @@ public class Patient extends User{
     public Patient(){
     }
 
-    public Patient(User user){
-        super(user.getId(), user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
+    public Patient(User user, Long id){
+        super(user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
+        this.id = id;
     }
 
     public Medication getMedication() {
@@ -53,5 +59,13 @@ public class Patient extends User{
 
     public void setTherapist(Therapist therapist) {
         this.therapist = therapist;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
