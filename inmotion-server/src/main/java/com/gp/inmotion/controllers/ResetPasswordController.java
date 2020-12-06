@@ -17,12 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.io.IOException;
 import java.util.UUID;
 
 @RestController
-@RequestMapping
+@RequestMapping 
 public class ResetPasswordController {
     private final UserService userService;
 
@@ -38,14 +37,14 @@ public class ResetPasswordController {
             User user = userService.findUserByEmail(resetPasswordRequest.getEmail());
             String token = UUID.randomUUID().toString();
             userService.createPasswordResetTokenForUser(user, token);
-            userService.sendToken("http://localhost:8080/" + request.getContextPath(), token, user);
+            userService.sendToken("http://localhost:8080" + request.getServletPath(), token, user);
         }catch (IOException ioException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Malformed Request", ioException);
         }catch (UsernameNotFoundException unfException){
 
         }catch (Exception e){
             System.out.println(e);
-            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "", e);
+            throw new ResponseStatusException(HttpStatus.   INTERNAL_SERVER_ERROR, "", e);
         }
     }
 
@@ -68,7 +67,7 @@ public class ResetPasswordController {
     public void changePassword(HttpServletRequest request){
         try{
             ChangePasswordRequest changePasswordRequest = new ObjectMapper().readValue(request.getInputStream(), ChangePasswordRequest.class);
-            userService.changePassword(changePasswordRequest.getToken(), changePasswordRequest.getPassword());
+            userService.changePassword(changePasswordRequest.getToken(), changePasswordRequest.getEmail(), changePasswordRequest.getPassword());
         }catch (IOException ioException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Malformed Request", ioException);
         }catch (BadTokenException btException){
