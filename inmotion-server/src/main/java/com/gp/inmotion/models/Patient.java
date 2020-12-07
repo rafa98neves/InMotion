@@ -9,7 +9,7 @@ public class Patient extends User{
 
     @Column
     @NotNull
-    private Long id;
+    private Long patientId;
 
     @Column(length = 64)
     private String patientDiagnosis;
@@ -24,9 +24,9 @@ public class Patient extends User{
     public Patient(){
     }
 
-    public Patient(User user, Long id){
+    public Patient(User user, Long patientId){
         super(user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
-        this.id = id;
+        this.patientId = patientId;
     }
 
     public Medication getMedication() {
@@ -61,11 +61,11 @@ public class Patient extends User{
         this.therapist = therapist;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 }

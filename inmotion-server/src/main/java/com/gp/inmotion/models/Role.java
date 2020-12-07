@@ -19,9 +19,6 @@ public class Role {
     @Column(length = 60)
     private ApplicationUserRole name;
 
-    @OneToMany(mappedBy = "role")
-    private List<User> userList;
-
     public Role() {
 
     }
@@ -44,14 +41,6 @@ public class Role {
 
     public void setName(ApplicationUserRole name) {
         this.name = name;
-    }
-
-    public List<User> getUserList() {
-        return userList;
-    }
-
-    public void setUserList(List<User> userList) {
-        this.userList = userList;
     }
 
     @Override
