@@ -25,11 +25,6 @@ public class PatientService {
 
     public PatientDetailsResponse getPatientDetails(Long patientId){
         Patient patient = getPatient(patientId);
-
-        //here you should transform the patient into a PatientDetailsResponse
-
-
-        //Here you should return the PatientDetailsResponse you just created
-        return new PatientDetailsResponse();
+        return new PatientDetailsResponse(patient.getName(),patient.getGender(),patient.getBirthdate(),patient.getPatientDiagnosis());
     }
 }
