@@ -8,6 +8,7 @@ import RecoverPassword from '../components/auth/RecoverPassword'
 import NewPassword from '../components/auth/NewPassword'
 import Home from '../components/Homepage'
 import ErrorPage from '../components/Error-page'
+import Game1 from '../components/games/Game-1'
 
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
@@ -17,6 +18,7 @@ const routes = [
     { path: '/newpassword', component: NewPassword, name: 'New Password' },
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
+    { path: '/piano', component: Game1, name: 'Piano'},
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
     // otherwise redirect to home
