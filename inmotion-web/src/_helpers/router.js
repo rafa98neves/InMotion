@@ -22,7 +22,7 @@ const routes = [
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
 
-    { path: '/games/list', component: ListOfGames, name: 'List of Games'},
+    { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
