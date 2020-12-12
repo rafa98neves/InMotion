@@ -8,7 +8,7 @@
         <img src="../assets/info.png" style="width:40%">
       </div>
       <div class="column">
-        <button class="btn">Personal Information</button>
+        <router-link to="/to/do"><button class="btn">Personal Information</button></router-link>
       </div>
     </div>
     <div class="row">
@@ -16,7 +16,7 @@
         <img src="../assets/gamepad.png" style="width:40%">
       </div>
       <div class="column">
-        <button class="btn">Play Games</button>
+        <router-link to="/games/list"><button class="btn">Play Games</button></router-link>
       </div>
     </div>
     <div class="row">
@@ -24,7 +24,7 @@
         <img src="../assets/scoreboard.png" style="width:40%">
       </div>
       <div class="column">
-        <button class="btn">Scoreboard</button>
+        <router-link to="/to/do"><button class="btn" >Scoreboard</button></router-link>
       </div>
     </div>
   </div>

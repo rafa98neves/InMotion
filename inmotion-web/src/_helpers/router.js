@@ -1,12 +1,16 @@
 import { createRouter, createWebHistory} from 'vue-router';
 import { authGuard } from './auth.guard';
+
 import RegisterPatient from '../components/auth/RegisterPatient';
 import RegisterTherapist from '../components/auth/RegisterTherapist';
 import LandingPage from '../components/auth/LandingPage'
 import Login from '../components/auth/Login'
 import RecoverPassword from '../components/auth/RecoverPassword'
 import NewPassword from '../components/auth/NewPassword'
+
 import Home from '../components/Homepage'
+import ListOfGames from '../components/ListOfGames'
+
 import ErrorPage from '../components/Error-page'
 
 const routes = [
@@ -17,6 +21,9 @@ const routes = [
     { path: '/resetPassword', component: NewPassword, name: 'New Password'},
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
+
+    { path: '/games/list', component: ListOfGames, name: 'List of Games'},
+
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
     // otherwise redirect to home
