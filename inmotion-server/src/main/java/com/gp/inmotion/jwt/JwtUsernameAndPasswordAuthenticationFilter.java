@@ -48,6 +48,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
             );
 
             Authentication authenticate = authenticationManager.authenticate(authentication);
+
             return authenticate;
 
         }catch (IOException e){
@@ -59,7 +60,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
     protected void successfulAuthentication(HttpServletRequest request,
                                             HttpServletResponse response,
                                             FilterChain chain,
-                                            Authentication authResult) throws IOException, ServletException {
+                                            Authentication authResult) {
 
         String token = Jwts.builder()
                 .setSubject(authResult.getName())

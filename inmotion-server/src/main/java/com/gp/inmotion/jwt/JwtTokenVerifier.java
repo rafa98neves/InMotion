@@ -47,8 +47,6 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
 
         try {
-
-
             Jws<Claims> claimsJws = Jwts.parserBuilder()
                     .setSigningKey(secretKey)
                     .build()
@@ -74,7 +72,6 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         } catch (JwtException e) {
             throw new IllegalStateException(String.format("Token %s cannot be trusted!", token));
         }
-
         filterChain.doFilter(request, response);
     }
 }

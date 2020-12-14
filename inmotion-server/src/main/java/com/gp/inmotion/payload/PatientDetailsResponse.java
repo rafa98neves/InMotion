@@ -1,22 +1,16 @@
 package com.gp.inmotion.payload;
 
-import com.gp.inmotion.models.Patient;
-
 import javax.persistence.Column;
 import java.util.Date;
 
 public class PatientDetailsResponse {
 
-    @Column(length = 64)
     private String name;
 
-    @Column(length = 20)
     private String gender;
 
-    @Column()
     private Date birthdate;
 
-    @Column(length = 64)
     private String patientDiagnosis;
 
     public PatientDetailsResponse() {
@@ -26,6 +20,38 @@ public class PatientDetailsResponse {
         this.name = name;
         this.gender = gender;
         this.birthdate = birthdate;
+        this.patientDiagnosis = patientDiagnosis;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getPatientDiagnosis() {
+        return patientDiagnosis;
+    }
+
+    public void setPatientDiagnosis(String patientDiagnosis) {
         this.patientDiagnosis = patientDiagnosis;
     }
 }
