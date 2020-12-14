@@ -1,5 +1,5 @@
 <template>
-
+  <MainLayout :loggedIn="false"></MainLayout>
   <div>
     <form class="form-box" @submit.prevent="recoverPassword" v-if="showForm">
       <div class="form-control">
@@ -28,6 +28,7 @@
 <script>
 
 import { accountService } from "../../_services/account.service"
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
@@ -35,6 +36,9 @@ export default {
       email: '',
       showForm: true,
     }
+  },
+  components: {
+    MainLayout,
   },
   methods: {
     recoverPassword() {
