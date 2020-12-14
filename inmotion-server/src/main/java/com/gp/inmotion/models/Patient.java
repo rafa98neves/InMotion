@@ -1,6 +1,7 @@
 package com.gp.inmotion.models;
 
 import javax.persistence.*;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -14,8 +15,8 @@ public class Patient extends User{
     @Column(length = 64)
     private String patientDiagnosis;
 
-    @ManyToOne()
-    private Medication medication;
+    @ManyToMany()
+    private List<Medication> medicationList;
 
     @ManyToOne()
     private Therapist therapist;
@@ -29,12 +30,12 @@ public class Patient extends User{
         this.patientId = patientId;
     }
 
-    public Medication getMedication() {
-        return medication;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setMedication(Medication medication) {
-        this.medication = medication;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 
     public String getPatientDiagnosis() {
@@ -45,12 +46,12 @@ public class Patient extends User{
         this.patientDiagnosis = patientDiagnosis;
     }
 
-    public Medication getPatientMedication() {
-        return medication;
+    public List<Medication> getMedicationList() {
+        return medicationList;
     }
 
-    public void setPatientMedication(Medication medication) {
-        this.medication = medication;
+    public void setMedicationList(List<Medication> medicationList) {
+        this.medicationList = medicationList;
     }
 
     public Therapist getTherapist() {
@@ -61,11 +62,4 @@ public class Patient extends User{
         this.therapist = therapist;
     }
 
-    public Long getPatientId() {
-        return patientId;
-    }
-
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
-    }
 }

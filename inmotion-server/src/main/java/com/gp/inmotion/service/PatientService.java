@@ -25,6 +25,6 @@ public class PatientService {
 
     public PatientDetailsResponse getPatientDetails(Long patientId){
         Patient patient = getPatient(patientId);
-        return new PatientDetailsResponse(patient.getName(),patient.getGender(),patient.getBirthdate(),patient.getPatientDiagnosis());
+        return new PatientDetailsResponse(patient.getName(),patient.getGender(), patient.getEmail(), patient.getBirthdate(), patient.getPatientDiagnosis(), patient.getMedicationList());
     }
 }
