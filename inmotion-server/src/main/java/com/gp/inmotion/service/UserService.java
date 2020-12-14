@@ -4,11 +4,15 @@ import com.gp.inmotion.mail.EmailConfig;
 import com.gp.inmotion.mail.SendMail;
 import com.gp.inmotion.models.*;
 import com.gp.inmotion.payload.RegisterRequest;
+import com.gp.inmotion.payload.WhoAmIResponse;
 import com.gp.inmotion.repository.*;
 import com.gp.inmotion.exceptions.*;
 import com.gp.inmotion.security.ApplicationUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -152,5 +156,11 @@ public class UserService{
         }else{
             throw new BadTokenException("Password Reset Token for user with email " + email + " not found!");
         }
+    }
+
+    public WhoAmIResponse whoami(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = findUserByEmail((String) authentication.getPrincipal());
+        return new WhoAmIResponse(user.getName(), user.getRole().getName().name());
     }
 }

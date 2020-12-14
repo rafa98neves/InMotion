@@ -21,8 +21,6 @@ public class PatientController {
         this.patientService = patientService;
     }
 
-    //This should return a PatientDetailsResponse (It's in payload package)
-
     @GetMapping(path = "/{patientId}")
     public PatientDetailsResponse getPatient(@PathVariable("patientId") Long patientId){
         return patientService.getPatientDetails(patientId);

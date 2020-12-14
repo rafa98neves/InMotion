@@ -45,7 +45,7 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email.split("@")[0];
+        return email;
     }
 
     @Override
@@ -65,5 +65,6 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public boolean isEnabled() { return true; }
+
 
 }
