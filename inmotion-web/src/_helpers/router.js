@@ -9,7 +9,9 @@ import RecoverPassword from '../components/auth/RecoverPassword'
 import NewPassword from '../components/auth/NewPassword'
 
 import Home from '../components/Homepage'
-import ListOfGames from '../components/ListOfGames'
+import ListOfGames from '../components/games/ListOfGames'
+import PersonalInformationPatient from '../components/PersonalInformationPatient';
+import PersonalInformationTherapist from '../components/PersonalInformationTherapist';
 
 import ErrorPage from '../components/Error-page'
 
@@ -23,7 +25,8 @@ const routes = [
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
 
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
-
+    { path: '/patient/info', component: PersonalInformationPatient, name: 'Personal Information Patient', beforeEnter: authGuard},
+    { path: '/therapist/info', component: PersonalInformationTherapist, name: 'Personal Information Therapist', beforeEnter: authGuard },
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
     // otherwise redirect to home

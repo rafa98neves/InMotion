@@ -8,7 +8,7 @@
         <img src="../assets/info.png" style="width:40%">
       </div>
       <div class="column">
-        <router-link to="/to/do"><button class="btn">Personal Information</button></router-link>
+        <router-link to="/patient/info"><button class="btn">Personal Information</button></router-link>
       </div>
     </div>
     <div class="row">
