@@ -16,8 +16,8 @@ spring:
     mail:
         host: smtp.mailtrap.io
         port: 2525
-        username: 06489a78979340
-        password: 5bca79ffe2bb68
+        username: 0e35c9c89179f3
+        password: 94b110b4624122
 application:
     jwt:
         secret-key: ^7f*<<rPyU(pmt+-=sGQ(bFw2U'P$khA
