@@ -42,32 +42,7 @@ export default ( function() {
     if (webglAvailable) {
         initScene(document.body);
     }
-    
-
-    window.controller = controller = new Leap.Controller;
-
-    controller.use('handHold').use('transform', {
-        position: new THREE.Vector3(1, 0, 0)
-        }).use('handEntry').use('screenPosition').use('riggedHand', {
-        parent: scene,
-        renderer: renderer,
-        scale: getParam('scale'),
-        positionScale: getParam('positionScale'),
-        helper: true,
-        offset: new THREE.Vector3(0, 0, 0),
-        renderFn: function() {
-            renderer.render(scene, camera);
-        },
-        materialOptions: {
-            wireframe: getParam('wireframe'),
-        },
-        dotsMode: getParam('dots'),
-        stats: stats,
-        camera: camera,
-        checkWebGL: true
-    }).connect();    
-
-
+         
     if (getParam('screenPosition')) {
         cursor = document.createElement('div');
         cursor.style.width = '50px';
@@ -102,15 +77,7 @@ export default ( function() {
             return handMesh.scenePosition(hand.indexFinger.tipPosition, sphere.position);
         }
         });
-    }
-
-    if (getParam('playback')) {
-        controller.use('playback', {
-        recording: 'examples/confidence2-49fps.json.lz',
-        autoPlay: true,
-        pauseOnHand: true
-        });
-    }
+    } 
 
     if (getParam('boneHand')) {
         riggedHand = controller.plugins.riggedHand;
@@ -121,5 +88,29 @@ export default ( function() {
         render: function() {}
         });
     }
+    
+    window.controller = controller = new Leap.Controller;
+
+    controller.use('handHold').use('transform', {
+        position: new THREE.Vector3(1, 0, 0)
+        }).use('handEntry').use('screenPosition').use('riggedHand', {
+        parent: scene,
+        renderer: renderer,
+        scale: getParam('scale'),
+        positionScale: getParam('positionScale'),
+        helper: true,
+        offset: new THREE.Vector3(0, 0, 0),
+        renderFn: function() {
+            renderer.render(scene, camera);
+        },
+        materialOptions: {
+            wireframe: getParam('wireframe'),
+        },
+        dotsMode: getParam('dots'),
+        stats: stats,
+        camera: camera,
+        checkWebGL: true
+    });    
+    controller.connect();
 })
 /* eslint-enalbe */
