@@ -56,6 +56,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/", "/index", "/css/*", "/js/*").permitAll()
                 .antMatchers("/register").permitAll()
+                .antMatchers("/resetPassword", "/validateToken", "/changePassword").permitAll()
                 .antMatchers("/api/").hasRole(PATIENT.name())
                 .anyRequest()
                 .authenticated();

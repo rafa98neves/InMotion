@@ -1,4 +1,5 @@
 <template>
+  <MainLayout :loggedIn="false"></MainLayout>
   <div class="login-form">
     
     <div class="form-box">
@@ -9,6 +10,15 @@
 
   </div>
 </template>
+
+<script>
+import MainLayout from '../layout/main_layout'
+export default {
+  components: {
+    MainLayout,
+  }
+}
+</script>
 
 <style scoped>
 

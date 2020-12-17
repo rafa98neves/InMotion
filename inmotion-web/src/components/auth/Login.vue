@@ -1,4 +1,5 @@
 <template>
+  <MainLayout :loggedIn="false"></MainLayout>
   <div class="login-form">
     
     <form class="form-box" @submit.prevent="login">
@@ -24,7 +25,7 @@
     <router-link class="btn btn-therapist" to="/recoverpassword"><button>I forgot my password</button></router-link>
     
     <div class="footer-back" id="back">
-      <router-link class="btn btn-patient" to="/ladingpage"><button>Back</button></router-link>
+      <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
     </div>
 
   </div>
@@ -33,6 +34,7 @@
 <script>
 
 import { accountService } from "../../_services/account.service"
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
@@ -41,6 +43,9 @@ export default {
       email: '',
       password: ''
     }
+  },
+  components: {
+    MainLayout,
   },
   methods: {
     login() {

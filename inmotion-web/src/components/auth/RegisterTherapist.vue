@@ -1,4 +1,6 @@
 <template>
+  <MainLayout :loggedIn="false"></MainLayout>
+
   <div class="Register">
 
     <div class="form-control-nav">
@@ -8,6 +10,11 @@
     </div>
 
     <form class="form-box" @submit.prevent="register">
+      
+      <div class="form-control">
+        <label>Name</label>
+        <input type="text" name="name" class="register-input" v-model="name">
+      </div>
 
       <div class="form-control">
         <label>Email</label>
@@ -43,20 +50,26 @@
 <script>
 
 import { accountService } from "../../_services/account.service"
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
     return {
       msg: '',
+      name: '',
       email: '',
       password: '',
       password2: ''
     }
   },
+  components: {
+    MainLayout,
+  },
   methods: {
     register() {
 
       let user = {
+        name : this.name,
         email : this.email,
         password : this.password,
         role : 'THERAPIST'

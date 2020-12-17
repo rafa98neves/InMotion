@@ -1,7 +1,6 @@
 package com.gp.inmotion.models;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 
@@ -33,7 +32,6 @@ public class User {
     @NotNull
     @ManyToOne()
     private Role role;
-
 
     public User(){}
 

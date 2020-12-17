@@ -23,8 +23,6 @@ public class ApplicationUser implements UserDetails {
     }
 
     public static ApplicationUser create(User user){
-
-
         return new ApplicationUser(
                 user.getId(), user.getEmail(),
                 user.getPassword(),
@@ -70,7 +68,6 @@ public class ApplicationUser implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() {
-        return true;
-    }
+    public boolean isEnabled() { return true; }
+
 }

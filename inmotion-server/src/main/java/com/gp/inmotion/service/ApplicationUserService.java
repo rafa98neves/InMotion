@@ -24,7 +24,6 @@ public class ApplicationUserService implements UserDetailsService {
         User user = userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User with email " + email + " not found!")
         );
-        System.out.println(user);
         return ApplicationUser.create(user);
     }
 }
