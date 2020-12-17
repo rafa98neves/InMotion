@@ -7,7 +7,7 @@
 
     <div id="Gamepad">
         <div class="gamepad-image">
-           <img src="../assets/gamepad.png" width="50" height="50">
+           <img src="../../assets/gamepad.png" width="50" height="50">
         </div>
         <div class="gamepad-text">
            <p>Play Games</p>
@@ -35,7 +35,7 @@
 
 <script>
 
-import MainLayout from './layout/main_layout'
+import MainLayout from '../layout/main_layout'
 import RecommendedGamesList from "./RecommendedGamesList";
 import AllGamesList from "./AllGamesList";
 

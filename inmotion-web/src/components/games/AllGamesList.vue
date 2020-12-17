@@ -1,11 +1,12 @@
 <template>
     <div id="list">
-      <div id="button">
-        <button @click="scroll_left" id="a-left-button"><img src="../assets/left_arrow.png" width="30" height="30"></button>
-        <button @click="scroll_right" id="a-right-button"><img src="../assets/right_arrow.png" width="30" height="30"></button>
+      <div id="button" v-if="index.length == 3">
+        <button @click="scroll_left" id="a-left-button"><img src="../../assets/left_arrow.png" width="30" height="30"></button>
+        <button @click="scroll_right" id="a-right-button"><img src="../../assets/right_arrow.png" width="30" height="30"></button>
       </div>
 
       <div class="a-center" id="content" ref="content">
+        {{ msg }}
         <div class=internal v-for="item in items" :key="item">
           <router-link class="Game" :to= item.link >
           <img :src="getImgUrl(item.src)" width="100" height="100">
@@ -23,7 +24,8 @@ export default {
   name: "App",
   data: function () {
     return {
-      items: [
+      msg: '',
+      items_list: [
         { id: "Juice", src: "juice_game.png", link: "/recoverpassword" },
         { id: "Piano", src: "piano.png", link: "/login" },
         { id: "Clean With", src: "clean_with_me.png", link: "/recoverpassword" },
@@ -31,23 +33,58 @@ export default {
         { id: "Game 5", src: "error.png", link: "/recoverpassword" },
         { id: "Game 6", src: "error.png", link: "/recoverpassword" },
       ],
+      index: '',
+      items: [],
     };
   },
-
-  
+  mounted() {
+    switch(this.items_list.length){
+        case 0:
+          this.msg = "No games to display";
+          break;
+        case 1:
+          this.items = [this.items_list[0]];
+          break;
+        case 2:
+          this.items = [this.items_list[0], this.items_list[1]];
+          break;
+        case 3:
+          this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
+          break;
+        default:
+          this.index = [0,1,2];
+          this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
+          break;
+    }
+  },
   methods: {
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
 
     scroll_left() {
-      let content = document.querySelector(".a-center");
-      content.scrollLeft -= 50;
+      if(this.index.length == 3){
+        var i;
+        for(i=0; i<3; i++){
+          if(this.index[i] == 0) this.index[i] = this.items_list.length-1;
+          else this.index[i]--;
+          console.log(this.index[i])
+          this.items[i] = this.items_list[this.index[i]];
+        }
+      }
     },
 
     scroll_right() {
-      let content = document.querySelector(".a-center");
-      content.scrollLeft += 50;
+      if(this.index.length == 3){
+        var i;
+        for(i=0; i<3; i++){
+          if(this.index[i] == this.items_list.length-1) this.index[i] = 0;
+          else this.index[i]++;
+          console.log(this.index[i])
+
+          this.items[i] = this.items_list[this.index[i]];
+        }
+      }
     }
 
   }
