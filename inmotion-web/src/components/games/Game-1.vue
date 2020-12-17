@@ -20,6 +20,7 @@ export default {
         piano()
       }
       catch (e){
+        this.msg = "Device is not connected"
         console.log("ERROR")
         console.log(e)
       }
