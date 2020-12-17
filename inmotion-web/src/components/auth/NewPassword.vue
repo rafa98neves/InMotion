@@ -1,11 +1,13 @@
 <template>
   <div>
+    <MainLayout :loggedIn="false"></MainLayout>
     <form class="form-box" @submit.prevent="recover" v-if="form_display">
-      <div class="form-control">
-        <label for="email">Email</label>
-        {{ email }}
-      </div>
 
+      <div class="form-control">
+        <label>Email</label>
+        <input type="email" name="email" class="register-input" id="disabled-input" v-model="email" disabled>
+      </div>
+      
       <div class="form-control">
         <label>Password</label>
         <input type="password" name="password" id="password" class="register-input" v-model="password">
@@ -25,31 +27,37 @@
       <router-link class="btn btn-patient" to="/login"><button>Back</button></router-link>
     </div>
 
-    <div class="inbox-header" v-if="!form_display">
-      <h1> Check your mail inbox to recover the password </h1>
-    </div>
   </div>
 </template>
 
 <script>
 
 import { accountService } from "../../_services/account.service"
+import { useRoute } from "vue-router";
+import MainLayout from '../layout/main_layout'
 
 export default {
   data() {
     return {
+      token: useRoute().query.token,
       msg: '',
-      form_display: true,
-      email: '',
-      info: '',
+      form_display: false,
+      email: useRoute().query.email,
       password: '',
       password2: ''
     }
-  },  
+  },
+  components: {
+    MainLayout,
+  },
+  mounted(){
+    accountService.validateToken(this.token,this)
+  },
   methods: {
     recover() {
       let user = {
-          'info': this.info,
+          'email': this.email,
+          'token': this.token,
           'password': this.password
       }
       accountService.recover(user,this);
@@ -74,9 +82,9 @@ export default {
 <style scoped>
 @import url('auth.css');
 
-.inbox-header{
-  text-align: center;
-  width: 100%;
-  margin-top: 20%;
+#disabled-input{
+  background: white;
+  color: black;
+  border: none;
 }
 </style>

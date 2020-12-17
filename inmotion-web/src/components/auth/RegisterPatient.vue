@@ -1,4 +1,7 @@
 <template>
+
+  <MainLayout :loggedIn="false"></MainLayout>
+
   <div class="Register">
 
     <div class="form-control-nav">
@@ -22,7 +25,7 @@
       
       <div class="form-control">
         <label>Diagnosis</label>    
-        <textarea placeholder="Enter the patient's diagnosis in this filed"></textarea>
+        <input v-model="diagnosis">
       </div>
 
       <div class="form-control">
@@ -33,12 +36,14 @@
           <option>Female</option>
         </select>
         
+<!--
         <label>Medication</label>    
         <select v-model="medication" multiple size=4>
           <option v-for="med in medications" v-bind:key="med">
             {{ med }}
           </option>
         </select>
+-->
       </div>
 
       <div class="form-control">
@@ -65,40 +70,43 @@
         </div>
       </div>
 
-    </form>
-
-    
+    </form>     
   </div>
 </template>
 
 <script>
 
+import MainLayout from '../layout/main_layout'
 import { accountService } from "../../_services/account.service"
-import { resourcesService } from "../../_services/resources.service"
+//import { resourcesService } from "../../_services/resources.service"
 
 export default {
   data() {
     return {
       msg: '',
-      medications: resourcesService.getMedications(),
+      //medications: resourcesService.getMedications(),
       name: '',
       patient_id: '',
       birthdate: '',
       email: '',
-      medication: '',
+      //medication: [],
       password: '',
       password2: '',
       diagnosis: '',
       gender:''
     }
   },
+  components: {
+    MainLayout,
+  },
   methods: {    
     register() {
 
       let user = {
         name : this.name,
-        id : this.patient_id,
+        patientId : this.patient_id,
         birthdate : this.birthdate,
+        diagnosis: this.diagnosis,
         gender : this.gender,
         email : this.email,
         password : this.password,

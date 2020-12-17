@@ -1,5 +1,7 @@
 server:
     port: 9000
+    error:
+        include-message: on_param
 spring:
     datasource:
         url: jdbc:mysql://localhost:3306/inmotion?serverTimezone=UTC
@@ -11,6 +13,11 @@ spring:
         hibernate:
             ddl-auto: update
         database-platform: org.hibernate.dialect.MySQL8Dialect
+    mail:
+        host: smtp.mailtrap.io
+        port: 2525
+        username: 0e35c9c89179f3
+        password: 94b110b4624122
 application:
     jwt:
         secret-key: ^7f*<<rPyU(pmt+-=sGQ(bFw2U'P$khA
