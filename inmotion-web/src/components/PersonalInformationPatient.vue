@@ -1,7 +1,5 @@
 <template>
-  <div class="Register">
-
-  </div>
+  <MainLayout :loggedIn="true"></MainLayout>
 
  <div id="PersonalInformation">
         <div class="personal-information-image">
@@ -14,17 +12,6 @@
 
 <div id="BackButton">
       <router-link class="back-button" to="/"><button>Back</button></router-link>
-    </div>
-  
-
-    <div id="LogoutButton">     
-      <router-link class="logout-link" to="/landingpage">
-        <img src="../assets/logout.png" width="40" height="40">
-      </router-link>
-    </div>
-
-    <div id="LoginName">
-      <p>Test name</p>
     </div>
 
     <div id="Name">
@@ -65,8 +52,14 @@
 </template>
 
 <script>
+
+import MainLayout from './layout/main_layout'
 export default {
+
   name: "App",
+  components: {
+    MainLayout,
+  },
   data: function () {
     return {
       items: [
