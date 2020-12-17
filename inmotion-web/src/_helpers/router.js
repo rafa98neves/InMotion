@@ -18,7 +18,7 @@ const routes = [
     { path: '/newpassword', component: NewPassword, name: 'New Password' },
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
-    { path: '/piano', component: Game1, name: 'Piano'},
+    { path: '/game/piano', component: Game1, name: 'Piano'},
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
     // otherwise redirect to home

@@ -1,21 +1,28 @@
 <template>
   <div>
+    {{msg}}
   </div>
 </template>
 
 <script>
 
+import piano from './game1-logic'
+
 export default {
     name: 'Piano',
-    mounted() {
-
-      /* eslint-disable no-undef */
-
-      window.controller = new Leap.Controller
-      window.controller.use('handEntry', {})
-            .use('riggedHand').connect()
-
-      /* eslint-enalbe no-undef */
+    data(){
+      return{
+        msg : ''
+      }
+    },
+    created() {
+      try { 
+        piano()
+      }
+      catch (e){
+        console.log("ERROR")
+        console.log(e)
+      }
     }
 }
 
@@ -38,8 +45,7 @@ a {
 }
 
 canvas{
-  position: absolute;
-  top: 200%;
   pointer-events: none;
 }
+
 </style>
