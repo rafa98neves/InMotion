@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{msg}}
   </div>
 </template>
 
@@ -15,27 +14,24 @@ export default {
         msg : ''
       }
     },
-    created() {
-        piano()
+    mounted() {
+      
+      // eslint-disable-next-line
+      var controller = piano();
+      controller.connect();
+      
     }
 }
 
 </script>
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+
+.display_message{
+  text-align: center;
+  margin-top: 20%;
+  width: 100%;
+  height: 100%;
 }
 
 canvas{

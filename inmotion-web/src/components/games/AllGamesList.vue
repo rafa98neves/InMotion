@@ -26,12 +26,12 @@ export default {
     return {
       msg: '',
       items_list: [
-        { id: "Juice", src: "juice_game.png", link: "/recoverpassword" },
-        { id: "Piano", src: "piano.png", link: "/login" },
-        { id: "Clean With", src: "clean_with_me.png", link: "/recoverpassword" },
-        { id: "Game 4", src: "error.png", link: "/recoverpassword" },
-        { id: "Game 5", src: "error.png", link: "/recoverpassword" },
-        { id: "Game 6", src: "error.png", link: "/recoverpassword" },
+        { id: "Juice", src: "juice_game.png", link: "/error" },
+        { id: "Piano", src: "piano.png", link: "/games/piano" },
+        { id: "Clean With", src: "clean_with_me.png", link: "/error" },
+        { id: "Game 4", src: "error.png", link: "/error" },
+        { id: "Game 5", src: "error.png", link: "/error" },
+        { id: "Game 6", src: "error.png", link: "/error" },
       ],
       index: '',
       items: [],
