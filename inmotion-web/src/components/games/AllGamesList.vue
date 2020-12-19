@@ -80,8 +80,7 @@ export default {
         for(i=0; i<3; i++){
           if(this.index[i] == this.items_list.length-1) this.index[i] = 0;
           else this.index[i]++;
-          console.log(this.index[i])
-
+          
           this.items[i] = this.items_list[this.index[i]];
         }
       }
@@ -115,6 +114,10 @@ export default {
   color: black 
 }
 
+.internal img{
+  max-height: 100%;
+  width: auto;
+}
 .a-center{
  float: left; 
  width: 38.9%;

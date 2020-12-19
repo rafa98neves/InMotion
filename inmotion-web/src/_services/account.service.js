@@ -150,14 +150,15 @@ async function whoami(){
     router.push('/landingpage');
     return false;    
 }
+
 async function getInfo() {
-    let user = {
+    const user = {
         name : "Rafael Neves",
         birthdate : "02/03/1998",
         gender : "Male",
         email : "rafa@patient.com",
     }
-    return user
+    return user;
     /*await api.get('/user', user)
         .then(response => {
             if(response.status == 200){
