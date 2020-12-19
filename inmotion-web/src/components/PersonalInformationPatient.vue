@@ -53,7 +53,10 @@
 
 <script>
 
+
 import MainLayout from './layout/main_layout'
+import {accountService} from "@/_services/account.service";
+
 export default {
 
   name: "App",
@@ -72,15 +75,20 @@ export default {
         { diagnosis: " medication b" },
         { diagnosis: " medication c"},
       ],
-      user :  {
-          name : "Rafael Neves",
-          birthdate : "02/03/1998",
-          gender : "Male",
-          email : "rafa@patient.com",
-          medications : [],
-          diagnosis : []
-        },
-    };
+      user: {
+        name: '',
+        birthdate: '',
+        gender: '',
+        email: '',
+      }
+    }
+  },
+  mounted(){
+    let result = accountService.getInfo()
+    this.user.name = result.name
+    this.user.birthdate = result.birthdate
+    this.user.gender = result.gender
+    this.user.email = result.email
   }
 }
 
