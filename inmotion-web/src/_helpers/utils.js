@@ -23,6 +23,7 @@ function createHttp(){
 
   else{
     api = axios.create({
+      headers: { "Content-Type" : "application/json"},
       baseURL: base
     });
   }

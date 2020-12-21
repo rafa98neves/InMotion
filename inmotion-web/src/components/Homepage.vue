@@ -1,53 +1,61 @@
 <template>
-  <div class="container">
-    <img src="../assets/avatar.png" class="avatar">
-    <label class="name">Name Surname</label>
-    <img src="../assets/logout.png" class="logout" @click="logout">
-  </div>
+
+  <MainLayout :loggedIn="true"></MainLayout>
 
   <div class="menu">
     <div class="row">
       <div class="column">
         <img src="../assets/info.png" style="width:40%">
       </div>
-      <div class="column">
-        <button class="btn">Personal Information</button>
+      <div class="column" v-if="user.role=='PATIENT'">
+        <router-link to="/patient/info"><button class="btn">Personal Information</button></router-link>
+      </div>
+      <div class="column" v-if="user.role=='THERAPIST'">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <input type="text" placeholder="search patient by id" name="search" class="search">
+        <button type="submit" class="button"><i class="fa fa-search"></i></button>
       </div>
     </div>
     <div class="row">
       <div class="column">
         <img src="../assets/gamepad.png" style="width:40%">
       </div>
-      <div class="column">
-        <button class="btn">Play Games</button>
+      <div class="column" v-if="user.role=='PATIENT'">
+        <router-link to="/games/list"><button class="btn">Play Games</button></router-link>
+      </div>
+      <div class="column" v-if="user.role=='THERAPIST'">
+        <router-link to="/games/list"><button class="btn">See List of Games</button></router-link>
       </div>
     </div>
-    <div class="row">
+    <div class="row" v-if="user.role=='PATIENT'">
       <div class="column">
         <img src="../assets/scoreboard.png" style="width:40%">
       </div>
       <div class="column">
-        <button class="btn">Scoreboard</button>
+        <router-link to="/to/do"><button class="btn" >Scoreboard</button></router-link>
       </div>
     </div>
   </div>
-
-
 </template>
 
 <script>
 
-import { accountService } from "../_services/account.service"
+import MainLayout from './layout/main_layout'
 
 export default {
-  methods : {
-    logout() {
-        accountService.logout()
-    }
+  components: {
+    MainLayout,
+  },
+  data: function () {
+    return {
+      user: {
+        role: 'PATIENT'
+      }
+    };
   }
 }
-</script>
 
+</script>
 <style scoped>
 
 .menu{
@@ -70,43 +78,30 @@ export default {
 
 .btn{
   float: left;
-  font-size: 30px;
+  font-size: 25px;
   padding: 10px;
-}
-
-.container {
-  position: relative;
-  display: inline-block;
-  margin-right: -90%;
-  margin-top: -2%;
-}
-.avatar {
-  width: 60px;
-  margin-bottom: 15%;
-  cursor: pointer;
-}
-
-.name {
-  position: absolute;
-  top: 110%;
-  left: 50%;
-  padding: 5px;
-  margin-top: -14px;
-  margin-left: -50px;
-  width: 100px;
-  background-color: white;
-  text-align: center;
-}
-.logout {
-  position: absolute;
-  width: 50px;
-  top: 140%;
-  left: 15%;
-  cursor: pointer;
 }
 
 .column img{
   max-width: 25%;
 }
+
+
+.search{
+  float: left;
+  font-size: 25px;
+  padding: 10px;
+  width: 60%
+}
+
+.button {
+  margin-right: 10%;
+  width: 15%;
+  padding: 15px;
+  background: white;
+  color: black;
+  cursor: pointer;
+}
+
 </style>
 

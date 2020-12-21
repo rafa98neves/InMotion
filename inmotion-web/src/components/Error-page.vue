@@ -1,8 +1,8 @@
 <template>
-  <div class="container">
-    
-    <div id="error-image">
-      <img src="../assets/error.png">
+  <MainLayout :loggedIn="false"></MainLayout>
+  <div class="container">    
+    <div>
+      <img id="error-image" src="../assets/error.png">
     </div> 
     <h1> Something went wrong, the site is down!</h1>
     <h3> Try again later </h3>
@@ -31,8 +31,8 @@ export default {
 }
 
 #error-image{
-  margin-left: 25%;
-  max-width: 50%;
+  margin-top: 1%;
+  max-width: 25%;
   height: auto;
 }
 </style>

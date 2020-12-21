@@ -1,4 +1,7 @@
 <template>
+
+  <MainLayout :loggedIn="false"></MainLayout>
+
   <div class="Register">
 
     <div class="form-control-nav">
@@ -14,7 +17,7 @@
         <input type="text" name="name" id="name" class="register-input" v-model="name">
 
         <label>Patient's ID</label>
-        <input type="number" name="patient_id" class="register-input" v-model="patient_id">
+        <input type="text" name="id" class="register-input" v-model="id">
 
         <label>Data of Birth</label>
         <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
@@ -33,12 +36,14 @@
           <option>Female</option>
         </select>
         
+<!--
         <label>Medication</label>    
         <select v-model="medication" multiple size=4>
           <option v-for="med in medications" v-bind:key="med">
             {{ med }}
           </option>
         </select>
+-->
       </div>
 
       <div class="form-control">
@@ -71,32 +76,37 @@
 
 <script>
 
+import MainLayout from '../layout/main_layout'
 import { accountService } from "../../_services/account.service"
-import { resourcesService } from "../../_services/resources.service"
+//import { resourcesService } from "../../_services/resources.service"
 
 export default {
   data() {
     return {
       msg: '',
-      medications: resourcesService.getMedications(),
+      //medications: resourcesService.getMedications(),
       name: '',
-      patient_id: '',
+      id: '',
       birthdate: '',
       email: '',
-      medication: [],
+      //medication: [],
       password: '',
       password2: '',
       diagnosis: '',
       gender:''
     }
   },
+  components: {
+    MainLayout,
+  },
   methods: {    
     register() {
 
       let user = {
         name : this.name,
-        id : this.patient_id,
+        id : this.id,
         birthdate : this.birthdate,
+        //diagnosis: this.diagnosis,
         gender : this.gender,
         email : this.email,
         password : this.password,
@@ -117,7 +127,7 @@ export default {
       }
 
       return (this.name.length > 0 && 
-              this.patient_id.length > 0 &&              
+              this.id.length > 0 &&              
               this.birthdate.length > 0 && 
               this.password.length > 0 && 
               this.diagnosis.length > 0 && 
@@ -134,7 +144,7 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 8px;
+    margin-top: 5%;
   }
   
   .form-control input {
