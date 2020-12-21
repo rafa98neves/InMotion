@@ -22,9 +22,11 @@ public class PatientController {
     }
 
     @GetMapping(path = "/{patientId}")
-    public PatientDetailsResponse getPatient(@PathVariable("patientId") Long patientId){
-        return patientService.getPatientDetails(patientId);
+    public PatientDetailsResponse findPatientById(@PathVariable("patientId") Long patientId){
+        return patientService.findByPatientById(patientId);
     }
+
+
 
 
 }

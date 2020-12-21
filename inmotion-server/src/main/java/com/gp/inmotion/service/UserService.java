@@ -3,15 +3,14 @@ package com.gp.inmotion.service;
 import com.gp.inmotion.mail.EmailConfig;
 import com.gp.inmotion.mail.SendMail;
 import com.gp.inmotion.models.*;
-import com.gp.inmotion.payload.RegisterRequest;
-import com.gp.inmotion.payload.WhoAmIResponse;
+import com.gp.inmotion.payload.*;
 import com.gp.inmotion.repository.*;
 import com.gp.inmotion.exceptions.*;
 import com.gp.inmotion.security.ApplicationUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,8 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
 
-import static com.gp.inmotion.security.ApplicationUserRole.PATIENT;
-import static com.gp.inmotion.security.ApplicationUserRole.THERAPIST;
+import static com.gp.inmotion.security.ApplicationUserRole.*;
 
 @Service
 public class UserService{
@@ -81,6 +79,18 @@ public class UserService{
     public User findUserByEmail(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User with email " + email + " not found!")
+        );
+    }
+
+    public Patient findPatientByEmail(String email) throws UsernameNotFoundException {
+        return patientRepository.findByEmail(email).orElseThrow(
+                () -> new UsernameNotFoundException("Patient with email " + email + " not found!")
+        );
+    }
+
+    public Therapist findTherapistByEmail(String email) throws UsernameNotFoundException {
+        return therapistRepository.findByEmail(email).orElseThrow(
+                () -> new UsernameNotFoundException("Therapist with email " + email + " not found!")
         );
     }
 
@@ -161,6 +171,30 @@ public class UserService{
     public WhoAmIResponse whoami(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = findUserByEmail((String) authentication.getPrincipal());
-        return new WhoAmIResponse(user.getName(), user.getRole().getName().name());
+        return new WhoAmIResponse(user.getName(), user.getRole().getName());
+    }
+
+    public UserDetailsResponse getDetails(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = findUserByEmail((String) authentication.getPrincipal());
+
+        return new UserDetailsResponse(user.getName(), user.getGender(), user.getEmail(), user.getBirthdate());
+    }
+
+    public void updateUser(UserUpdateRequest request){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = findUserByEmail((String) authentication.getPrincipal());
+
+        user.setName(request.getName());
+        user.setBirthdate(request.getBirthdate());
+        user.setGender(request.getGender());
+
+        userRepository.save(user);
+    }
+
+    public void deleteUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = findUserByEmail((String) authentication.getPrincipal());
+        userRepository.delete(user);
     }
 }

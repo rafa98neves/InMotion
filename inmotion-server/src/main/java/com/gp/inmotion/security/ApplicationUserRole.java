@@ -14,7 +14,8 @@ import static com.gp.inmotion.security.ApplicationUserPermission.*;
 @Table
 public enum ApplicationUserRole {
     PATIENT(Sets.newHashSet(PATIENT_READ)),
-    THERAPIST(Sets.newHashSet(PATIENT_READ, PATIENT_WRITE));
+    THERAPIST(Sets.newHashSet(PATIENT_READ, PATIENT_WRITE)),
+    ADMIN(Sets.newHashSet(PATIENT_READ, PATIENT_WRITE, THERAPIST_READ, THERAPIST_WRITE, ADMIN_READ, ADMIN_WRITE));
 
     private final Set<ApplicationUserPermission> permissions;
     ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
