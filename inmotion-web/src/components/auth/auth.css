@@ -1,0 +1,74 @@
+button{
+    padding: 0.5% 1% 0.5% 1%;
+    margin-top: 2%;
+}
+
+.form-box{
+    margin-left: 10%;
+    width: 80%;
+    margin-top: 17%;
+}
+  
+.form-control {
+    display: block;
+}
+
+.form-control label, input, textarea, select {  
+    display: inline-block;
+    vertical-align: baseline;
+    width: 20%;
+    margin-bottom: 2%;
+}
+
+.form-control textarea{
+    resize: none;
+    margin-right: 10%;
+    width: 60%;
+}
+
+.form-control label{
+    width: 20%;
+}
+  
+.form-control input {
+    width: 60%;
+}
+  
+.form-control select {
+    width: 20%;
+    margin-right: 50.4%;
+}
+
+.form-control-nav{
+    display: inline-block;
+    margin: 0 0 .2% 0;
+    width: 50%;
+}
+  
+.form-control-nav label{
+    margin: 2%;
+}
+  
+.form-control-nav button{
+    padding: 1% 2% 1% 2%;
+}
+   
+.form-footer{
+    display: inline-block;
+    position: absolute;
+    bottom: 9%;
+    left: 7%;
+    width: 86%;
+}
+  
+  .form-footer button {  
+    padding: 10% 30% 10% 30%;
+  }
+  
+  #submit{
+    float: right;
+  }
+  
+  #back{
+    float: left;
+  }

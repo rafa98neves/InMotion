@@ -1,5 +1,7 @@
 server:
     port: 9000
+    error:
+        include-message: on_param
 spring:
     datasource:
         url: jdbc:mysql://localhost:3306/inmotion?serverTimezone=UTC
@@ -10,3 +12,14 @@ spring:
         generate-ddl: true
         hibernate:
             ddl-auto: update
+        database-platform: org.hibernate.dialect.MySQL8Dialect
+    mail:
+        host: smtp.mailtrap.io
+        port: 2525
+        username: f33a4e2d141cf5
+        password: fea40b3ff9e40e
+application:
+    jwt:
+        secret-key: ^7f*<<rPyU(pmt+-=sGQ(bFw2U'P$khA
+        token-expiration-after-days: 14
+        token-prefix: Bearer
