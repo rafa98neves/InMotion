@@ -10,7 +10,8 @@ export const accountService = {
     validateToken,
     recover,
     logout,
-    whoami
+    whoami,
+    getInfo
 };
 
 var api = utils.createHttp();
@@ -154,4 +155,30 @@ async function whoami(){
                 router.push({name: "error", params: {msg : error}})           
             });
     return false;    
+}
+
+async function getInfo() {
+    const user = {
+        name : "Rafael Neves",
+        birthdate : "02/03/1998",
+        gender : "Male",
+        email : "rafa@patient.com",
+    }
+    return user;
+    /*await api.get('/user', user)
+        .then(response => {
+            if(response.status == 200){
+                return response.data
+            }
+            else{
+                console.log("status not expected -" + response)
+            }})
+        .catch(error => {
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else{
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        });*/
 }

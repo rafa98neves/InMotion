@@ -11,15 +11,19 @@ export default {
     name: 'Piano',
     data(){
       return{
-        msg : ''
+        msg : '',
+        controller: ''
       }
     },
     mounted() {
       
       // eslint-disable-next-line
-      var controller = piano();
-      controller.connect();
+      this.controller = piano();
+      this.controller.connect();
       
+    },
+    beforeUnmount(){
+      this.controller.disconnect();
     }
 }
 

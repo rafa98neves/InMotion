@@ -1,7 +1,7 @@
 <template>
-  <MainLayout :loggedIn="true"></MainLayout>
-
- <div id="PersonalInformation">
+  <MainLayout :loggedIn="true" ref="layout"></MainLayout>
+  <div v-if="!loading">
+    <div id="PersonalInformation">
         <div class="personal-information-image">
            <img src="../assets/personal_info.png" width="50" height="60">
         </div>
@@ -48,12 +48,16 @@
         </select>
       </div>
     </div>
+  </div>
 
 </template>
 
 <script>
 
+
 import MainLayout from './layout/main_layout'
+import { accountService } from "@/_services/account.service";
+
 export default {
 
   name: "App",
@@ -62,6 +66,7 @@ export default {
   },
   data: function () {
     return {
+      loading : true,
       items: [
         { diagnosis: " diagnosis a" },
         { diagnosis: " diagnosis b" },
@@ -72,15 +77,28 @@ export default {
         { diagnosis: " medication b" },
         { diagnosis: " medication c"},
       ],
-      user :  {
-          name : "Rafael Neves",
-          birthdate : "02/03/1998",
-          gender : "Male",
-          email : "rafa@patient.com",
-          medications : [],
-          diagnosis : []
-        },
-    };
+      user: {
+        name: '',
+        birthdate: '',
+        gender: '',
+        email: ''
+      }
+    }
+  },
+  mounted() {
+    this.awaitUserInfo();
+  },
+  methods: {
+    async awaitUserInfo(){
+      this.loading = true;
+      this.$refs.layout.setLoading(this.loading);
+      
+      let user = await accountService.getInfo();
+      this.user = user;
+
+      this.loading = false;
+      this.$refs.layout.setLoading(this.loading);
+    }
   }
 }
 

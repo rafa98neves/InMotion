@@ -87,11 +87,10 @@ export default {
   max-width: 25%;
 }
 
-
 .search{
   float: left;
-  font-size: 25px;
-  padding: 10px;
+  font-size: 17px;
+  padding: 13px;
   width: 60%
 }
 

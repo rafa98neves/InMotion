@@ -27,8 +27,8 @@ const routes = [
     
     { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
-    { path: '/patient/info', component: PersonalInformationPatient, name: 'Personal Information Patient', beforeEnter: authGuard},
-    { path: '/therapist/info', component: PersonalInformationTherapist, name: 'Personal Information Therapist', beforeEnter: authGuard },
+    { path: '/patient/info', component: PersonalInformationPatient, name: 'Personal Information Patient'},
+    { path: '/therapist/info', component: PersonalInformationTherapist, name: 'Personal Information Therapist' },
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
