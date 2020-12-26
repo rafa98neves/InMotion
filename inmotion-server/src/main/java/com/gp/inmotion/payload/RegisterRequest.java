@@ -12,28 +12,21 @@ public class RegisterRequest {
 
     @NotNull
     @NotEmpty
-    private Long id;
-
-    @NotNull
-    @NotEmpty
-    private String role;
-
-    @NotNull
-    @NotEmpty
-    private Date birthdate;
-
-    @NotNull
-    @NotEmpty
-    private String gender;
-
-    @NotNull
-    @NotEmpty
     private String email;
 
     @NotNull
     @NotEmpty
     private String password;
 
+    @NotNull
+    @NotEmpty
+    private String role;
+
+    private Long patientId;
+
+    private Date birthdate;
+
+    private String gender;
 
     public RegisterRequest() {
     }
@@ -78,16 +71,16 @@ public class RegisterRequest {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
+    public Long getPatientId() {
+        return patientId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPatientId(Long patientId) {
+        this.patientId = patientId;
     }
 
     public String getRole() {
-        return role;
+            return role;
     }
 
     public void setRole(String role) {

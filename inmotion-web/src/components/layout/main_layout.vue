@@ -12,7 +12,7 @@
     
   <div class="layout-header" v-if="loggedIn">
     <router-link to="/patient/info"><img src="../../assets/avatar.png" class="avatar"></router-link>
-    <label class="name"> Name </label><br>
+    <label class="name"> {{ user.name }} </label><br>
     <img src="../../assets/logout.png" class="logout" @click="logout">
   </div>
 
@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { utils } from '../../_helpers/utils'
+
 import { accountService } from '../../_services/account.service'
 
 export default {
@@ -29,7 +29,7 @@ export default {
   data() {
     return {
       loading : false,
-      user : utils.user
+      user : accountService.user
     }
   },
   methods: {

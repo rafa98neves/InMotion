@@ -2,6 +2,7 @@ import { router } from "../_helpers/router"
 import { utils } from "../_helpers/utils"
 
 export const accountService = {
+    user : '',
     login,
     isAuthenticated,
     register,
@@ -13,7 +14,7 @@ export const accountService = {
     getInfo
 };
 
-const api = utils.createHttp();
+var api = utils.createHttp();
 
 function isAuthenticated() {
     if(utils.getToken() == ''){
@@ -30,7 +31,7 @@ async function login(credentials, context) {
                     window.localStorage.setItem('token', response.headers['authorization'])
                     utils.token = response.headers['authorization']   
                     context.$toast.success("Login successed", { position: "bottom"}) 
-                    context.loggedIn = true;      
+                    context.loggedIn = true;    
                     router.push("/")
                 }
                 else{
@@ -47,6 +48,8 @@ async function login(credentials, context) {
                     router.push({name: "error", params: {msg : error.response}})
                 }
             });
+            
+    await accountService.whoami();  
 }
 
 async function register(user, context) {
@@ -139,15 +142,18 @@ async function logout(){
 }
 
 async function whoami(){
-    await api.get('/whoami')
+    await api.get('/user/whoami')
             .then(response => {
                 if(response.status == 200){
-                    accountService.user=response.data.user
-                    return true
+                    accountService.user=response.data;
+                    return true;
+                }   
+                else{
+                    console.log("status not expected -" + response)
                 }})
-            .catch(error => console.log(error));
-    
-    router.push('/landingpage');
+            .catch(error => {
+                router.push({name: "error", params: {msg : error}})           
+            });
     return false;    
 }
 

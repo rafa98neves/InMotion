@@ -1,12 +1,10 @@
 import axios from 'axios';
 
 const base = 'http://localhost:9000';
-const user = '';
 
 export const utils = {
     createHttp,
-    getToken,
-    user
+    getToken
 }
 
 function createHttp(){
