@@ -41,6 +41,7 @@
 <script>
 
 import MainLayout from './layout/main_layout'
+import { accountService } from '../_services/account.service'
 
 export default {
   components: {
@@ -49,7 +50,7 @@ export default {
   data: function () {
     return {
       user: {
-        role: 'PATIENT'
+        role: accountService.user.role
       }
     };
   }

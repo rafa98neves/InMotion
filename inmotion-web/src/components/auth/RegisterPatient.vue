@@ -92,7 +92,7 @@ export default {
       //medication: [],
       password: '',
       password2: '',
-      diagnosis: '',
+      //diagnosis: '',
       gender:''
     }
   },
@@ -104,7 +104,7 @@ export default {
 
       let user = {
         name : this.name,
-        id : this.id,
+        patientId : this.id,
         birthdate : this.birthdate,
         //diagnosis: this.diagnosis,
         gender : this.gender,

@@ -80,7 +80,7 @@ public class RegisterRequest {
     }
 
     public String getRole() {
-        return role;
+            return role;
     }
 
     public void setRole(String role) {
