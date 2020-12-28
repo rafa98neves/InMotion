@@ -23,6 +23,7 @@ function isAuthenticated() {
     return true;
 }
 
+//post login and login error
 async function login(credentials, context) {
   
     await api.post('/login', credentials)
@@ -52,6 +53,7 @@ async function login(credentials, context) {
     await accountService.whoami();  
 }
 
+//post register and register error
 async function register(user, context) {
     await api.post('/register', user)
         .then(response => {
@@ -75,6 +77,7 @@ async function register(user, context) {
             });
 }
 
+// post recover password
 async function recoverPassword(email, context) {
     let email_json = { 'email' : email }
     await api.post('/resetPassword', email_json)
@@ -95,6 +98,7 @@ async function recoverPassword(email, context) {
         });
 }
 
+//post validate token
 async function validateToken(token, context) {
     let token_json = { 'token' : token }
     await api.post('/validateToken', token_json)
@@ -115,6 +119,7 @@ async function validateToken(token, context) {
         });
 }
 
+//post change password
 async function recover(request, context) {
     await api.post('/changePassword', request)
         .then(response => {
@@ -136,11 +141,13 @@ async function recover(request, context) {
         });
 }
 
+// logout
 async function logout(){
     window.localStorage.clear();
     router.push("/landingpage")
 }
 
+// get type of user
 async function whoami(){
     await api.get('/user/whoami')
             .then(response => {
@@ -157,6 +164,7 @@ async function whoami(){
     return false;    
 }
 
+// get user information
 async function getInfo() {
     const user = {
         name : "Rafael Neves",

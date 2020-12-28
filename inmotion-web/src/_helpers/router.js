@@ -16,6 +16,7 @@ import PersonalInformationTherapist from '../components/PersonalInformationThera
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
 
+//pages
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
     { path: '/landingpage', component: LandingPage, name: 'Landing Page' },

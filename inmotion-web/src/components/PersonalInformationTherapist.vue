@@ -3,6 +3,7 @@
 
   </div>
 
+<!-- Therapist personal information-->
  <div id="PersonalInformation">
         <div class="personal-information-image">
            <img src="../assets/personal_info.png" width="50" height="60">
