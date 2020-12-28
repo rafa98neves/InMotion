@@ -143,31 +143,25 @@ async function logout(){
 
 async function whoami(){
     await api.get('/user/whoami')
-            .then(response => {
-                if(response.status == 200){
-                    accountService.user=response.data;
-                    return true;
-                }   
-                else{
-                    console.log("status not expected -" + response)
-                }})
-            .catch(error => {
-                router.push({name: "error", params: {msg : error}})           
-            });
+        .then(response => {
+            if(response.status == 200){
+                accountService.user=response.data;
+                return true;
+            }
+            else{
+                console.log("status not expected -" + response)
+            }})
+        .catch(error => {
+            router.push({name: "error", params: {msg : error}})
+        });
     return false;    
 }
 
 async function getInfo() {
-    const user = {
-        name : "Rafael Neves",
-        birthdate : "02/03/1998",
-        gender : "Male",
-        email : "rafa@patient.com",
-    }
-    return user;
-    /*await api.get('/user', user)
+    await api.get('/user/details')
         .then(response => {
             if(response.status == 200){
+                console.log(response.data)
                 return response.data
             }
             else{
@@ -180,5 +174,5 @@ async function getInfo() {
             else{
                 router.push({name: "error", params: {msg : error.response}})
             }
-        });*/
+        });
 }
