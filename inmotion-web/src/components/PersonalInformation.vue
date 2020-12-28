@@ -89,9 +89,8 @@ export default {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
 
-      let user = await accountService.getInfo();
-      //this.user = user;
-      console.log(user);
+      const user = await accountService.getInfo();
+      this.user = user;
 
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);

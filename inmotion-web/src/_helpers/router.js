@@ -26,7 +26,7 @@ const routes = [
     
     { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
-    { path: '/user/info', component: PersonalInformation, name: 'Personal Information'},
+    { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
