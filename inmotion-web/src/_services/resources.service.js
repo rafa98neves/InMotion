@@ -41,7 +41,7 @@ async function getMedications() {
 }
 
 async function getScoreboard() {
-    let user = [
+    let score = [
     { id: "Juice", time: "0000"},
     { id: "Juice", time: "0000"},
     { id: "Juice", time: "0000"},
@@ -56,7 +56,7 @@ async function getScoreboard() {
     { id: "Juice", time: "0000"},
         
     ]
-    return user;
+    return score;
     
     /*await api.get('/scoreboard', user)
         .then(response => {
