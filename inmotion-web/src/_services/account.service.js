@@ -165,6 +165,7 @@ async function getInfo() {
         email : "rafa@patient.com",
     }
     return user;
+    
     /*await api.get('/user', user)
         .then(response => {
             if(response.status == 200){

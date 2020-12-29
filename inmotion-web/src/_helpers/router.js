@@ -13,6 +13,7 @@ import ListOfGames from '../components/games/ListOfGames'
 import PersonalInformationPatient from '../components/PersonalInformationPatient';
 import PersonalInformationTherapist from '../components/PersonalInformationTherapist';
 
+import Scoreboard from '../components/Scoreboard'
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
 
@@ -29,6 +30,8 @@ const routes = [
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
     { path: '/patient/info', component: PersonalInformationPatient, name: 'Personal Information Patient'},
     { path: '/therapist/info', component: PersonalInformationTherapist, name: 'Personal Information Therapist' },
+
+    { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard' },
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
