@@ -1,6 +1,7 @@
 package com.gp.inmotion.service;
 
 import com.gp.inmotion.models.Patient;
+import com.gp.inmotion.payload.MedicationDetailsResponse;
 import com.gp.inmotion.payload.PatientDetailsResponse;
 import com.gp.inmotion.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,5 +27,10 @@ public class PatientService {
     public PatientDetailsResponse getPatientDetails(Long patientId){
         Patient patient = getPatient(patientId);
         return new PatientDetailsResponse(patient.getName(),patient.getGender(),patient.getBirthdate(),patient.getPatientDiagnosis());
+    }
+
+    public MedicationDetailsResponse getMedicationDetails(Long patientId){
+        Patient patient = getPatient(patientId);
+        return new MedicationDetailsResponse(patient.getMedication().getMedicationId(),patient.getMedication().getMedicationName(),patient.getPatientDiagnosis());
     }
 }
