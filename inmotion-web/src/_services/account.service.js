@@ -169,14 +169,21 @@ async function getInfo() {
         .then(response => {
             if(response.status == 200){
                 user = response.data
-                if(user.birthdate != ''){
+                if(user.birthdate != null && user.birthdate != ''){
                     user.birthdate = user.birthdate.substr(0,10);
                 }
+                /* to delete null parameters
+                for (var propName in user) {
+                    if (user[propName] === null || user[propName] === undefined) {
+                        delete user[propName];
+                    }
+                }*/
             }
             else{
                 console.log("status not expected -" + response)
             }})
         .catch(error => {
+            console.log(error)
             if(error.response == undefined){
                 router.push({name: "error", params: {msg : "404 - Server side error"}})
             }
