@@ -11,7 +11,8 @@ export const accountService = {
     recover,
     logout,
     whoami,
-    getInfo
+    getInfo,
+    searchPatient
 };
 
 function isAuthenticated() {
@@ -23,14 +24,14 @@ function isAuthenticated() {
 
 async function login(credentials, context) {
     var api = utils.createHttp();
-  
+
     await api.post('/login', credentials)
             .then(function(response) {
                 if(response.status == 200){
                     window.localStorage.setItem('token', response.headers['authorization'])
-                    utils.token = response.headers['authorization']   
-                    context.$toast.success("Login successed", { position: "bottom"}) 
-                    context.loggedIn = true;    
+                    utils.token = response.headers['authorization']
+                    context.$toast.success("Successful login", { position: "bottom"})
+                    context.loggedIn = true;
                     router.push("/")
                 }
                 else{
@@ -54,7 +55,7 @@ async function register(user, context) {
     await api.post('/register', user)
         .then(response => {
             if(response.status == 200){
-                context.$toast.success("Registration successed", { position: "bottom"})   
+                context.$toast.success("Successful Registration", { position: "bottom"})
                 router.push("/login")
             }
             else{
@@ -193,4 +194,29 @@ async function getInfo() {
         });
 
     return user
+}
+
+async function searchPatient(id) {
+    router.push("/patient/page")
+    console.log(id)
+    /* var api = utils.createHttp();
+    let user;
+    await api.get('/user/',id)
+        .then(response => {
+            if(response.status == 200){
+            }
+            else{
+                console.log("status not expected -" + response)
+            }})
+        .catch(error => {
+            console.log(error)
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else{
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        });
+
+    return user*/
 }

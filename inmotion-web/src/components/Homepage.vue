@@ -1,7 +1,7 @@
 <template>
 
   <MainLayout :loggedIn="true"></MainLayout>
-
+  <form class="form-box" @submit.prevent="searchPatient">
   <div class="menu">
 
     <div class="row">
@@ -20,8 +20,8 @@
       
       <div class="column">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <input type="text" placeholder="search patient by id" name="search" class="search">
-        <button type="submit" class="button"><i class="fa fa-search"></i></button>
+        <input type="text" placeholder="search patient by id" name="id" class="search" v-model="id">
+        <button type="submit" class="button" ><i class="fa fa-search"></i></button>
       </div>
     </div>
 
@@ -47,6 +47,7 @@
     </div>
 
   </div>
+  </form>
 </template>
 
 <script>
@@ -60,8 +61,15 @@ export default {
   },
   data: function () {
     return {
+      id: '',
       role: accountService.user.role
     };
+  },
+  methods: {
+    searchPatient() {
+      let id = this.id;
+      accountService.searchPatient(id);
+    }
   }
 }
 
