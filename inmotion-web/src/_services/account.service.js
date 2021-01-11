@@ -196,14 +196,24 @@ async function getInfo() {
     return user
 }
 
+
 async function searchPatient(id) {
-    router.push("/patient/page")
     console.log(id)
-    /* var api = utils.createHttp();
+    var api = utils.createHttp();
     let user;
-    await api.get('/user/',id)
+    await api.get('/api/v1/patients/'+id)
         .then(response => {
             if(response.status == 200){
+                user = response.data;
+                if(user.birthdate != null && user.birthdate != ''){
+                    user.birthdate = user.birthdate.substr(0,10);
+                }
+                /* to delete null parameters
+                for (var propName in user) {
+                    if (user[propName] === null || user[propName] === undefined) {
+                        delete user[propName];
+                    }
+                }*/
             }
             else{
                 console.log("status not expected -" + response)
@@ -217,6 +227,5 @@ async function searchPatient(id) {
                 router.push({name: "error", params: {msg : error.response}})
             }
         });
-
-    return user*/
+    return user
 }

@@ -5,7 +5,7 @@
   <MainLayout :loggedIn="true"></MainLayout>
   <div class="login-form">
     <div class="frame-text">
-      <p>Patient's ID</p>
+      <p>Patient's ID {{ $route.params.idPass }}</p>
     </div>
     <div class="Patientboard">
       <div id="frame">
@@ -16,7 +16,7 @@
               <img src="../assets/info.png" style="width:40%">
             </div>
             <div class="column">
-              <router-link to="/patient/info"><button class="btn">Patient's Information</button></router-link>
+              <router-link :to="{name: 'Patient\'s Personal Information', params: { idPass: $route.params.idPass }}"><button class="btn">Patient's Information</button></router-link>
             </div>
           </div>
 
@@ -55,10 +55,9 @@ import MainLayout from './layout/main_layout'
 export default {
   name: "App",
   components: {
-    MainLayout
+    MainLayout,
   }
 }
-
 </script>
 
 <style scoped>

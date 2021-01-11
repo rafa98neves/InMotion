@@ -2,21 +2,21 @@
   <MainLayout :loggedIn="true" ref="layout"></MainLayout>
   <div v-if="!loading">
     <div id="PersonalInformation">
-        <div class="personal-information-image">
-           <img src="../assets/personal_info.png" width="50" height="60">
-        </div>
-        <div class="personal-information-text">
-           <p>Personal Information</p>
-        </div>
+      <div class="personal-information-image">
+        <img src="../assets/personal_info.png" width="50" height="60">
+      </div>
+      <div class="personal-information-text">
+        <p>Personal Information</p>
+      </div>
     </div>
 
-    <router-link to="/patient/page"><button class="back-button" >Back</button></router-link>
+    <router-link :to="{name: 'Patient\'s Page', params: { idPass: $route.params.idPass }}"><button class="back-button" >Back</button></router-link>
     <button class="cp-button" >Save</button>
 
     <div class="container">
       <div class="form-control">
-          <label class="label-name">Name</label>
-          <p class="info-name">{{user.name}}</p>
+        <label class="label-name">Name</label>
+        <p class="info-name">{{user.name}}</p>
       </div>
 
       <div class="form-control">
@@ -25,13 +25,18 @@
       </div>
 
       <div class="form-control">
-          <label class="label-date">Date of Birth</label>
-          <p class="info-date">{{user.birthdate}}</p>
+        <label class="label-date">Date of Birth</label>
+        <p class="info-date">{{user.birthdate}}</p>
       </div>
 
       <div class="form-control">
-          <label class="label-gender">Gender</label>
-          <p class="info-gender">{{user.gender}}</p>
+        <label class="label-gender">Gender</label>
+        <p class="info-gender">{{user.gender}}</p>
+      </div>
+
+      <div class="form-control">
+        <label class="control-label">Diagnosis</label>
+        <div class="text-box" contentEditable="true">{{diagnosis}}</div>
       </div>
     </div>
   </div>
@@ -53,12 +58,15 @@ export default {
   data: function () {
     return {
       loading : true,
-      items: [
-        { diagnosis: " diagnosis a" },
-        { diagnosis: " diagnosis b" },
-        { diagnosis: " diagnosis c"},
-      ],
-       med: [
+      diagnosis: "madklwçdkfnv dms," +
+          "\nlaç.SLMDKFNHSMKLA," +
+          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
+          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç."+
+          "madklwçdkfnv dms," +
+          "\nlaç.SLMDKFNHSMKLA," +
+          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
+          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç.",
+      med: [
         { diagnosis: " medication a" },
         { diagnosis: " medication b" },
         { diagnosis: " medication c"},
@@ -75,7 +83,7 @@ export default {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
 
-      const user = await accountService.getInfo();
+      const user = await accountService.searchPatient(this.$route.params.idPass);
       this.user = user;
 
       this.loading = false;
@@ -105,62 +113,71 @@ export default {
 
 <style scoped>
 
-  #PersonalInformation{
-      position: absolute;
-      left: 15%;
-      top: 20%;
-  }
+#PersonalInformation{
+  position: absolute;
+  left: 15%;
+  top: 20%;
+}
 
-  .personal-information-image{
-    width: 0%;
-    float:left;
-  }
+.personal-information-image{
+  width: 0%;
+  float:left;
+}
 
-  .personal-information-text{
-    width: 140%;
-    float:left;
-    font-weight: bold;
-    color: black;
-    font-size: 18px
-  }
+.personal-information-text{
+  width: 140%;
+  float:left;
+  font-weight: bold;
+  color: black;
+  font-size: 18px
+}
 
-  .container{
-    position: absolute;
-    text-align: left;
-    left: 20%;
-    top: 30%;
-    width: 80%;
-  }
+.container{
+  position: absolute;
+  text-align: left;
+  left: 20%;
+  top: 30%;
+  width: 80%;
+}
 
-  .form-control label p{
-    display: block;
-  }
+.form-control label p{
+  display: block;
+}
 
-  .form-control label{
-    font-weight: bold;
-    color: black;
-    font-size: 18px;
-    margin-bottom: 2%;
-  }
+.form-control label{
+  font-weight: bold;
+  color: black;
+  font-size: 18px;
+  margin-bottom: 2%;
+}
 
-  .form-control label, p, select{
-    display: inline-block;
-  }
+.form-control label, p, select{
+  display: inline-block;
+}
 
-  .form-control select{
-    padding: 5px 20% 5px 5px;
-    border: 1px solid black;
-  }
+.form-control select{
+  padding: 5px 20% 5px 5px;
+  border: 1px solid black;
+}
 
-  .back-button{
-    position: absolute;
-    left: 10%;
-    bottom: 13%;
-  }
-  .cp-button{
-    position: absolute;
-    right: 10%;
-    bottom: 13%;
-  }
-
+.back-button{
+  position: absolute;
+  left: 10%;
+  bottom: 13%;
+}
+.cp-button{
+  position: absolute;
+  right: 10%;
+  bottom: 13%;
+}
+.text-box{
+  border: 1px solid black;
+  padding: 5px 5px 10px 5px;
+  height: 10%; /* maximum height of the box, feel free to change this! */
+  width: 40%;
+  overflow-y: scroll;
+}
+.control-label {
+  float:left;
+}
 </style>
