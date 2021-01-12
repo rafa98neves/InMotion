@@ -100,6 +100,7 @@ export default ( function() {
         positionScale: getParam('positionScale'),
         helper: true,
         offset: new THREE.Vector3(0, 0, 0),
+        frameEventName: 'animationFrame',
         renderFn: function() {
             renderer.render(scene, camera);
         },
@@ -111,6 +112,7 @@ export default ( function() {
         camera: camera,
         checkWebGL: true
     });    
-    controller.connect();
+
+    return controller;
 })
 /* eslint-enalbe */
