@@ -1,6 +1,15 @@
 <template>
   <div>
-    <p><span id="avgPosition"></span></p>
+    <button id="1c" v-on:click="playSound('1c')" />
+    <button id="1d" v-on:click="playSound('1d')" />
+    <button id="1e" v-on:click="playSound('1e')" />
+    <button id="1f" v-on:click="playSound('1f')" />
+    <button id="1g" v-on:click="playSound('1g')" />
+    <button id="1a" v-on:click="playSound('1a')" />
+    <button id="1b" v-on:click="playSound('1b')" />
+    <button id="2c" v-on:click="playSound('2c')" />
+    <button id="2d" v-on:click="playSound('2d')" />
+    <button id="2e" v-on:click="playSound('2e')" />
   </div>
 </template>
 
@@ -10,30 +19,42 @@ import piano from './game1-logic'
 
 export default {
     name: 'Piano',
+
     data(){
       return{
         controller: '',
         nameMap : [ "thumb", "index", "middle", "ring", "pinky" ],
+        staticFolder : '../../assets/piano/sounds/',
         fingerMap: {
           "thumb" : {
             "medium" : 40,
-            "hard" : 45
+            "hard" : 45,
+            "note0" : '1g',
+            "note1" : '1a'
           },
           "index" : {
             "medium" : 15,
-            "hard" : 20
+            "hard" : 20,
+            "note0" : '1f',
+            "note1" : '1b'
           },
           "middle" : {
             "medium" : 8,
-            "hard" : 10
+            "hard" : 10,
+            "note0" : '1e',
+            "note1" : '2c'
           },
           "ring" : {
             "medium" : 5,
-            "hard" : 8
+            "hard" : 8,
+            "note0" : '1d',
+            "note1" : '2d'
           },
           "pinky" : {
             "medium" : 5,
-            "hard" : 8
+            "hard" : 8,
+            "note0" : '1c',
+            "note1" : '2e'
           },
           "status" : {
             "finger" : '',
@@ -51,7 +72,6 @@ export default {
 
       fingerPosition(fingerMap, nameMap){
         /* eslint-disable */
-        var avgDisplay = document.getElementById('avgPosition');
 
         this.controller.on('frame', function(frame) {
           if(frame.valid && frame.fingers.length > 0){
@@ -76,32 +96,43 @@ export default {
                 } 
                 
                 if(count > 0) {
+                    var button = document.getElementById(fingerMap[[nameMap[finger]]].note0);
                     Leap.vec3.scale(average, average, 1/count); 
                     if(Math.round(average[1]) > fingerMap[[nameMap[finger]]].hard){
                       fingerMap["status"].finger = nameMap[finger];
                       fingerMap["status"].power = 2;
-                      avgDisplay.innerText = nameMap[finger] + " hard click";
+                        button.click();
                     }
                     else if(Math.round(average[1]) > fingerMap[nameMap[finger]].medium){
                       if( fingerMap["status"].power == 2 && fingerMap["status"].finger == nameMap[finger]){
                         fingerMap["status"].finger = nameMap[finger];
                         fingerMap["status"].power = 1;
+                        button.click();
                       }
                       else if(fingerMap["status"].power != 2){
                         fingerMap["status"].finger = nameMap[finger];
                         fingerMap["status"].power = 1;
-                        avgDisplay.innerText = nameMap[finger] + " medium click";
+                        button.click();
                       }
                     }
                     else if(fingerMap["status"].finger == nameMap[finger]){
                         fingerMap["status"].finger = '';
                         fingerMap["status"].power = 0;
-                        avgDisplay.innerText = "";
                     }
                 }
               }                
           }
         });
+      },
+      playSound(note){
+        var audio = new Audio(require("../../assets/piano/sounds/" + note +".mp3"))
+        if(this.fingerMap.status.power == 2){
+          audio.volume = 0.3;
+        }
+        else{
+          audio.volume = 0.01;
+        }
+        audio.play();
       }
   }
 }
