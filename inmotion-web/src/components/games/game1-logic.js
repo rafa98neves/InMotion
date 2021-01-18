@@ -19,12 +19,12 @@ export default ( function() {
         window.renderer = new THREE.WebGLRenderer({
             alpha: true
         });
-        renderer.setClearColor(0xffffff, 1);
-        renderer.setSize(0.9*window.innerWidth, 0.8*window.innerHeight);
+        renderer.setClearAlpha(0);
+        renderer.setSize(.95*window.innerWidth, .85*window.innerHeight);
         element.appendChild(renderer.domElement);
-        window.camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight , 1, 1000);
-        camera.position.fromArray([0, 200, 400]);
-        camera.lookAt(new THREE.Vector3(0, 100, 0));
+        window.camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight , 0.1, 2000);
+        camera.position.fromArray([0, 320, 90]);
+        camera.lookAt(new THREE.Vector3(0, -400, -450));
         scene.add(camera);
         window.addEventListener('resize', function() {
             camera.aspect = window.innerWidth / window.innerHeight;
@@ -37,7 +37,15 @@ export default ( function() {
     };
 
     // via Detector.js:
-    var webglAvailable  = ( function () { try { var canvas = document.createElement( 'canvas' ); return !! window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ); } catch( e ) { return false; } } )();
+    var webglAvailable  = ( function () {
+        try {
+            var canvas = document.createElement( 'canvas' );            
+            return !! window.WebGLRenderingContext && ( canvas.getContext( 'webgl' ) || canvas.getContext( 'experimental-webgl' ) ); 
+        } catch( e ) {
+            console.log("Error printing canvas: " + e);
+            return false; 
+        } 
+    })();
 
     if (webglAvailable) {
         initScene(document.body);
@@ -49,7 +57,6 @@ export default ( function() {
         cursor.style.height = '50px';
         cursor.style.position = 'absolute';
         cursor.style.zIndex = '10';
-        cursor.style.backgroundColor = 'green';
         cursor.style.opacity = '0.8';
         cursor.style.color = 'white';
         cursor.style.fontFamily = 'curior';
