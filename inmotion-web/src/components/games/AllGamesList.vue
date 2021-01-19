@@ -64,7 +64,7 @@ export default {
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
-
+    
     // scroll buttons
     scroll_left() {
       if(this.index.length == 3){

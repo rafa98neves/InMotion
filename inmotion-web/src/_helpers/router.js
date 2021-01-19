@@ -14,6 +14,7 @@ import PersonalInformation from '../components/PersonalInformation';
 
 import RecommendedGames from '../components/games/RecommendedGames'
 
+import Scoreboard from '../components/Scoreboard'
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
 import PatientsPage from "@/components/PatientsPage";
@@ -34,6 +35,8 @@ const routes = [
     { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
     { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
     { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
+
+    { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard' },
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
     { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games'},
