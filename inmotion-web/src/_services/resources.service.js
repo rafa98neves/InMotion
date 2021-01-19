@@ -3,7 +3,8 @@ import { utils } from "../_helpers/utils"
 
 export const resourcesService = {
     getMedications,
-    registerRecommendedGames
+    registerRecommendedGames,
+    getScoreboard
 };
 
 //const api = utils.createHttp();
