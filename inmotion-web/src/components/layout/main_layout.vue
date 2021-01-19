@@ -97,7 +97,6 @@ export default {
   width: 50%;
   cursor: pointer;
 }
-
 .loader {
   position: absolute;
   top: 40%;

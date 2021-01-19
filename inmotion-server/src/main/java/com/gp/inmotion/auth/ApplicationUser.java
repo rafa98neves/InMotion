@@ -65,6 +65,4 @@ public class ApplicationUser implements UserDetails {
 
     @Override
     public boolean isEnabled() { return true; }
-
-
 }

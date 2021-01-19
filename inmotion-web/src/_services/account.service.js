@@ -200,7 +200,6 @@ async function getInfo() {
                 router.push({name: "error", params: {msg : error.response}})
             }
         });
-
     return user
 }
 
