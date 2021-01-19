@@ -153,7 +153,6 @@ export default {
         }
       }
     },
-
     mounted() {
       document.body.style.backgroundColor = "black";
       var fade = document.getElementById("fade");

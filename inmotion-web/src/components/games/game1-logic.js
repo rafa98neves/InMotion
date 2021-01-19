@@ -118,8 +118,8 @@ export default ( function() {
         stats: stats,
         camera: camera,
         checkWebGL: true
-    });    
-
+    });  
+  
     return controller;
 })
 /* eslint-enalbe */

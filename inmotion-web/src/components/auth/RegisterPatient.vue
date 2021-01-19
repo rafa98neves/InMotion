@@ -17,10 +17,10 @@
         <input type="text" name="name" id="name" class="register-input" v-model="name">
 
         <label>Patient's ID</label>
-        <input type="text" name="patient_id" class="register-input" v-model="patient_id">
+        <input type="text" name="id" class="register-input" v-model="id">
 
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
+        <input type="date" name="date" id="birthdate" class="register-input" v-model="birthdate">
       </div>
       
       <div class="form-control">
@@ -86,13 +86,13 @@ export default {
       msg: '',
       //medications: resourcesService.getMedications(),
       name: '',
-      patient_id: '',
+      id: '',
       birthdate: '',
       email: '',
       //medication: [],
       password: '',
       password2: '',
-      diagnosis: '',
+      //diagnosis: '',
       gender:''
     }
   },
@@ -104,9 +104,9 @@ export default {
 
       let user = {
         name : this.name,
-        patientId : this.patient_id,
+        patientId : this.id,
         birthdate : this.birthdate,
-        diagnosis: this.diagnosis,
+        //diagnosis: this.diagnosis,
         gender : this.gender,
         email : this.email,
         password : this.password,
@@ -127,7 +127,7 @@ export default {
       }
 
       return (this.name.length > 0 && 
-              this.patient_id.length > 0 &&              
+              this.id.length > 0 &&              
               this.birthdate.length > 0 && 
               this.password.length > 0 && 
               this.diagnosis.length > 0 && 

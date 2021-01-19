@@ -1,5 +1,7 @@
 <template>
   <MainLayout :loggedIn="false"></MainLayout>
+
+  <!-- Error page style-->
   <div class="container">    
     <div>
       <img id="error-image" src="../assets/error.png">
@@ -16,9 +18,7 @@
 
 <script>
 export default {
-  name: 'ErrorPage',
-  props: {
-  }
+  name: 'ErrorPage'
 }
 
 </script>
