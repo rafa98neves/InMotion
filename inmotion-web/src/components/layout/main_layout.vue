@@ -1,6 +1,7 @@
 <template>
     <h1 id="pagename">{{ $route.name }}</h1>
 
+    <!-- Repeated images -->
     <div id="header-images">
         <div id="inmotion-logo">
           <img src="../../assets/inmotion-logo.jpg">
@@ -11,7 +12,7 @@
     </div>
     
   <div class="layout-header" v-if="loggedIn">
-    <router-link to="/patient/info"><img src="../../assets/avatar.png" class="avatar"></router-link>
+    <router-link to="/user/info"><img src="../../assets/avatar.png" class="avatar"></router-link>
     <label class="name"> {{ user.name }} </label><br>
     <img src="../../assets/logout.png" class="logout" @click="logout">
   </div>

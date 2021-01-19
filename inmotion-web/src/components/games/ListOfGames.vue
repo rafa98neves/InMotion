@@ -14,12 +14,14 @@
         </div>
     </div>
 
+    <!-- get RecommendedGamesList component-->
     <div class="GamesMenus">      
       <div id="recommended-games-list">
            <p class="games_headers">Recommended Games</p>
           <RecommendedGamesList/>
       </div>
       
+      <!-- get AllGamesList component-->
       <div id="all-games-list">
            <p class="games_headers">All Games</p>
           <AllGamesList/>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+//backend localhost
 const base = 'http://localhost:9000';
 
 export const utils = {
@@ -7,6 +8,7 @@ export const utils = {
     getToken
 }
 
+//http client
 function createHttp(){
 
   let api;
@@ -29,6 +31,7 @@ function createHttp(){
   return api;
 }
 
+//get key from backend
 function getToken() {
 
   if(window.localStorage.getItem('token') != null){

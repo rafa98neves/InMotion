@@ -5,6 +5,7 @@
         <button @click="scroll_right" id="a-right-button"><img src="../../assets/right_arrow.png" width="30" height="30"></button>
       </div>
 
+      <!-- get all games list-->
       <div class="a-center" id="content" ref="content">
         {{ msg }}
         <div class=internal v-for="item in items" :key="item">
@@ -25,6 +26,8 @@ export default {
   data: function () {
     return {
       msg: '',
+
+      //list of games
       items_list: [
         { id: "Juice", src: "juice_game.png", link: "/error" },
         { id: "Piano", src: "piano.png", link: "/games/piano" },
@@ -61,7 +64,8 @@ export default {
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
-    //scroll
+    
+    // scroll buttons
     scroll_left() {
       if(this.index.length == 3){
         var i;
@@ -74,6 +78,7 @@ export default {
       }
     },
 
+    // scroll buttons
     scroll_right() {
       if(this.index.length == 3){
         var i;

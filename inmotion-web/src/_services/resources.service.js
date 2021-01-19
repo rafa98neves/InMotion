@@ -1,12 +1,9 @@
-
-/*import { utils } from "../_helpers/utils"
-var api = utils.createHttp();*/
-
+import { router } from "../_helpers/router"
+import { utils } from "../_helpers/utils"
 
 export const resourcesService = {
     getMedications,
-    getScoreboard
-    
+    registerRecommendedGames
 };
 
 //const api = utils.createHttp();
@@ -35,9 +32,7 @@ async function getMedications() {
             .catch(error => {
                 console.log(error)
                 return ["None found"]
-            });*/
-         
-    
+            });*/   
 }
 
 async function getScoreboard() {
@@ -62,6 +57,16 @@ async function getScoreboard() {
         .then(response => {
             if(response.status == 200){
                 return response.data
+    */
+}
+
+async function registerRecommendedGames(games, context) {
+    var api = utils.createHttp();
+    await api.post('/games/recommendedGames', games)
+        .then(response => {
+            if(response.status == 200){
+                context.$toast.success("Registration game successed", { position: "bottom"})   
+                router.push("/games/recommendedGames")
             }
             else{
                 console.log("status not expected -" + response)
@@ -73,7 +78,5 @@ async function getScoreboard() {
             else{
                 router.push({name: "error", params: {msg : error.response}})
             }
-        });*/
-}
-
-
+        });
+ }

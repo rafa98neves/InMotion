@@ -10,13 +10,17 @@ import NewPassword from '../components/auth/NewPassword'
 
 import Home from '../components/Homepage'
 import ListOfGames from '../components/games/ListOfGames'
-import PersonalInformationPatient from '../components/PersonalInformationPatient';
-import PersonalInformationTherapist from '../components/PersonalInformationTherapist';
+import PersonalInformation from '../components/PersonalInformation';
+
+import RecommendedGames from '../components/games/RecommendedGames'
 
 import Scoreboard from '../components/Scoreboard'
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
+import PatientsPage from "@/components/PatientsPage";
+import PatientsInfo from "@/components/PatientsInfo";
 
+//pages
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
     { path: '/landingpage', component: LandingPage, name: 'Landing Page' },
@@ -27,13 +31,15 @@ const routes = [
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
     
     { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
-    { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
-    { path: '/patient/info', component: PersonalInformationPatient, name: 'Personal Information Patient'},
-    { path: '/therapist/info', component: PersonalInformationTherapist, name: 'Personal Information Therapist' },
+    { path: '/games/list', component: ListOfGames, name: 'List of Games'},
+    { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
+    { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
+    { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
 
     { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard' },
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
+    { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games'},
 
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', redirect: '/'}

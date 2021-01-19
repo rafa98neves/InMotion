@@ -20,7 +20,7 @@
         <input type="text" name="id" class="register-input" v-model="id">
 
         <label>Data of Birth</label>
-        <input type="date" name="date" id="name" class="register-input" v-model="birthdate">
+        <input type="date" name="date" id="birthdate" class="register-input" v-model="birthdate">
       </div>
       
       <div class="form-control">
