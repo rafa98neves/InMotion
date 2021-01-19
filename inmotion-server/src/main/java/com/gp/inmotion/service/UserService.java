@@ -4,17 +4,14 @@ import com.gp.inmotion.mail.EmailConfig;
 import com.gp.inmotion.mail.SendMail;
 import com.gp.inmotion.models.*;
 import com.gp.inmotion.payload.*;
-
 import com.gp.inmotion.repository.*;
 import com.gp.inmotion.exceptions.*;
 import com.gp.inmotion.security.ApplicationUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,7 +19,6 @@ import org.springframework.stereotype.Service;
 import java.util.Calendar;
 
 import static com.gp.inmotion.security.ApplicationUserRole.*;
-
 
 @Service
 public class UserService{
@@ -56,7 +52,6 @@ public class UserService{
 
         if(!exists){
             Role role = null;
-
             User user = new User(registerRequest.getEmail(),
                     passwordEncoder.encode(registerRequest.getPassword()),
                     registerRequest.getName(),
@@ -86,6 +81,7 @@ public class UserService{
                 () -> new UsernameNotFoundException("User with email " + email + " not found!")
         );
     }
+
     public Patient findPatientByEmail(String email) throws UsernameNotFoundException {
         return patientRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("Patient with email " + email + " not found!")
@@ -97,6 +93,7 @@ public class UserService{
                 () -> new UsernameNotFoundException("Therapist with email " + email + " not found!")
         );
     }
+
     public void createPasswordResetTokenForUser(User user, String token) {
         PasswordResetToken myToken = passwordTokenRepository.findByUser(user);
         if(myToken != null){
@@ -170,6 +167,7 @@ public class UserService{
             throw new BadTokenException("Password Reset Token for user with email " + email + " not found!");
         }
     }
+
     public WhoAmIResponse whoami(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = findUserByEmail((String) authentication.getPrincipal());

@@ -11,7 +11,9 @@ import NewPassword from '../components/auth/NewPassword'
 import Home from '../components/Homepage'
 import ListOfGames from '../components/games/ListOfGames'
 import PersonalInformation from '../components/PersonalInformation';
+
 import RecommendedGames from '../components/games/RecommendedGames'
+
 import Scoreboard from '../components/Scoreboard'
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
@@ -26,7 +28,8 @@ const routes = [
     { path: '/recoverpassword', component: RecoverPassword, name: 'Recover Password' },
     { path: '/resetPassword', component: NewPassword, name: 'New Password'},
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
-    { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},    
+    { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
+    
     { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
     { path: '/games/list', component: ListOfGames, name: 'List of Games'},
     { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
@@ -34,6 +37,7 @@ const routes = [
     { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
 
     { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard' },
+
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
     { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games'},
 

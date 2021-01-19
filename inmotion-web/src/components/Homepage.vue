@@ -1,9 +1,9 @@
 <template>
 
   <MainLayout :loggedIn="true"></MainLayout>
-
   <!-- Homepage style-->
   <div class="menu">
+
     <div class="row">
       <div class="column">
         <img src="../assets/info.png" style="width:40%">
@@ -24,6 +24,7 @@
         <router-link :to="{name: 'Patient\'s Page', params: { idPass: id }}"><button type="submit" class="button" ><i class="fa fa-search"></i></button></router-link>
       </div>
     </div>
+
     <div class="row">
       <div class="column">
         <img src="../assets/gamepad.png" style="width:40%">
@@ -43,6 +44,8 @@
       <div class="column">
         <router-link to="/to/do"><button class="btn" >Scoreboard</button></router-link>
       </div>
+    </div>
+
   </div>
 </template>
 
