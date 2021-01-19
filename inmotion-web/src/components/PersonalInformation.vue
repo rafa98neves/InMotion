@@ -36,16 +36,14 @@
       </div>
 
       <div class="form-control" v-if="role=='PATIENT'">
-        <label class="label-diagnosis">Diagnosis</label>
-        <select class=info-diagnosis>
-          <option v-for="item in items" :key="item">{{ item.diagnosis }}</option>
-        </select>
+        <label class="control-label">Diagnosis</label>
+        <div class ="text-box">{{diagnosis}}</div>
       </div>
 
       <div class="form-control" v-if="role=='PATIENT'">
         <label class="label-medication">Medication</label>
         <select class=info-medication >
-          <option v-for="item in med" :key="item">{{ item.diagnosis }}</option>
+          <option v-for="item in med" :key="item">{{ item.diag }}</option>
         </select>
       </div>
     </div>
@@ -68,15 +66,18 @@ export default {
   data: function () {
     return {
       loading : true,
-      items: [
-        { diagnosis: " diagnosis a" },
-        { diagnosis: " diagnosis b" },
-        { diagnosis: " diagnosis c"},
-      ],
-       med: [
-        { diagnosis: " medication a" },
-        { diagnosis: " medication b" },
-        { diagnosis: " medication c"},
+      diagnosis: "madklwçdkfnv dms," +
+          "\nlaç.SLMDKFNHSMKLA," +
+          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
+          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç."+
+          "madklwçdkfnv dms," +
+          "\nlaç.SLMDKFNHSMKLA," +
+          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
+          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç.",
+      med: [
+        { diag: " medication a" },
+        { diag: " medication b" },
+        { diag: " medication c"},
       ],
       user: '',
       role: accountService.user.role
@@ -163,4 +164,15 @@ export default {
     bottom: 13%;
   }
 
+  .text-box{
+    border: 1px solid black;
+    padding: 5px 5px 5px 5px;
+    height: 40px; /* maximum height of the box, feel free to change this! */
+    width: 30%;
+    overflow-y: scroll;
+  }
+  .control-label {
+    
+    float:left;
+  }
 </style>

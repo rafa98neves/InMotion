@@ -14,6 +14,8 @@ import PersonalInformation from '../components/PersonalInformation';
 
 import ErrorPage from '../components/Error-page'
 import Game1 from '../components/games/Game-1'
+import PatientsPage from "@/components/PatientsPage";
+import PatientsInfo from "@/components/PatientsInfo";
 
 //pages
 const routes = [
@@ -28,6 +30,8 @@ const routes = [
     { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
     { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
+    { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
+    { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
 
     { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
 
