@@ -2,6 +2,7 @@
 
   <MainLayout :loggedIn="true"></MainLayout>
 
+  <!-- Homepage style-->
   <div class="menu">
 
     <div class="row">

@@ -1,6 +1,7 @@
 <template>
     <h1 id="pagename">{{ $route.name }}</h1>
 
+    <!-- Repeated images -->
     <div id="header-images">
         <div id="inmotion-logo">
           <img src="../../assets/inmotion-logo.jpg">
