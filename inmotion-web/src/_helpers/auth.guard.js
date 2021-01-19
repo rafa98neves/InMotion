@@ -1,6 +1,7 @@
 import { accountService } from '../_services/account.service';
 import { router } from './router';
 
+//type of authenticated user
 export async function authGuard() {
 
     if (accountService.isAuthenticated()) {

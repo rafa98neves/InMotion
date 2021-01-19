@@ -22,6 +22,7 @@ function isAuthenticated() {
     return true;
 }
 
+//post login and login error
 async function login(credentials, context) {
     var api = utils.createHttp();
 
@@ -50,6 +51,7 @@ async function login(credentials, context) {
             });
 }
 
+//post register and register error
 async function register(user, context) {
     var api = utils.createHttp();
     await api.post('/register', user)
@@ -74,6 +76,7 @@ async function register(user, context) {
             });
 }
 
+// post recover password
 async function recoverPassword(email, context) {
     var api = utils.createHttp();
     let email_json = { 'email' : email }
@@ -95,6 +98,7 @@ async function recoverPassword(email, context) {
         });
 }
 
+//post validate token
 async function validateToken(token, context) {
     var api = utils.createHttp();
     let token_json = { 'token' : token }
@@ -116,6 +120,7 @@ async function validateToken(token, context) {
         });
 }
 
+//post change password
 async function recover(request, context) {
     var api = utils.createHttp();
     await api.post('/changePassword', request)
@@ -138,6 +143,7 @@ async function recover(request, context) {
         });
 }
 
+// logout
 async function logout(){
     window.localStorage.clear();
     accountService.user = '';
@@ -145,6 +151,7 @@ async function logout(){
     router.push("/landingpage")
 }
 
+// get type of user
 async function whoami(){
     var api = utils.createHttp();
     await api.get('/user/whoami')
@@ -162,6 +169,7 @@ async function whoami(){
     return false;    
 }
 
+// get user information
 async function getInfo() {
     var api = utils.createHttp();
     let user;

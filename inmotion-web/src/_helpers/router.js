@@ -17,6 +17,7 @@ import Game1 from '../components/games/Game-1'
 import PatientsPage from "@/components/PatientsPage";
 import PatientsInfo from "@/components/PatientsInfo";
 
+//pages
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
     { path: '/landingpage', component: LandingPage, name: 'Landing Page' },

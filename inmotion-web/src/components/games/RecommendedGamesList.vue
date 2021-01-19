@@ -6,6 +6,8 @@
         <button @click="scroll_right" id="r-right-button"><img src="../../assets/right_arrow.png" width="30" height="30"></button>
       </div>
     </div>
+
+    <!-- get recommended games list-->
     <div class="r-center" id="content" ref="content">     
       {{ msg }}
       <div class=internal v-for="item in items" :key="item">
@@ -56,6 +58,7 @@ export default {
       return require('@/assets/' + imagePath);
     },
 
+    // scroll buttons
     scroll_left() {
       if(this.index.length == 3){
         var i;
@@ -68,6 +71,7 @@ export default {
       }
     },
 
+    // scroll buttons
     scroll_right() {
       if(this.index.length == 3){
         var i;

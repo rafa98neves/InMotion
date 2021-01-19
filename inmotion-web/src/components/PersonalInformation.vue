@@ -13,6 +13,7 @@
     <router-link to="/"><button class="back-button" >Back</button></router-link>
     <router-link to="/changepassword"><button class="cp-button" >Change password</button></router-link>
 
+    <!-- Patient personal information-->
     <div class="container">
       <div class="form-control">
           <label class="label-name">Name</label>
