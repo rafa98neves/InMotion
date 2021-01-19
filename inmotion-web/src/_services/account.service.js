@@ -14,8 +14,6 @@ export const accountService = {
     getInfo
 };
 
-var api = utils.createHttp();
-
 function isAuthenticated() {
     if(utils.getToken() == ''){
         return false
@@ -25,6 +23,7 @@ function isAuthenticated() {
 
 //post login and login error
 async function login(credentials, context) {
+    var api = utils.createHttp();
   
     await api.post('/login', credentials)
             .then(function(response) {
@@ -49,12 +48,11 @@ async function login(credentials, context) {
                     router.push({name: "error", params: {msg : error.response}})
                 }
             });
-            
-    await accountService.whoami();  
 }
 
 //post register and register error
 async function register(user, context) {
+    var api = utils.createHttp();
     await api.post('/register', user)
         .then(response => {
             if(response.status == 200){
@@ -79,6 +77,7 @@ async function register(user, context) {
 
 // post recover password
 async function recoverPassword(email, context) {
+    var api = utils.createHttp();
     let email_json = { 'email' : email }
     await api.post('/resetPassword', email_json)
         .then(response => {
@@ -100,6 +99,7 @@ async function recoverPassword(email, context) {
 
 //post validate token
 async function validateToken(token, context) {
+    var api = utils.createHttp();
     let token_json = { 'token' : token }
     await api.post('/validateToken', token_json)
         .then(response => {
@@ -121,6 +121,7 @@ async function validateToken(token, context) {
 
 //post change password
 async function recover(request, context) {
+    var api = utils.createHttp();
     await api.post('/changePassword', request)
         .then(response => {
             if(response.status == 200){
@@ -144,39 +145,41 @@ async function recover(request, context) {
 // logout
 async function logout(){
     window.localStorage.clear();
+    accountService.user = '';
+    accountService.isAuthenticated();
     router.push("/landingpage")
 }
 
 // get type of user
 async function whoami(){
+    var api = utils.createHttp();
     await api.get('/user/whoami')
-            .then(response => {
-                if(response.status == 200){
-                    accountService.user=response.data;
-                    return true;
-                }   
-                else{
-                    console.log("status not expected -" + response)
-                }})
-            .catch(error => {
-                router.push({name: "error", params: {msg : error}})           
-            });
+        .then(response => {
+            if(response.status == 200){
+                accountService.user=response.data;
+                return true;
+            }
+            else{
+                console.log("status not expected -" + response)
+            }})
+        .catch(error => {
+            router.push({name: "error", params: {msg : error}})
+        });
     return false;    
 }
 
 // get user information
 async function getInfo() {
-    const user = {
-        name : "Rafael Neves",
-        birthdate : "02/03/1998",
-        gender : "Male",
-        email : "rafa@patient.com",
-    }
-    return user;
-    /*await api.get('/user', user)
+    var api = utils.createHttp();
+    let user;
+
+    await api.get('/user/details')
         .then(response => {
             if(response.status == 200){
-                return response.data
+                user = response.data
+                if(user.birthdate != ''){
+                    user.birthdate = user.birthdate.substr(0,10);
+                }
             }
             else{
                 console.log("status not expected -" + response)
@@ -188,5 +191,7 @@ async function getInfo() {
             else{
                 router.push({name: "error", params: {msg : error.response}})
             }
-        });*/
+        });
+
+    return user
 }

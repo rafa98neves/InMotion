@@ -18,31 +18,31 @@
       <div class="form-control">
           <label class="label-name">Name</label>
           <p class="info-name">{{user.name}}</p>
-      </div>  
-
-      <div class="form-control">
-          <label class="label-date">Date of Birth</label>
-          <p class="info-date">{{user.birthdate}}</p>
-      </div>  
-
-      <div class="form-control">
-          <label class="label-gender">Gender</label>
-          <p class="info-gender">{{user.gender}}</p>
-      </div>  
-
-      <div class="form-control">
-          <label class="label-email">Email</label>
-          <p class="info-email">{{user.email}}</p>
       </div>
 
       <div class="form-control">
+        <label class="label-email">Email</label>
+        <p class="info-email">{{user.email}}</p>
+      </div>
+
+      <div class="form-control" v-if="role=='PATIENT'">
+          <label class="label-date">Date of Birth</label>
+          <p class="info-date">{{user.birthdate}}</p>
+      </div>
+
+      <div class="form-control" v-if="role=='PATIENT'">
+          <label class="label-gender">Gender</label>
+          <p class="info-gender">{{user.gender}}</p>
+      </div>
+
+      <div class="form-control" v-if="role=='PATIENT'">
         <label class="label-diagnosis">Diagnosis</label>
         <select class=info-diagnosis>
           <option v-for="item in items" :key="item">{{ item.diagnosis }}</option>
         </select>
       </div>
 
-      <div class="form-control">
+      <div class="form-control" v-if="role=='PATIENT'">
         <label class="label-medication">Medication</label>
         <select class=info-medication >
           <option v-for="item in med" :key="item">{{ item.diagnosis }}</option>
@@ -78,27 +78,25 @@ export default {
         { diagnosis: " medication b" },
         { diagnosis: " medication c"},
       ],
-      user: {
-        name: '',
-        birthdate: '',
-        gender: '',
-        email: ''
-      }
+      user: '',
+      role: accountService.user.role
     }
   },
   mounted() {
     this.awaitUserInfo();
   },
   methods: {
-    async awaitUserInfo(){
+    async awaitUserInfo() {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
-      
-      let user = await accountService.getInfo();
+
+      const user = await accountService.getInfo();
       this.user = user;
 
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);
+
+      return this
     }
   }
 }
@@ -110,7 +108,7 @@ export default {
   #PersonalInformation{
       position: absolute;
       left: 15%;
-      top: 20%; 
+      top: 20%;
   }
 
   .personal-information-image{
@@ -147,7 +145,7 @@ export default {
 
   .form-control label, p, select{
     display: inline-block;
-  }  
+  }
 
   .form-control select{
     padding: 5px 20% 5px 5px;
@@ -157,12 +155,12 @@ export default {
   .back-button{
     position: absolute;
     left: 10%;
-    bottom: 13%; 
+    bottom: 13%;
   }
   .cp-button{
     position: absolute;
     right: 10%;
-    bottom: 13%; 
+    bottom: 13%;
   }
 
 </style>
