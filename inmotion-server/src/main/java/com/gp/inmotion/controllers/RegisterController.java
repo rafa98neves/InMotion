@@ -36,7 +36,7 @@ public class RegisterController {
         }catch (UserAlreadyExistsException uaeException){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Email Already Exists", uaeException);
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "", e);
         }
     }

@@ -10,7 +10,6 @@ public class Medication {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column()
     private String name;
 
     @ManyToMany(mappedBy = "medicationList")

@@ -1,6 +1,8 @@
 package com.gp.inmotion.models;
 
 
+import com.gp.inmotion.converters.StringConverter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -13,24 +15,22 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 60)
+
+    @Convert(converter = StringConverter.class)
     private String email;
 
     @NotNull
-    @Column(length = 100)
     private String password;
 
     @NotNull
-    @Column(length = 64)
+    @Convert(converter = StringConverter.class)
     private String name;
 
-    @Column(length = 20)
+    @Convert(converter = StringConverter.class)
     private String gender;
 
-    @Column()
     private Date birthdate;
 
-    @Column()
     private boolean enabled;
 
     @NotNull

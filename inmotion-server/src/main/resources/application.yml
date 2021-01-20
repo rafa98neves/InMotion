@@ -23,3 +23,7 @@ application:
         secret-key: ^7f*<<rPyU(pmt+-=sGQ(bFw2U'P$khA
         token-expiration-after-days: 14
         token-prefix: Bearer
+    database:
+        encryption:
+            password: ${ENCRYPTION_PASSWORD:wGmvaZsXKTdeTmGFWtg}
+            salt: ${ENCRYPTION_SALT:EekXfBTY}
