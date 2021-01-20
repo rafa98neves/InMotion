@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //backend localhost
-const base = 'http://localhost:9000/api/v1';
+const base = 'http://localhost:9000';
 
 export const utils = {
     createHttp,
@@ -17,7 +17,7 @@ function createHttp(){
   if(token.length > 0){
     api = axios.create({
       headers: { "Authorization": token, "Content-Type" : "application/json"},
-      baseURL: base
+      baseURL: base + "/api/v1"
     });
   }
 

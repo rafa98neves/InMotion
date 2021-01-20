@@ -154,7 +154,10 @@ async function whoami(){
                 return true;
             }})
         .catch(error => {
-            router.push({name: "error", params: {msg : error}})
+            console.log(error)
+            if(error){
+                router.push('/landingpage');
+            }
         });
     return false;    
 }
