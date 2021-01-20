@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gp.inmotion.exceptions.GameNotFoundException;
 import com.gp.inmotion.models.Game;
 import com.gp.inmotion.models.GamePlayed;
+import com.gp.inmotion.payload.GamesPlayedResponse;
 import com.gp.inmotion.payload.PatientDetailsResponse;
 import com.gp.inmotion.payload.ScoreRequest;
 import com.gp.inmotion.service.PatientService;
@@ -32,13 +33,13 @@ public class PatientController {
         return patientService.findByPatientById(patientId);
     }
 
-    @GetMapping(path = "{patientId}/gamehistory/")
-    public List<GamePlayed> getGameHistoryByPatient(@PathVariable("patientId") Long patientId){
+    @GetMapping(path = "{patientId}/gamehistory")
+    public List<GamesPlayedResponse> getGameHistoryByPatient(@PathVariable("patientId") Long patientId){
         return patientService.getGamesByPatientId(patientId);
     }
 
     @GetMapping(path = "/gamehistory")
-    public List<GamePlayed> getGameHistory(){
+    public List<GamesPlayedResponse> getGameHistory(){
         return patientService.getGamesByPatient();
     }
 
