@@ -42,7 +42,7 @@
         <img src="../assets/scoreboard.png" style="width:40%">
       </div>
       <div class="column">
-        <router-link to="/to/do"><button class="btn" >Scoreboard</button></router-link>
+        <router-link to="/scoreboard"><button class="btn" >Scoreboard</button></router-link>
       </div>
     </div>
 

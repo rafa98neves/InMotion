@@ -111,12 +111,10 @@ export default {
       left: 15%;
       top: 20%;
   }
-
   .personal-information-image{
     width: 0%;
     float:left;
   }
-
   .personal-information-text{
     width: 140%;
     float:left;
@@ -124,7 +122,6 @@ export default {
     color: black;
     font-size: 18px
   }
-
   .container{
     position: absolute;
     text-align: left;
@@ -132,27 +129,25 @@ export default {
     top: 30%;
     width: 80%;
   }
-
   .form-control label p{
     display: block;
   }
-
   .form-control label{
     font-weight: bold;
     color: black;
     font-size: 18px;
     margin-bottom: 2%;
   }
-
+  .form-control .text-box{
+    margin-bottom : 2%;
+  }
   .form-control label, p, select{
     display: inline-block;
   }
-
   .form-control select{
-    padding: 5px 20% 5px 5px;
+    padding: 1% 10% 1% 1%;
     border: 1px solid black;
   }
-
   .back-button{
     position: absolute;
     left: 10%;
@@ -163,16 +158,14 @@ export default {
     right: 10%;
     bottom: 13%;
   }
-
   .text-box{
     border: 1px solid black;
     padding: 5px 5px 5px 5px;
-    height: 40px; /* maximum height of the box, feel free to change this! */
-    width: 30%;
+    height: 10%; /* maximum height of the box, feel free to change this! */
+    width: 50%;
     overflow-y: scroll;
   }
-  .control-label {
-    
+  .control-label {  
     float:left;
   }
 </style>

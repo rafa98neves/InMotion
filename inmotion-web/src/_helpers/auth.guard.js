@@ -5,7 +5,7 @@ import { router } from './router';
 export async function authGuard() {
 
     if (accountService.isAuthenticated()) {
-        if(accountService.user==''){   
+        if(accountService.user==''){  
             await accountService.whoami();            
         }
         return true; 

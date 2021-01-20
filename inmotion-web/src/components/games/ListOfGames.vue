@@ -47,6 +47,9 @@ export default {
     RecommendedGamesList,
     AllGamesList,
     MainLayout
+  },
+  mounted() {    
+    //window.controller = new Window.controller;
   }
 }
 

@@ -38,6 +38,13 @@
         <label class="control-label">Diagnosis</label>
         <div class="text-box" contentEditable="true">{{diagnosis}}</div>
       </div>
+
+      <div class="form-control">
+        <label class="label-medication">Medication</label>
+        <select class=info-medication >
+          <option v-for="item in med" :key="item">{{ item.diagnosis }}</option>
+        </select>
+      </div>
     </div>
   </div>
 
@@ -159,7 +166,9 @@ export default {
   padding: 5px 20% 5px 5px;
   border: 1px solid black;
 }
-
+.form-control .text-box{
+  margin-bottom : 2%;
+}
 .back-button{
   position: absolute;
   left: 10%;
@@ -174,7 +183,7 @@ export default {
   border: 1px solid black;
   padding: 5px 5px 10px 5px;
   height: 10%; /* maximum height of the box, feel free to change this! */
-  width: 40%;
+  width: 50%;
   overflow-y: scroll;
 }
 .control-label {

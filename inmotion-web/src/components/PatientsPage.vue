@@ -64,21 +64,21 @@ export default {
 
  .Patientboard{
     position: absolute;
-    width: 70%;
+    width: 50%;
     height: 50%;
-    left: 30%;
+    left: 25%;
     top: 25%;
   }
 
   .Patientboard #frame{
     border: 5px solid black;
-    width: 50%;
+    width: 100%;
     height: 100%;
   }
 
   .frame-text{
     position: absolute;
-    width: 70%;
+    width: 60%;
     height: 50%;
     left: 0%;
     top:20%;
@@ -90,21 +90,19 @@ export default {
   .menu{
     position: absolute;
     top: 7%;
-    left: 0%;
-    width: 50%;
+    width: 100%;
   }
 
   .column {
     float:left;
-    width: 50%;
-    margin-top: 5%;
+    width: 40%;
+    margin-top: 2%;
   }
 
   .column img{
-    max-width: 50%;
+    max-width: 30%;
+    margin-top: 7%;
     vertical-align: middle;
-    horizontal-align: middle;
-
   }
 
   /* Clearfix (clear floats) */
@@ -119,12 +117,10 @@ export default {
   .btn{
     float: left;
     font-size: 20px;
-    padding: 10px;
-    margin-top: 7%;
-    margin-left: -10%;
+    padding: 4% 7%;
+    margin-top: 8% ;
     width: 100%;
   }
-
 
   .button {
     margin-right: 10%;

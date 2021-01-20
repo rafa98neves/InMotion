@@ -13,6 +13,10 @@ export default {
 
 <style>
 
+body{
+  background-color: white;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

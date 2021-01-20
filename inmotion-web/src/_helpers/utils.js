@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 //backend localhost
-const base = 'http://localhost:9000';
+const base = 'http://localhost:9000/api/v1';
 
 export const utils = {
     createHttp,
@@ -27,16 +27,13 @@ function createHttp(){
       baseURL: base
     });
   }
-
   return api;
 }
 
 //get key from backend
 function getToken() {
-
   if(window.localStorage.getItem('token') != null){
     return window.localStorage.getItem('token')
   } 
-
   return ''
 }

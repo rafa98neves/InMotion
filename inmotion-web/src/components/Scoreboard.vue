@@ -13,13 +13,10 @@
       </div>
     </div>
 
-  
     <div id="scoreboard-list-rectangle">
       <p id="game-played">Games</p>
       <p id="time-played">Time Played</p>
     </div>
-
-  
 
     <div class="scroll">
         <div class="grid-container" v-for="item in score" :key="item">
@@ -35,16 +32,12 @@
           </div>
         </div>
       </div>
-
-
   </div>
 
   <div class="footer-back" id="back">
     <router-link class="btn btn-patient" to="/"><button>Back</button></router-link>
   </div>
-  </div>
-
-    
+  </div>    
 </template>
 
 <script>
@@ -62,6 +55,7 @@ export default {
   data: function () {
     return {
       loading : true,
+      score : '',
     }
   },
 
@@ -188,7 +182,7 @@ export default {
   left: 32%;
   top: 40%;
   width: 40%;
-  max-height: 150px;
+  max-height: 35%;
   overflow-y: scroll;
   max-width: 400;
   overflow-x:hidden;

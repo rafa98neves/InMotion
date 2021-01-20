@@ -25,7 +25,6 @@ function isAuthenticated() {
 //post login and login error
 async function login(credentials, context) {
     var api = utils.createHttp();
-
     await api.post('/login', credentials)
             .then(function(response) {
                 if(response.status == 200){
@@ -34,9 +33,6 @@ async function login(credentials, context) {
                     context.$toast.success("Successful login", { position: "bottom"})
                     context.loggedIn = true;
                     router.push("/")
-                }
-                else{
-                    console.log("status not expected -" + response)
                 }})
             .catch(error => {
                 if(error.response == undefined){
@@ -59,9 +55,6 @@ async function register(user, context) {
             if(response.status == 200){
                 context.$toast.success("Successful Registration", { position: "bottom"})
                 router.push("/login")
-            }
-            else{
-                console.log("status not expected -" + response)
             }})
             .catch(error => {
                 if(error.response == undefined){
@@ -159,9 +152,6 @@ async function whoami(){
             if(response.status == 200){
                 accountService.user=response.data;
                 return true;
-            }
-            else{
-                console.log("status not expected -" + response)
             }})
         .catch(error => {
             router.push({name: "error", params: {msg : error}})
@@ -181,15 +171,6 @@ async function getInfo() {
                 if(user.birthdate != null && user.birthdate != ''){
                     user.birthdate = user.birthdate.substr(0,10);
                 }
-                /* to delete null parameters
-                for (var propName in user) {
-                    if (user[propName] === null || user[propName] === undefined) {
-                        delete user[propName];
-                    }
-                }*/
-            }
-            else{
-                console.log("status not expected -" + response)
             }})
         .catch(error => {
             console.log(error)
@@ -206,7 +187,6 @@ async function getInfo() {
 
 
 async function searchPatient(id) {
-    console.log(id)
     var api = utils.createHttp();
     let user;
     await api.get('/api/v1/patients/'+id)
@@ -216,15 +196,6 @@ async function searchPatient(id) {
                 if(user.birthdate != null && user.birthdate != ''){
                     user.birthdate = user.birthdate.substr(0,10);
                 }
-                /* to delete null parameters
-                for (var propName in user) {
-                    if (user[propName] === null || user[propName] === undefined) {
-                        delete user[propName];
-                    }
-                }*/
-            }
-            else{
-                console.log("status not expected -" + response)
             }})
         .catch(error => {
             console.log(error)

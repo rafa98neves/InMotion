@@ -30,16 +30,14 @@ const routes = [
     { path: '/registerpatient', component: RegisterPatient, name: 'Create account - Patient'},
     { path: '/registertherapist', component: RegisterTherapist, name: 'Create account - Therapist'},
     
-    { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
-    { path: '/games/list', component: ListOfGames, name: 'List of Games'},
+    { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
     { path: '/user/info', component: PersonalInformation, name: 'Personal Information', beforeEnter: authGuard},
     { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
     { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
-
-    { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard' },
-
-    { path: '/', component: Home, name: 'Homepage', beforeEnter: authGuard },
-    { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games'},
+    { path: '/games/piano', component: Game1, name: 'Piano', beforeEnter: authGuard},
+    { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
+    { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard', beforeEnter: authGuard },
+    { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games', beforeEnter: authGuard},
 
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', redirect: '/'}
