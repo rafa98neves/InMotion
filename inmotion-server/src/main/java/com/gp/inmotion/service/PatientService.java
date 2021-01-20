@@ -39,7 +39,7 @@ public class PatientService {
 
     public PatientDetailsResponse findByPatientById(Long patientId){
         Patient patient = getPatient(patientId);
-        return new PatientDetailsResponse(patient.getName(),patient.getGender(), patient.getEmail(), patient.getBirthdate(), patient.getDiagnosis(), patient.getMedicationList());
+        return new PatientDetailsResponse(patient.getId(), patient.getName(),patient.getGender(), patient.getEmail(), patient.getBirthdate(), patient.getDiagnosis(), patient.getMedicationList());
     }
 
 

@@ -5,13 +5,8 @@ import com.gp.inmotion.models.Medication;
 import java.util.*;
 import java.util.Date;
 
-public class PatientDetailsResponse {
-
-    private String name;
-
+public class PatientDetailsResponse extends UserDetailsResponse{
     private String gender;
-
-    private String email;
 
     private Date birthdate;
 
@@ -22,21 +17,12 @@ public class PatientDetailsResponse {
     public PatientDetailsResponse() {
     }
 
-    public PatientDetailsResponse(String name, String gender, String email, Date birthdate, String diagnosis, List<Medication> medicationList) {
-        this.name = name;
+    public PatientDetailsResponse(Long id, String name, String gender, String email, Date birthdate, String diagnosis, List<Medication> medicationList) {
+        super(id, name, email);
         this.gender = gender;
-        this.email = email;
         this.birthdate = birthdate;
         this.diagnosis = diagnosis;
         this.medicationList = medicationList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getGender() {
@@ -70,12 +56,4 @@ public class PatientDetailsResponse {
     public void setMedicationList(List<Medication> medicationList) {
         this.medicationList = medicationList;
     }
-
-    public String getEmail() {
-        return email;
     }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-}

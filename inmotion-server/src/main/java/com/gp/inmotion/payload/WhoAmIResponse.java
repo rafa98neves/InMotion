@@ -3,6 +3,8 @@ package com.gp.inmotion.payload;
 import com.gp.inmotion.security.ApplicationUserRole;
 
 public class WhoAmIResponse {
+    private Long id;
+
     private String name;
 
     private ApplicationUserRole role;
@@ -11,7 +13,8 @@ public class WhoAmIResponse {
 
     }
 
-    public WhoAmIResponse(String name, ApplicationUserRole role) {
+    public WhoAmIResponse(Long id, String name, ApplicationUserRole role) {
+        this.id = id;
         this.name = name;
         this.role = role;
     }
@@ -32,4 +35,11 @@ public class WhoAmIResponse {
         this.role = role;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
