@@ -22,8 +22,7 @@ import PatientsInfo from "@/components/therapist/PatientsInfo";
 import PatientsRecommended from "@/components/therapist/PatientRecommended";
 import PatientsScoreboard from "@/components/therapist/PatientScoreboard";
 
-
-import Roles from '../components/auth/Roles'
+import Admin from '../components/auth/Admin'
 
 //pages
 const routes = [
@@ -43,7 +42,7 @@ const routes = [
     { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games', beforeEnter: authGuard},
 
 
-    { path: '/Roles', component: Roles, name: 'Roles'},
+    { path: '/admin', component: Admin, name: 'Administration', beforeEnter: authGuard},
     { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
     { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
     { path: '/patient/recommended', component: PatientsRecommended, name: 'Patient\'s Recommended Games', beforeEnter: authGuard},

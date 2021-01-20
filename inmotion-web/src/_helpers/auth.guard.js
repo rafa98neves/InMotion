@@ -14,5 +14,4 @@ export async function authGuard() {
         router.push('/landingpage');
         return false;        
     }
-
 }

@@ -65,6 +65,12 @@ export default {
       id: ''
     }
   },
+  mounted() {
+    if(this.role === "ADMIN"){
+      this.$router.push("/admin");
+      return;
+    }
+  },
   methods: {
     async search(){
       if(this.id != ''){

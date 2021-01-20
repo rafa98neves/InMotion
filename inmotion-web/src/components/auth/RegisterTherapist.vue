@@ -101,7 +101,14 @@ export default {
 
   .form-box{
     height: 90%;
+    width: 50%;
+    margin-left: 26%;
     margin-top: 4.2%;
+  }
+
+  .form-control{
+    text-align: left;
+    margin-bottom: 5%;
   }
   
   .form-control-nav{
@@ -110,6 +117,7 @@ export default {
   
   .form-control input {
     width: 70%;
+    padding: 1%;
   }
       
   .form-control button {

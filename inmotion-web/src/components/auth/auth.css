@@ -3,6 +3,10 @@ button{
     margin-top: 2%;
 }
 
+label{
+  font-weight: bold;
+}
+
 .form-box{
     margin-left: 10%;
     width: 80%;

@@ -2,7 +2,7 @@
   <MainLayout :loggedIn="true" ref="layout"></MainLayout>
   <div v-if="!loading">
 
- <div class="role">
+  <div class="role">
     
     <div id="role-title">
       <div class="roles-text">
@@ -12,8 +12,8 @@
 
   
     <div id="role-list-rectangle">
-      <p id="therapist-name">Name</p>
-      <p id="therapist-role">Therapist Role</p>
+      <p id="therapist-name">Request from user</p>
+      <p id="therapist-role">Accept therapist?</p>
     </div>
 
   
@@ -22,28 +22,21 @@
         <div class="grid-container" v-for="item in therapist" :key="item">
           <div class="grid-child-name" >
             <p>
-              {{item.name}}
+              {{item.name}} - {{item.email}}
+             </p>
+            <p>
              </p>
           </div>
           <div class="grid-child-role" >
             <p>
-              <button v-on:click="acceptButton(item.name,item.role)" class="btn btn-accept" id="accept">Accept</button>
+              <button v-on:click="buttonHandler(item.id, true)" class="btn btn-accept" id="accept">Accept</button>
             </p>
             <p>
-              <button v-on:click="rejectButton(item.name,item.email,item.password)" class="btn btn-reject" id="decline">Decline</button>
+              <button v-on:click="buttonHandler(item.id, false)" class="btn btn-reject" id="decline">Decline</button>
             </p>
-
          </div>
         </div>
       </div>
-
-      
-      
-
-  </div>
-
-  <div class="footer-back" id="back">
-    <router-link class="btn btn-role" to="/"><button>Back</button></router-link>
   </div>
   </div>
 
@@ -62,45 +55,36 @@ export default {
   data: function () {
     return {
       loading : true,
-      counte: 5
     }
   },
   mounted() {
+    if(accountService.user.role != "ADMIN"){
+      this.$router.push("/");
+      return;
+    }
     this.awaitUserInfo();
   },
   methods: {
+
     async awaitUserInfo(){
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
       
       let therapist = await accountService.getRoles();
       this.therapist = therapist;
+
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);
     },
 
-    
-     acceptButton(name,role) {
-
-       alert('The user ' + name + ' was accepted as a ' + role )
-
-    },
-
-      rejectButton(name,email,password) {
-       
-       alert('The user ' + name + ' was not accepted as a THERAPIST')
-
-      let user = {
-        name : name,
-        email : email,
-        password : password,
-        role : 'NOT THERAPIST'
+    buttonHandler(id, accept) {     
+      if(accept)  {
+        accountService.setTherapist(id, "activate", this);
       }
-
-      accountService.register(user,this);
-
+      else{
+        accountService.setTherapist(id, "reject", this);
+      }
     },
-
   }
 }
 </script>
@@ -141,6 +125,7 @@ export default {
     right: 10%;
     bottom: 13%; 
   }
+  
 #roles-title{
   position: absolute;
   top: 20%;
@@ -150,7 +135,7 @@ export default {
 .roles-text{
   position: absolute;
   top: 20%;
-  left: 30%;
+  left: 15%;
   font-weight: bold;
   color: black;
   font-size: 18p
@@ -158,9 +143,9 @@ export default {
 #role-list-rectangle{
   border: 5px solid black;
   position: absolute;
-  width: 45%;
+  width: 70%;
   height: 50%;
-  left: 30%;
+  left: 15%;
   top: 30%;
 }
 #therapist-name{
@@ -172,19 +157,19 @@ export default {
   }
 #therapist-role{
     float:left;
-    margin-left: 42%;
+    margin-left: 38%;
     font-weight: bold;
     color: black;
     font-size: 18px
   }
+
 .scroll{
   position: absolute;
-  left: 32%;
+  left: 18%;
   top: 40%;
-  width: 40%;
-  max-height: 150px;
+  width: 60%;
+  max-height: 35%;
   overflow-y: scroll;
-  max-width: 400;
   overflow-x:hidden;
 }
 .grid-container {
@@ -200,7 +185,7 @@ export default {
 
 #accept{
   position: absolute;
-  left: 42%;
+  left: 50%;
   top: 40%;
 }
 

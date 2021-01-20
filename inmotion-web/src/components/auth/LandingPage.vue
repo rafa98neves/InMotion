@@ -3,8 +3,8 @@
   <div class="login-form">
     
     <div class="form-box">
-        <router-link to="/login"><button style="font-size:18px;">Login</button></router-link>
-        <router-link class="btn btn-therapist" to="/registertherapist"><button style="margin-left:300px; font-size:18px;">Create account</button></router-link>
+        <router-link to="/login"><button>Login</button></router-link>
+        <router-link class="btn btn-therapist" to="/registertherapist"><button>Create account</button></router-link>
       </div>
 
 
@@ -25,7 +25,12 @@ export default {
   @import url('auth.css');
 
   .form-box{
-    margin-top: 23%;
+    margin-left: 12%;
+    margin-top: 16%;
   }
 
+  button{
+    padding: 1.5% 4%;
+    margin: 7%; 
+  }
 </style>

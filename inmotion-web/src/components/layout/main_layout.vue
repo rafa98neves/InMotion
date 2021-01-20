@@ -12,7 +12,7 @@
     </div>
     
   <div class="layout-header" v-if="loggedIn">
-    <router-link to="/user/info"><img src="../../assets/avatar.png" class="avatar"></router-link>
+    <router-link v-if="user.role!='ADMIN'" to="/user/info"><img src="../../assets/avatar.png" class="avatar"></router-link>
     <label class="name"> {{ user.name }} </label><br>
     <img src="../../assets/logout.png" class="logout" @click="logout">
   </div>
