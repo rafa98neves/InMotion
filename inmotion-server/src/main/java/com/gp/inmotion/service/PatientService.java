@@ -4,6 +4,7 @@ import com.gp.inmotion.exceptions.GameNotFoundException;
 import com.gp.inmotion.models.Game;
 import com.gp.inmotion.models.GamePlayed;
 import com.gp.inmotion.models.Patient;
+import com.gp.inmotion.payload.GamesPlayedResponse;
 import com.gp.inmotion.payload.PatientDetailsResponse;
 import com.gp.inmotion.payload.ScoreRequest;
 import com.gp.inmotion.repository.GamePlayedRepository;
@@ -42,16 +43,30 @@ public class PatientService {
     }
 
 
-    public List<GamePlayed> getGamesByPatientId(Long patientId) {
+    public List<GamesPlayedResponse> getGamesByPatientId(Long patientId) {
         Patient patient = getPatient(patientId);
-        return gamePlayedRepository.getAllByPlayer(patient);
+        List<GamePlayed> gamesPlayed = gamePlayedRepository.getAllByPlayer(patient);
+        List<GamesPlayedResponse> responses = new ArrayList<>();
+
+        for(GamePlayed gamePlayed : gamesPlayed){
+            responses.add(new GamesPlayedResponse(gamePlayed.getGame(), gamePlayed.getScore()));
+        }
+
+        return responses;
     }
 
 
-    public List<GamePlayed> getGamesByPatient() {
+    public List<GamesPlayedResponse> getGamesByPatient() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).get();
-        return gamePlayedRepository.getAllByPlayer(patient);
+
+        List<GamePlayed> gamesPlayed = gamePlayedRepository.getAllByPlayer(patient);
+        List<GamesPlayedResponse> responses = new ArrayList<>();
+
+        for(GamePlayed gamePlayed : gamesPlayed){
+            responses.add(new GamesPlayedResponse(gamePlayed.getGame(), gamePlayed.getScore()));
+        }
+        return responses;
     }
 
     public void playGame(Long gameId, Long patientNumber, ScoreRequest playGameRequest) throws GameNotFoundException{
@@ -62,7 +77,7 @@ public class PatientService {
                 () -> new GameNotFoundException("Game with id " + gameId + " was not found!")
         );
 
-        GamePlayed gamePlayed = new GamePlayed(patient, game, playGameRequest.getScore(), playGameRequest.getTime());
+        GamePlayed gamePlayed = new GamePlayed(patient, game, playGameRequest.getScore());
         gamePlayedRepository.save(gamePlayed);
     }
 

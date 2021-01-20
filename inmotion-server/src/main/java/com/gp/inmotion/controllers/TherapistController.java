@@ -21,7 +21,7 @@ public class TherapistController {
     }
 
 
-    @PostMapping(path = "/patients/{patientId}/games/recommended/{gameId}")
+    @PostMapping(path = "/patients/{patientId}/recommendedgames/{gameId}")
     public void recommendGame(@PathVariable("patiendId") Long patientId, @PathVariable("gameId") Long gameId){
         try{
             therapistService.recommendGame(patientId, gameId);
