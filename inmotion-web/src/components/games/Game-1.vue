@@ -39,6 +39,8 @@ export default {
     data(){
       return{
         controller: '',
+        start_time : '',
+        stimulus_time : 0,
         musics : {
           scale : ["1c","1d","1e","1f","1g","1a", "1b", "2c", "2d", "2e"],
           first : ["1c","1c","1g","1g", "1a", "1a", "1g"],
@@ -64,6 +66,8 @@ export default {
             "medium" : 40,
             "hard" : 45,
             "left_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1g",
               "audio" : new Audio(require("@/assets/piano/sounds/1g.mp3")),
@@ -71,6 +75,8 @@ export default {
               "pressing" : 0 // 0-not pressing || 1-soft pressing || 2-hard pressing
             },
             "right_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1a",
               "audio" : new Audio(require("@/assets/piano/sounds/1a.mp3")),
@@ -80,8 +86,10 @@ export default {
           },
           "index" : {
             "medium" : 15,
-            "hard" : 20,
+            "hard" : 40,
             "left_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1f",
               "audio" : new Audio(require("../../assets/piano/sounds/1f.mp3")),
@@ -89,6 +97,8 @@ export default {
               "pressing" : false
             },
             "right_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "tile" : "tile7",
               "note" : "1b",
@@ -98,8 +108,10 @@ export default {
           },
           "middle" : {
             "medium" : 8,
-            "hard" : 10,
+            "hard" : 25,
             "left_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1e",
               "audio" : new Audio(require("../../assets/piano/sounds/1e.mp3")),
@@ -107,6 +119,8 @@ export default {
               "pressing" : false
             },
             "right_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "2c",
               "tile" : "tile8",
@@ -116,8 +130,10 @@ export default {
           },
           "ring" : {
             "medium" : 5,
-            "hard" : 8,
+            "hard" : 18,
             "left_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1d",
               "audio" : new Audio(require("../../assets/piano/sounds/1d.mp3")),
@@ -125,6 +141,8 @@ export default {
               "pressing" : false
             },
             "right_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "tile" : "tile9",
               "note" : "2d",
@@ -134,8 +152,10 @@ export default {
           },
           "pinky" : {
             "medium" : 5,
-            "hard" : 8,
+            "hard" : 20,
             "left_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "note" : "1c",
               "audio" : new Audio(require("../../assets/piano/sounds/1c.mp3")),
@@ -143,6 +163,8 @@ export default {
               "pressing" : false
             },
             "right_hand" : {
+              "clicked" : 0,
+              "time" : 0,
               "target" : false,
               "tile" : "tile10",
               "note" : "2e",
@@ -155,13 +177,35 @@ export default {
     },
 
     mounted() {
+      this.start_time = new Date();
+
       document.body.style.backgroundColor = "black";
       var fade = document.getElementById("fade");
       fade.classList.add("fade-enter-active");      
     },
 
     beforeUnmount(){
+
     document.body.style.backgroundColor = "white";
+    var current_date = new Date();
+
+    var delta = Math.abs(current_date - this.start_time) / 1000;  
+    
+    var minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+    
+    console.log("Total time played: " + minutes + "min:" + Math.floor(delta % 60)+"sec");
+
+    for(var i = 0; i < 5; i++){
+      console.log("Left " + this.nameMap[i] + " pressed " 
+      + this.fingerMap[this.nameMap[i]].left_hand.clicked + " times with " 
+      + this.fingerMap[this.nameMap[i]].right_hand.time + " ms between stimulus and movement (mean).");
+    }
+    for(i = 0; i < 5; i++){
+      console.log("Right " + this.nameMap[i] + " pressed " 
+      + this.fingerMap[this.nameMap[i]].right_hand.clicked + " times with " 
+      + this.fingerMap[this.nameMap[i]].right_hand.time + " ms between stimulus and movement (mean).");
+    }
     },
 
     methods : {
@@ -192,8 +236,6 @@ export default {
       },
 
       next(){
-        //var currentdate = new Date(); 
-
         var fingerMap = this.fingerMap;
         var nameMap = this.nameMap;
         var current_music = this.current_music;
@@ -201,7 +243,7 @@ export default {
         var noteMap = this.noteMap;
 
         if(current_note != 0){
-          //console.log(currentdate.getSeconds());
+          this.stimulus_time = new Date();
           document.getElementById(noteMap[current_music[current_note-1]] + "_dark").style.visibility = "hidden";
         }
 
@@ -216,6 +258,7 @@ export default {
         else{
           setTimeout(function(){ 
             document.getElementById(noteMap[current_music[current_note]] + "_dark").style.visibility = "visible"; 
+            this.stimulus_time = new Date();
             for(var i = 0; i < 5; i++){
               if(fingerMap[nameMap[i]].right_hand.note === current_music[current_note]){
                 fingerMap[nameMap[i]].right_hand.target = true;
@@ -224,7 +267,6 @@ export default {
                 fingerMap[nameMap[i]].left_hand.target = true;
               }
             }
-            //console.log(currentdate.getSeconds())
           }, 1000);   
         }     
       },
@@ -311,6 +353,9 @@ export default {
             key.style.visibility = "visible";
             audio.play();
             if(finger.left_hand.target === true){
+              finger.left_hand.clicked++;
+              var current_time = new Date();
+              finger.left_hand.time = ((current_time - this.stimulus_time) + finger.left_hand.time) / finger.left_hand.clicked;
               finger.left_hand.target = false;
               this.current_note++;
               this.next();
@@ -332,6 +377,9 @@ export default {
             key.style.visibility = "visible";
             audio.play();
             if(finger.right_hand.target === true){
+              finger.right_hand.clicked++;              
+              var current_time = new Date();
+              finger.right_hand.time = ((current_time - this.stimulus_time) + finger.right_hand.time) / finger.right_hand.clicked;
               finger.right_hand.target = false;
               this.current_note++;
               this.next();

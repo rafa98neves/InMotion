@@ -6,7 +6,7 @@
     
     <div id="scoreboard-title">
       <div class="scoreboard-image">
-        <img src="../assets/scoreboard.png"  id="img">
+        <img src="../../assets/scoreboard.png"  id="img">
       </div>
       <div class="scoreboard-text">
         <p>Scoreboard</p>
@@ -34,16 +34,16 @@
       </div>
   </div>
 
-  <div class="footer-back" id="back">
-    <router-link class="btn btn-patient" to="/"><button>Back</button></router-link>
-  </div>
+  <router-link :to="{name: 'Patient\'s Page', params: { userId: $route.params.userId, name: $route.params.name }}"><button class="back-button" >Back</button></router-link>
+
   </div>    
 </template>
 
 <script>
 
 
-import MainLayout from './layout/main_layout'
+import MainLayout from '../layout/main_layout'
+
 import { resourcesService } from "@/_services/resources.service";
 
 export default {
@@ -54,12 +54,21 @@ export default {
   },
   data: function () {
     return {
+      userId: '',
+      name: '',
       loading : true,
       score : '',
     }
   },
 
   mounted() {
+    if(this.$route.params.userId == undefined){
+      this.$router.push("/");
+    }
+    else{
+      this.userId = this.$route.params.userId;
+      this.name = this.$route.params.name;
+    }
     this.awaitUserInfo();
   },
   methods: {
@@ -67,8 +76,12 @@ export default {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
       
-      let score = await resourcesService.getScoreboard();
-      this.score = score;
+      await resourcesService.getScoreboardById(this.userId)
+        .then((res) => {
+          if(res != ''){
+            this.score = res;
+          }
+        });
 
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);

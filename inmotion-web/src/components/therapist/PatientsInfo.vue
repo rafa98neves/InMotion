@@ -3,15 +3,15 @@
   <div v-if="!loading">
     <div id="PersonalInformation">
       <div class="personal-information-image">
-        <img src="../assets/personal_info.png" width="50" height="60">
+        <img src="../../assets/personal_info.png" width="50" height="60">
       </div>
       <div class="personal-information-text">
         <p>Personal Information</p>
       </div>
     </div>
 
-    <router-link :to="{name: 'Patient\'s Page', params: { idPass: $route.params.idPass }}"><button class="back-button" >Back</button></router-link>
-    <button class="cp-button" >Save</button>
+    <router-link :to="{name: 'Patient\'s Page', params: { userId: $route.params.userId, name: $route.params.name }}"><button class="back-button" >Back</button></router-link>
+    <button class="cp-button" v-on:click="insertdiagnosis" >Save</button>
 
     <div class="container">
       <div class="form-control">
@@ -36,13 +36,13 @@
 
       <div class="form-control">
         <label class="control-label">Diagnosis</label>
-        <div class="text-box" contentEditable="true">{{diagnosis}}</div>
+        <div class="text-box" contentEditable="true">{{user.diagnosis}}</div>
       </div>
 
       <div class="form-control">
         <label class="label-medication">Medication</label>
         <select class=info-medication >
-          <option v-for="item in med" :key="item">{{ item.diagnosis }}</option>
+          <option v-for="item in user.medicationList" :key="item">{{ item.diagnosis }}</option>
         </select>
       </div>
     </div>
@@ -53,31 +53,17 @@
 <script>
 
 
-import MainLayout from './layout/main_layout'
+import MainLayout from '../layout/main_layout'
 import { accountService } from "@/_services/account.service";
 
 export default {
 
-  name: "App",
   components: {
     MainLayout,
   },
   data: function () {
     return {
       loading : true,
-      diagnosis: "madklwçdkfnv dms," +
-          "\nlaç.SLMDKFNHSMKLA," +
-          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
-          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç."+
-          "madklwçdkfnv dms," +
-          "\nlaç.SLMDKFNHSMKLA," +
-          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
-          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç.",
-      med: [
-        { diagnosis: " medication a" },
-        { diagnosis: " medication b" },
-        { diagnosis: " medication c"},
-      ],
       user: '',
       role: accountService.user.role
     }
@@ -90,28 +76,30 @@ export default {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
 
-      const user = await accountService.searchPatient(this.$route.params.idPass);
+      const user = await accountService.searchPatient(this.$route.params.userId, this);
       this.user = user;
-
+      if(this.user == ''){
+        this.$router.push("/");
+      }
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);
 
       return this
     },
-    insertdiagnosis() {
+
+    async insertdiagnosis() {
 
       let user = {
         name : this.name,
-        patientId : this.id,
+        //patientId : this.id,
         birthdate : this.birthdate,
         //diagnosis: this.diagnosis,
         gender : this.gender,
-        email : this.email,
-        password : this.password,
-        role : 'PATIENT'
+        //email : this.email,
+        //password : this.password,
+        //role : 'PATIENT'
       }
-
-      accountService.register(user,this);
+      accountService.updatePatient(user,this);
     },
   }
 }
