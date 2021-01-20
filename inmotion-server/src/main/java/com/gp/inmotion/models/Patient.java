@@ -1,6 +1,7 @@
 package com.gp.inmotion.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 
@@ -10,10 +11,10 @@ public class Patient extends User{
 
     @Column
     @NotNull
-    private Long patientId;
+    private Long number;
 
     @Column(length = 64)
-    private String patientDiagnosis;
+    private String diagnosis;
 
     @ManyToMany()
     private List<Medication> medicationList;
@@ -21,29 +22,35 @@ public class Patient extends User{
     @ManyToOne()
     private Therapist therapist;
 
+    @ManyToMany
+    private List<Game> recommendedGames;
 
     public Patient(){
     }
 
-    public Patient(User user, Long patientId){
+    public Patient(User user, Long number, String diagnosis) {
         super(user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
-        this.patientId = patientId;
+        this.setEnabled(true);
+        this.number = number;
+        this.diagnosis = diagnosis;
+        medicationList = new ArrayList<>();
+        recommendedGames = new ArrayList<>();
     }
 
-    public Long getPatientId() {
-        return patientId;
+    public Long getNumber() {
+        return number;
     }
 
-    public void setPatientId(Long patientId) {
-        this.patientId = patientId;
+    public void setNumber(Long patientId) {
+        this.number = patientId;
     }
 
-    public String getPatientDiagnosis() {
-        return patientDiagnosis;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setPatientDiagnosis(String patientDiagnosis) {
-        this.patientDiagnosis = patientDiagnosis;
+    public void setPatientDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public List<Medication> getMedicationList() {
@@ -62,4 +69,11 @@ public class Patient extends User{
         this.therapist = therapist;
     }
 
+    public List<Game> getRecommendedGames() {
+        return recommendedGames;
+    }
+
+    public void setRecommendedGames(List<Game> recommendedGames) {
+        this.recommendedGames = recommendedGames;
+    }
 }

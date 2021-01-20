@@ -10,7 +10,6 @@ import com.gp.inmotion.security.ApplicationUserRole;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,7 +68,8 @@ public class UserService{
             }else if(requestRole.equals("PATIENT")){
                 role = findRole(PATIENT);
                 user.setRole(role);
-                patientRepository.save(new Patient(user, registerRequest.getPatientId()));
+                user.setEnabled(true);
+                patientRepository.save(new Patient(user, registerRequest.getPatientId(), registerRequest.getDiagnosis()));
             }
         }else{
             throw new UserAlreadyExistsException("An account with that email already exists!");
@@ -79,18 +79,6 @@ public class UserService{
     public User findUserByEmail(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).orElseThrow(
                 () -> new UsernameNotFoundException("User with email " + email + " not found!")
-        );
-    }
-
-    public Patient findPatientByEmail(String email) throws UsernameNotFoundException {
-        return patientRepository.findByEmail(email).orElseThrow(
-                () -> new UsernameNotFoundException("Patient with email " + email + " not found!")
-        );
-    }
-
-    public Therapist findTherapistByEmail(String email) throws UsernameNotFoundException {
-        return therapistRepository.findByEmail(email).orElseThrow(
-                () -> new UsernameNotFoundException("Therapist with email " + email + " not found!")
         );
     }
 

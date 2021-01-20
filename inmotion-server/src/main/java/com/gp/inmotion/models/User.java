@@ -10,6 +10,9 @@ import java.util.Date;
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @Column(length = 60)
     private String email;
 
@@ -27,6 +30,9 @@ public class User {
     @Column()
     private Date birthdate;
 
+    @Column()
+    private boolean enabled;
+
     @NotNull
     @ManyToOne()
     private Role role;
@@ -40,13 +46,22 @@ public class User {
         this.gender = gender;
         this.birthdate = birthdate;
         this.role = role;
+        this.enabled = false;
     }
 
-    public User(@NotNull String email, @NotNull String password, @NotNull String name, Role role){
+    public User(String email, String password, String name, Role role) {
         this.email = email;
         this.password = password;
         this.name = name;
         this.role = role;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Role getRole() {
@@ -95,6 +110,14 @@ public class User {
 
     public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     @Override

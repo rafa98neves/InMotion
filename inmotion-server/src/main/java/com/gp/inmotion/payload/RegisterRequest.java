@@ -22,11 +22,21 @@ public class RegisterRequest {
     @NotEmpty
     private String role;
 
+    @NotNull
+    @NotEmpty
     private Long patientId;
 
+    @NotNull
+    @NotEmpty
     private Date birthdate;
 
+    @NotNull
+    @NotEmpty
     private String gender;
+
+    @NotNull
+    @NotEmpty
+    private String diagnosis;
 
     public RegisterRequest() {
     }
@@ -85,5 +95,13 @@ public class RegisterRequest {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getDiagnosis() {
+        return diagnosis;
+    }
+
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 }
