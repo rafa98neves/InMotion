@@ -13,7 +13,8 @@ export const accountService = {
     whoami,
     getInfo,
     searchPatient,
-    updatePatient
+    updatePatient,
+    getRoles
 };
 
 function isAuthenticated() {
@@ -209,7 +210,38 @@ async function searchPatient(id, context) {
                     context.$toast.error("User doesn't exist", { position: "bottom"} )
                 }
         });
-    return user;
+    return user
+}
+
+async function getRoles() {
+    let therapist = [
+    {name:"user 1", email: "aa@pp", password: "", role: "THERAPIST"},
+    {name:"user 2", email: "aa@pp", password: "", role: "THERAPIST"},
+    {name:"user 3", email: "aa@pp", password: "", role: "THERAPIST"},
+    {name:"user 4", email: "aa@pp", password: "", role: "THERAPIST"}
+        
+    ]
+    return therapist;
+    
+    /*
+
+    var api = utils.createHttp(); 
+    await api.get('/therapist')
+        .then(response => {
+            if(response.status == 200){
+                return response.data;
+            }})
+        .catch(error => {
+            if(error.response == undefined){
+                router.push({name: "error", params: {msg : "404 - Server side error"}})
+            }
+            else{
+                router.push({name: "error", params: {msg : error.response}})
+            }
+        }); 
+
+
+    */
 }
 
 async function updatePatient(user, context) {

@@ -22,6 +22,9 @@ import PatientsInfo from "@/components/therapist/PatientsInfo";
 import PatientsRecommended from "@/components/therapist/PatientRecommended";
 import PatientsScoreboard from "@/components/therapist/PatientScoreboard";
 
+
+import Roles from '../components/auth/Roles'
+
 //pages
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
@@ -39,10 +42,13 @@ const routes = [
     { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard', beforeEnter: authGuard },
     { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games', beforeEnter: authGuard},
 
+
+    { path: '/Roles', component: Roles, name: 'Roles'},
     { path: '/patient/page', component: PatientsPage, name: 'Patient\'s Page', beforeEnter: authGuard},
     { path: '/patient/info', component: PatientsInfo, name: 'Patient\'s Personal Information', beforeEnter: authGuard},
     { path: '/patient/recommended', component: PatientsRecommended, name: 'Patient\'s Recommended Games', beforeEnter: authGuard},
     { path: '/patient/scoreboard', component: PatientsScoreboard, name: 'Patient\'s Scoreboard', beforeEnter: authGuard},
+
 
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', redirect: '/'}
