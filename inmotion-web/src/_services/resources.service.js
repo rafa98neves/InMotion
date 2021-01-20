@@ -10,6 +10,7 @@ export const resourcesService = {
     registerRecommendedGames,
     getRecommendedGames,
     getRecommendedGamesById,
+
 };
 
 
@@ -148,3 +149,4 @@ async function registerRecommendedGames(patientId, gameId) {
             }
         });
 }
+

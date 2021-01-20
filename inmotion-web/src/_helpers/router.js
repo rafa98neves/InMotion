@@ -20,6 +20,9 @@ import Game1 from '../components/games/Game-1'
 import PatientsPage from "@/components/PatientsPage";
 import PatientsInfo from "@/components/PatientsInfo";
 
+
+import Roles from '../components/auth/Roles'
+
 //pages
 const routes = [
     { path: '/error', component: ErrorPage, name: 'error' },
@@ -38,6 +41,9 @@ const routes = [
     { path: '/games/list', component: ListOfGames, name: 'List of Games', beforeEnter: authGuard},
     { path: '/scoreboard', component: Scoreboard, name: 'Scoreboard', beforeEnter: authGuard },
     { path: '/games/recommendedGames', component: RecommendedGames, name: 'Recommended Games', beforeEnter: authGuard},
+
+   
+    { path: '/Roles', component: Roles, name: 'Roles'},
 
     // otherwise redirect to home
     { path: '/:pathMatch(.*)*', redirect: '/'}
