@@ -5,7 +5,7 @@
   <MainLayout :loggedIn="true"></MainLayout>
   <div class="login-form">
     <div class="frame-text">
-      <p>Patient's ID {{ $route.params.idPass }}</p>
+      <p>Patient's ID {{ userId }}</p>
     </div>
     <div class="Patientboard">
       <div id="frame">
@@ -13,28 +13,28 @@
 
           <div class="row">
             <div class="column">
-              <img src="../assets/info.png" style="width:40%">
+              <img src="../../assets/info.png" style="width:40%">
             </div>
             <div class="column">
-              <router-link :to="{name: 'Patient\'s Personal Information', params: { idPass: $route.params.idPass }}"><button class="btn">Patient's Information</button></router-link>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="column">
-              <img src="../assets/gamepad.png" style="width:40%">
-            </div>
-            <div class="column">
-              <router-link to="/games/list"><button class="btn">List of Recommended Games</button></router-link>
+                <button class="btn" v-on:click="GetInformation">{{name}}'s Information</button>
             </div>
           </div>
 
           <div class="row">
             <div class="column">
-              <img src="../assets/scoreboard.png" style="width:40%">
+              <img src="../../assets/gamepad.png" style="width:40%">
             </div>
             <div class="column">
-              <router-link to="/to/do"><button class="btn" >Patient's Scoreboard</button></router-link>
+              <button class="btn" v-on:click="GetRecommended">List of Recommended Games</button>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column">
+              <img src="../../assets/scoreboard.png" style="width:40%">
+            </div>
+            <div class="column">
+              <button class="btn" v-on:click="GetScoreboard">Patient's Scoreboard</button>
             </div>
           </div>
         </div>
@@ -50,12 +50,51 @@
 
 <script>
 
-import MainLayout from './layout/main_layout'
+import MainLayout from '../layout/main_layout'
+
+import { accountService } from '../../_services/account.service'
 
 export default {
   name: "App",
   components: {
     MainLayout,
+  },
+  data() {
+    return{
+      userId: '',
+      name: ''      
+    }
+  },
+  mounted() {
+    if(this.$route.params.userId == undefined){
+      this.$router.push("/");
+    }
+    else{
+      this.userId = this.$route.params.userId;
+      this.name = this.$route.params.name;
+    }
+  },
+  methods: {
+    async GetInformation(){
+      if(this.userId != ''){
+        await accountService.searchPatient(this.userId, this)
+          .then((res) => {
+            if(res != ''){
+              this.$router.push({name: 'Patient\'s Personal Information', params: { "userId" : this.userId , "name": this.name }})
+            }
+          });
+      }
+    },
+    async GetScoreboard(){
+      if(this.userId != ''){
+        this.$router.push({name: 'Patient\'s Scoreboard', params: { "userId" : this.userId , "name": this.name  }})
+      }
+    },
+    async GetRecommended(){
+      if(this.userId != ''){
+        this.$router.push({name: 'Patient\'s Recommended Games', params : { "userId" : this.userId , "name": this.name  }} );
+      }
+    }
   }
 }
 </script>

@@ -12,7 +12,8 @@ export const accountService = {
     logout,
     whoami,
     getInfo,
-    searchPatient
+    searchPatient,
+    updatePatient
 };
 
 function isAuthenticated() {
@@ -156,7 +157,7 @@ async function whoami(){
         .catch(error => {
             console.log(error)
             if(error){
-                router.push('/landingpage');
+                logout();
             }
         });
     return false;    
@@ -188,11 +189,10 @@ async function getInfo() {
     return user
 }
 
-
-async function searchPatient(id) {
+async function searchPatient(id, context) {
     var api = utils.createHttp();
     let user;
-    await api.get('/api/v1/patients/'+id)
+    await api.get('patients/'+id)
         .then(response => {
             if(response.status == 200){
                 user = response.data;
@@ -200,14 +200,32 @@ async function searchPatient(id) {
                     user.birthdate = user.birthdate.substr(0,10);
                 }
             }})
-        .catch(error => {
-            console.log(error)
-            if(error.response == undefined){
-                router.push({name: "error", params: {msg : "404 - Server side error"}})
-            }
-            else{
-                router.push({name: "error", params: {msg : error.response}})
-            }
+            .catch(error => {
+                if(error.response == undefined){
+                    router.push({name: "error", params: {msg : "404 - Server side error"}})
+                }
+                else{
+                    user = '';
+                    context.$toast.error("User doesn't exist", { position: "bottom"} )
+                }
         });
-    return user
+    return user;
+}
+
+async function updatePatient(user, context) {
+    var api = utils.createHttp();
+    await api.get('user/update', user)
+        .then(response => {
+            if(response.status == 200){
+                context.$toast.success("User changed successfully", { position: "bottom"} )
+            }})
+            .catch(error => {
+                if(error.response == undefined){
+                    router.push({name: "error", params: {msg : "404 - Server side error"}})
+                }
+                else{
+                    context.$toast.error("Error while trying to change user data", { position: "bottom"} )
+                }
+        });
+    return user;
 }

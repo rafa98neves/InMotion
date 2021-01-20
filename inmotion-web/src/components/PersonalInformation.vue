@@ -11,7 +11,7 @@
     </div>
 
     <router-link to="/"><button class="back-button" >Back</button></router-link>
-    <router-link to="/changepassword"><button class="cp-button" >Change password</button></router-link>
+    <router-link to="/changepassword"><button class="cp-button">Change password</button></router-link>
 
     <!-- Patient personal information-->
     <div class="container">
@@ -37,13 +37,13 @@
 
       <div class="form-control" v-if="role=='PATIENT'">
         <label class="control-label">Diagnosis</label>
-        <div class ="text-box">{{diagnosis}}</div>
+        <div class ="text-box">{{user.diagnosis}}</div>
       </div>
 
       <div class="form-control" v-if="role=='PATIENT'">
         <label class="label-medication">Medication</label>
         <select class=info-medication >
-          <option v-for="item in med" :key="item">{{ item.diag }}</option>
+          <option v-for="item in user.medicationList" :key="item">{{ item.diag }}</option>
         </select>
       </div>
     </div>
@@ -66,19 +66,6 @@ export default {
   data: function () {
     return {
       loading : true,
-      diagnosis: "madklwçdkfnv dms," +
-          "\nlaç.SLMDKFNHSMKLA," +
-          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
-          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç."+
-          "madklwçdkfnv dms," +
-          "\nlaç.SLMDKFNHSMKLA," +
-          "\nçldkmfnsmka\n,l.ÇSLMKDMFKS," +
-          "LAÇ.w,\nslmkmfdks,la.ç,\n ldmfkgnmdks,laç.",
-      med: [
-        { diag: " medication a" },
-        { diag: " medication b" },
-        { diag: " medication c"},
-      ],
       user: '',
       role: accountService.user.role
     }
@@ -90,7 +77,7 @@ export default {
     async awaitUserInfo() {
       this.loading = true;
       this.$refs.layout.setLoading(this.loading);
-
+      
       const user = await accountService.getInfo();
       this.user = user;
 
@@ -160,7 +147,7 @@ export default {
   }
   .text-box{
     border: 1px solid black;
-    padding: 5px 5px 5px 5px;
+    padding: 1%;
     height: 10%; /* maximum height of the box, feel free to change this! */
     width: 50%;
     overflow-y: scroll;

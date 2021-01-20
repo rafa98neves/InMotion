@@ -1,6 +1,6 @@
 <template>
 
-  <MainLayout :loggedIn="true"></MainLayout>
+  <MainLayout :loggedIn="true" ref="layout"></MainLayout>
   <!-- Homepage style-->
   <div class="menu">
 
@@ -21,7 +21,7 @@
       <div class="column">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <input type="text" placeholder="search patient by id" name="id" class="search" v-model="id">
-        <router-link :to="{name: 'Patient\'s Page', params: { idPass: id }}"><button type="submit" class="button" ><i class="fa fa-search"></i></button></router-link>
+        <button v-on:click="search()" class="button"><i class="fa fa-search"></i></button>
       </div>
     </div>
 
@@ -52,6 +52,7 @@
 <script>
 
 import MainLayout from './layout/main_layout'
+
 import { accountService } from '../_services/account.service'
 
 export default {
@@ -62,6 +63,18 @@ export default {
     return {
       role: accountService.user.role,
       id: ''
+    }
+  },
+  methods: {
+    async search(){
+      if(this.id != ''){
+        await accountService.searchPatient(this.id, this)
+          .then((res) => {
+            if(res != ''){
+              this.$router.push( {name: 'Patient\'s Page', params : { "name": res.name, "userId": this.id }})
+            }
+          });
+      }
     }
   }
 }

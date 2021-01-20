@@ -1,76 +1,76 @@
 <template>
 
-  <MainLayout :loggedIn="false"></MainLayout>
+  <MainLayout :loggedIn="false" ref="layout"></MainLayout>
 
-  <div class="Register">
+  <div v-if="!loading">
+    <div class="Register">
 
-    <div class="form-control-nav">
-        <label>Type of Account</label>
-        <router-link class="btn btn-patient" to="/registerpatient"><button style="background: #5dbcd2;">Patient</button></router-link>
-        <router-link class="btn btn-therapist" to="/registertherapist"><button>Therapist</button></router-link>
-    </div>
-    
-    <form class="form-box" @submit.prevent="register">
-
-      <div class="form-control">
-        <label>Name</label>
-        <input type="text" name="name" id="name" class="register-input" v-model="name">
-
-        <label>Patient's ID</label>
-        <input type="text" name="id" class="register-input" v-model="id">
-
-        <label>Data of Birth</label>
-        <input type="date" name="date" id="birthdate" class="register-input" v-model="birthdate">
+      <div class="form-control-nav">
+          <label>Type of Account</label>
+          <router-link class="btn btn-patient" to="/registerpatient"><button style="background: #5dbcd2;">Patient</button></router-link>
+          <router-link class="btn btn-therapist" to="/registertherapist"><button>Therapist</button></router-link>
       </div>
       
-      <div class="form-control">
-        <label>Diagnosis</label>    
-        <input v-model="diagnosis">
-      </div>
+      <form class="form-box" @submit.prevent="register">
 
-      <div class="form-control">
-        <label>Gender</label>    
-        <select v-model="gender">
-          <option disabled value="">Please select one</option>
-          <option>Male</option>
-          <option>Female</option>
-        </select>
+        <div class="form-control">
+          <label>Name</label>
+          <input type="text" name="name" id="name" class="register-input" v-model="name">
+
+          <label>Patient's ID</label>
+          <input type="text" name="id" class="register-input" v-model="id">
+
+          <label>Data of Birth</label>
+          <input type="date" name="date" id="birthdate" class="register-input" v-model="birthdate">
+        </div>
         
-<!--
-        <label>Medication</label>    
-        <select v-model="medication" multiple size=4>
-          <option v-for="med in medications" v-bind:key="med">
-            {{ med }}
-          </option>
-        </select>
--->
-      </div>
-
-      <div class="form-control">
-        <label>Email</label>
-        <input type="email" name="email" id="email" class="register-input" v-model="email">
-
-        <label>Password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password">
-
-
-        <label>Confirm password</label>
-        <input type="password" name="password" id="password" class="register-input" v-model="password2">
-        <h4 class="error-msg">{{ msg }}</h4>
-      </div>
-      
-      <div class="form-footer">
-        <div class="form-submit" id="submit">
-          <button type="submit" class="btn-submit"
-              v-bind:disabled="verify() == false">Create Account</button>
+        <div class="form-control">
+          <label>Diagnosis</label>    
+          <input v-model="diagnosis">
         </div>
 
-        <div class="form-submit" id="back">
-          <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
+        <div class="form-control">
+          <label>Gender</label>    
+          <select v-model="gender">
+            <option disabled value="">Please select one</option>
+            <option>Male</option>
+            <option>Female</option>
+          </select>
+          
+          <label>Medication</label>    
+          <select v-model="medications" multiple size=4>
+            <option v-for="med in medicationList" v-bind:key="med">
+              {{ med.name }}
+            </option>
+          </select>
         </div>
-      </div>
 
-    </form>     
+        <div class="form-control">
+          <label>Email</label>
+          <input type="email" name="email" id="email" class="register-input" v-model="email">
+
+          <label>Password</label>
+          <input type="password" name="password" id="password" class="register-input" v-model="password">
+
+
+          <label>Confirm password</label>
+          <input type="password" name="password" id="password" class="register-input" v-model="password2">
+          <h4 class="error-msg">{{ msg }}</h4>
+        </div>
+        
+        <div class="form-footer">
+          <div class="form-submit" id="submit">
+            <button type="submit" class="btn-submit"
+                v-bind:disabled="verify() == false">Create Account</button>
+          </div>
+
+          <div class="form-submit" id="back">
+            <router-link class="btn btn-patient" to="/landingpage"><button>Back</button></router-link>
+          </div>
+        </div>
+
+      </form>     
+    </div>
   </div>
 </template>
 
@@ -78,41 +78,58 @@
 
 import MainLayout from '../layout/main_layout'
 import { accountService } from "../../_services/account.service"
-//import { resourcesService } from "../../_services/resources.service"
+import { resourcesService } from "../../_services/resources.service"
 
 export default {
-  data() {
+  components: {
+    MainLayout,
+  },
+  data: function () {
     return {
+      loading : true,
       msg: '',
-      //medications: resourcesService.getMedications(),
       name: '',
       id: '',
       birthdate: '',
       email: '',
-      //medication: [],
+      medications: [],
+      medicationList: '',
       password: '',
       password2: '',
-      //diagnosis: '',
+      diagnosis: '',
       gender:''
     }
   },
-  components: {
-    MainLayout,
+  mounted() {
+    this.awaitMedicationList();
   },
-  methods: {    
+  methods: {  
+    async awaitMedicationList() {
+      this.loading = true;
+      this.$refs.layout.setLoading(this.loading);
+
+      const medications = await resourcesService.getMedications();
+      this.medicationList = medications;
+
+      this.loading = false;
+      this.$refs.layout.setLoading(this.loading);
+
+      return this;
+    },
     register() {
 
       let user = {
         name : this.name,
         patientId : this.id,
         birthdate : this.birthdate,
-        //diagnosis: this.diagnosis,
+        diagnosis: this.diagnosis,
         gender : this.gender,
         email : this.email,
+        //medicationList : this.medications,
         password : this.password,
         role : 'PATIENT'
       }
-
+      //console.log(user.medicationList)
       accountService.register(user,this);
     },
     verify(){

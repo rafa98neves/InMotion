@@ -7,60 +7,70 @@
 
       <!-- get all games list-->
       <div class="a-center" id="content" ref="content">
-        {{ msg }}
-        <div class=internal v-for="item in items" :key="item">
-          <router-link class="Game" :to= item.link >
-          <img :src="getImgUrl(item.src)" width="100" height="100">
-          </router-link>
-          <p>{{ item.id }}</p>
+        <div class="loader" v-if="loading"></div> 
+        <div v-if="!loading">   
+          {{ msg }}
+          <div class=internal v-for="item in items" :key="item">
+            <router-link class="Game" :to= item.link >
+            <img :src="getImgUrl(item.src)" width="100" height="100">
+            </router-link>
+            <p>{{ item.id }}</p>
+          </div>
         </div>
-    </div>
+    </div>  
   </div>
   
 </template>
 
 <script>
 
+import { resourcesService } from "../../_services/resources.service"
+
 export default {
-  name: "App",
   data: function () {
     return {
       msg: '',
-
+      loading: true,
       //list of games
-      items_list: [
-        { id: "Juice", src: "juice_game.png", link: "/error" },
-        { id: "Piano", src: "piano.png", link: "/games/piano" },
-        { id: "Clean With", src: "clean_with_me.png", link: "/error" },
-        { id: "Game 4", src: "error.png", link: "/error" },
-        { id: "Game 5", src: "error.png", link: "/error" },
-        { id: "Game 6", src: "error.png", link: "/error" },
-      ],
+      items_list: [],
       index: '',
       items: [],
     };
   },
   mounted() {
-    switch(this.items_list.length){
-        case 0:
-          this.msg = "No games to display";
-          break;
-        case 1:
-          this.items = [this.items_list[0]];
-          break;
-        case 2:
-          this.items = [this.items_list[0], this.items_list[1]];
-          break;
-        case 3:
-          this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
-          break;
-        default:
-          this.index = [0,1,2];
-          this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
-          break;
-    }
+    this.getInformation();
   },
   methods: {
+
+    async getInformation(){
+      await resourcesService.getGames()
+        .then((res) => {
+            this.items_list = res;
+            this.displayGames();
+            this.loading = false;
+        });
+      return this;
+    },
+    displayGames(){
+      switch(this.items_list.length){
+          case 0:
+            this.msg = "No games to display";
+            break;
+          case 1:
+            this.items = [this.items_list[0]];
+            break;
+          case 2:
+            this.items = [this.items_list[0], this.items_list[1]];
+            break;
+          case 3:
+            this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
+            break;
+          default:
+            this.index = [0,1,2];
+            this.items = [this.items_list[0], this.items_list[1], this.items_list[2]];
+            break;
+      }
+    },
     getImgUrl: function (imagePath) {
       return require('@/assets/' + imagePath);
     },
@@ -109,6 +119,17 @@ export default {
   font-weight: bold; 
 }
 
+.loader {
+  position: absolute;
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  top: 30%;
+  width: 20px;
+  height: 20px;
+  animation: spin 2s linear infinite;
+}
+
 .internal{
   width: 31.75%;
   height: 50%;
@@ -120,8 +141,8 @@ export default {
 }
 
 .internal img{
-  max-height: 100%;
-  width: auto;
+  width: 50%;
+  height: auto;
 }
 .a-center{
  float: left; 
