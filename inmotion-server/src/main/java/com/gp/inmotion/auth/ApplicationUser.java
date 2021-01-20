@@ -12,20 +12,24 @@ public class ApplicationUser implements UserDetails {
     private String email;
     private String password;
     private Set<? extends GrantedAuthority> grantedAuthorities;
+    private boolean enabled;
 
     public ApplicationUser(String email,
                            String password,
-                           Set<? extends GrantedAuthority> grantedAuthorities) {
+                           Set<? extends GrantedAuthority> grantedAuthorities,
+                           boolean enabled) {
         this.grantedAuthorities = grantedAuthorities;
         this.password = password;
         this.email = email;
+        this.enabled = enabled;
     }
 
     public static ApplicationUser create(User user){
         return new ApplicationUser(
                 user.getEmail(),
                 user.getPassword(),
-                user.getRole().getName().getGrantedAuthorities()
+                user.getRole().getName().getGrantedAuthorities(),
+                user.isEnabled()
         );
     }
 
@@ -64,7 +68,8 @@ public class ApplicationUser implements UserDetails {
     }
 
     @Override
-    public boolean isEnabled() { return true; }
-
+    public boolean isEnabled() {
+        return enabled;
+    }
 
 }

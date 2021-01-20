@@ -26,4 +26,5 @@ public class GameService {
                 () -> new GameNotFoundException("Game with id " + gameId + " was not found!")
         );
     }
+
 }

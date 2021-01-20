@@ -1,39 +1,38 @@
 package com.gp.inmotion.models;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "games")
 public class Game {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long gameId;
+    private Long id;
 
     @Column
-    private String gameName;
+    private String name;
 
     public Game() {
     }
 
-    public Game(Long gameId, String gameName) {
-        this.gameId = gameId;
-        this.gameName = gameName;
+    public Game(Long id, String gameName) {
+        this.id = id;
+        this.name = gameName;
     }
 
-    public Long getGameId() {
-        return gameId;
+    public Long getId() {
+        return id;
     }
 
-    public void setGameId(Long gameId) {
-        this.gameId = gameId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public String getGameName() {
-        return gameName;
+    public String getName() {
+        return name;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
+    public void setName(String name) {
+        this.name = name;
     }
 }

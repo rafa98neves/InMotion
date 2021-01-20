@@ -24,7 +24,7 @@ public class GameController {
         this.gameService = gameService;
     }
 
-    @GetMapping("/all")
+    @GetMapping
     public List<Game> getGames(){
         return gameService.findAll();
     }
@@ -37,4 +37,6 @@ public class GameController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Malformed Request", gnfe);
         }
     }
+
+
 }
