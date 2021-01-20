@@ -12,16 +12,26 @@ public class PatientDetailsResponse extends UserDetailsResponse{
 
     private String diagnosis;
 
+    private Long number;
+
     private List<Medication> medicationList;
 
     public PatientDetailsResponse() {
     }
 
-    public PatientDetailsResponse(Long id, String name, String gender, String email, Date birthdate, String diagnosis, List<Medication> medicationList) {
+    public PatientDetailsResponse(Long id,
+                                  String name,
+                                  String gender,
+                                  String email,
+                                  Date birthdate,
+                                  String diagnosis,
+                                  Long number,
+                                  List<Medication> medicationList) {
         super(id, name, email);
         this.gender = gender;
         this.birthdate = birthdate;
         this.diagnosis = diagnosis;
+        this.number = number;
         this.medicationList = medicationList;
     }
 
