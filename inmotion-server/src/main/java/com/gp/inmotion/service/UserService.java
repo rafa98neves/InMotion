@@ -172,7 +172,15 @@ public class UserService{
             Patient patient = patientRepository.findById(user.getId()).orElseThrow(
                     () ->  new UsernameNotFoundException("Patient with id " + user.getId() + " was not found!")
             );
-            return new PatientDetailsResponse(patient.getId(), patient.getName(), patient.getGender(), patient.getEmail(), patient.getBirthdate(), patient.getDiagnosis(), patient.getMedicationList());
+            return new PatientDetailsResponse(
+                    patient.getId(),
+                    patient.getName(),
+                    patient.getGender(),
+                    patient.getEmail(),
+                    patient.getBirthdate(),
+                    patient.getDiagnosis(),
+                    patient.getNumber(),
+                    patient.getMedicationList());
         }else if(role.equals(THERAPIST)){
             return new UserDetailsResponse(user.getId(), user.getName(), user.getEmail());
         }else {
