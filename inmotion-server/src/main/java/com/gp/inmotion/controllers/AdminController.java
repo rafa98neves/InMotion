@@ -1,9 +1,7 @@
 package com.gp.inmotion.controllers;
 
-import com.gp.inmotion.models.Patient;
-import com.gp.inmotion.models.Therapist;
-import com.gp.inmotion.models.User;
-import com.gp.inmotion.payload.UserResponse;
+
+import com.gp.inmotion.payload.UserDetailsResponse;
 import com.gp.inmotion.service.ManagementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +20,7 @@ public class AdminController {
     }
 
     @GetMapping(path = "/therapists")
-    public List<UserResponse> getTherapists(){
+    public List<UserDetailsResponse> getTherapists(){
         return managementService.getTherapists();
     }
 

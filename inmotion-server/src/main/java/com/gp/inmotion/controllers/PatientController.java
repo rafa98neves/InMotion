@@ -3,7 +3,6 @@ package com.gp.inmotion.controllers;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gp.inmotion.exceptions.GameNotFoundException;
 import com.gp.inmotion.models.Game;
-import com.gp.inmotion.models.GamePlayed;
 import com.gp.inmotion.payload.GamesPlayedResponse;
 import com.gp.inmotion.payload.PatientDetailsResponse;
 import com.gp.inmotion.payload.ScoreRequest;

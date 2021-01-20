@@ -1,7 +1,7 @@
 package com.gp.inmotion.service;
 
 import com.gp.inmotion.models.Therapist;
-import com.gp.inmotion.payload.UserResponse;
+import com.gp.inmotion.payload.UserDetailsResponse;
 import com.gp.inmotion.repository.TherapistRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -31,11 +31,11 @@ public class ManagementService {
         therapistRepository.delete(therapist);
     }
 
-    public List<UserResponse> getTherapists(){
+    public List<UserDetailsResponse> getTherapists(){
         List<Therapist> therapists = therapistRepository.findAllByEnabled(false);
-        List<UserResponse> response = new ArrayList<>();
+        List<UserDetailsResponse> response = new ArrayList<>();
         for(Therapist therapist : therapists){
-            response.add(new UserResponse(therapist.getId(), therapist.getEmail(), therapist.getName()));
+            response.add(new UserDetailsResponse(therapist.getId(), therapist.getEmail(), therapist.getName()));
         }
         return response;
     }

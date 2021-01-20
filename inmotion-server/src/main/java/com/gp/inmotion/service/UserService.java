@@ -159,14 +159,25 @@ public class UserService{
     public WhoAmIResponse whoami(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = findUserByEmail((String) authentication.getPrincipal());
-        return new WhoAmIResponse(user.getName(), user.getRole().getName());
+        return new WhoAmIResponse(user.getId(), user.getName(), user.getRole().getName());
     }
 
     public UserDetailsResponse getDetails(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = findUserByEmail((String) authentication.getPrincipal());
 
-        return new UserDetailsResponse(user.getName(), user.getGender(), user.getEmail(), user.getBirthdate());
+        ApplicationUserRole role = user.getRole().getName();
+
+        if(role.equals(PATIENT)){
+            Patient patient = patientRepository.findById(user.getId()).orElseThrow(
+                    () ->  new UsernameNotFoundException("Patient with id " + user.getId() + " was not found!")
+            );
+            return new PatientDetailsResponse(patient.getId(), patient.getName(), patient.getGender(), patient.getEmail(), patient.getBirthdate(), patient.getDiagnosis(), patient.getMedicationList());
+        }else if(role.equals(THERAPIST)){
+            return new UserDetailsResponse(user.getId(), user.getName(), user.getEmail());
+        }else {
+            throw new UsernameNotFoundException("User with id " + user.getId() + " was not found!");
+        }
     }
 
     public void updateUser(UserUpdateRequest request){
