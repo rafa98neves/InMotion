@@ -15,19 +15,19 @@ public class PatientDetailsResponse {
 
     private Date birthdate;
 
-    private String patientDiagnosis;
+    private String diagnosis;
 
     private List<Medication> medicationList;
 
     public PatientDetailsResponse() {
     }
 
-    public PatientDetailsResponse(String name, String gender, String email, Date birthdate, String patientDiagnosis, List<Medication> medicationList) {
+    public PatientDetailsResponse(String name, String gender, String email, Date birthdate, String diagnosis, List<Medication> medicationList) {
         this.name = name;
         this.gender = gender;
         this.email = email;
         this.birthdate = birthdate;
-        this.patientDiagnosis = patientDiagnosis;
+        this.diagnosis = diagnosis;
         this.medicationList = medicationList;
     }
 
@@ -55,12 +55,12 @@ public class PatientDetailsResponse {
         this.birthdate = birthdate;
     }
 
-    public String getPatientDiagnosis() {
-        return patientDiagnosis;
+    public String getDiagnosis() {
+        return diagnosis;
     }
 
-    public void setPatientDiagnosis(String patientDiagnosis) {
-        this.patientDiagnosis = patientDiagnosis;
+    public void setDiagnosis(String diagnosis) {
+        this.diagnosis = diagnosis;
     }
 
     public List<Medication> getMedicationList() {

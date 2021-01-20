@@ -18,16 +18,14 @@ public class GamePlayed {
 
     private Integer score;
 
-    private Integer time;
 
     public GamePlayed() {
     }
 
-    public GamePlayed(Patient player, Game game, Integer score, Integer time) {
+    public GamePlayed(Patient player, Game game, Integer score) {
         this.player = player;
         this.game = game;
         this.score = score;
-        this.time = time;
     }
 
     public Long getId() {
@@ -60,13 +58,5 @@ public class GamePlayed {
 
     public void setScore(Integer score) {
         this.score = score;
-    }
-
-    public Integer getTime() {
-        return time;
-    }
-
-    public void setTime(Integer time) {
-        this.time = time;
     }
 }

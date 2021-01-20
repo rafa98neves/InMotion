@@ -8,10 +8,10 @@ import java.util.List;
 public class Medication {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long medicationId;
+    private Long id;
 
     @Column()
-    private String medicationName;
+    private String name;
 
     @ManyToMany(mappedBy = "medicationList")
     private List<Patient> patientList;
@@ -19,25 +19,25 @@ public class Medication {
 
     public Medication(){}
 
-    public Medication(Long medicationId, String medicationName) {
-        this.medicationId = medicationId;
-        this.medicationName = medicationName;
+    public Medication(Long id, String name) {
+        this.id = id;
+        this.name = name;
     }
 
-    public void setMedicationId(Long medicationId) {
-        this.medicationId = medicationId;
+    public void setMedicationId(Long id) {
+        this.id = id;
     }
 
-    public void setMedicationName(String medicationName) {
-        this.medicationName = medicationName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Long getMedicationId() {
-        return medicationId;
+    public Long getId() {
+        return id;
     }
 
-    public String getMedicationName() {
-        return medicationName;
+    public String getName() {
+        return name;
     }
 
     public List<Patient> getPatientList() {
