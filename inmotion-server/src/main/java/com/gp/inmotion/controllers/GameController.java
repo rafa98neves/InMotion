@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.*;
 
 @RestController
-@RequestMapping("api/v1/games")
+@RequestMapping("/api/v1/games")
 public class GameController {
 
     private final GameService gameService;

@@ -9,11 +9,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "patients")
 public class Patient extends User{
 
-    @Column
     @NotNull
     private Long number;
 
-    @Column(length = 64)
     private String diagnosis;
 
     @ManyToMany()
