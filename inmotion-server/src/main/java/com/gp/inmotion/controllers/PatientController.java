@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/patients")
+@RequestMapping("/api/v1/patients")
 public class PatientController {
 
     private final PatientService patientService;
@@ -32,8 +32,9 @@ public class PatientController {
         return patientService.findByPatientById(patientId);
     }
 
-    @GetMapping(path = "{patientId}/gamehistory")
+    @GetMapping(path = "/{patientId}/gamehistory")
     public List<GamesPlayedResponse> getGameHistoryByPatient(@PathVariable("patientId") Long patientId){
+        System.out.println("Here");
         return patientService.getGamesByPatientId(patientId);
     }
 
@@ -47,11 +48,11 @@ public class PatientController {
         return patientService.getRecommendedGames();
     }
 
-    @PostMapping(path = "/{patientNumber}/games/{gameId}")
-    public void playGame(HttpServletRequest request, @PathVariable("patientNumber") Long patientNumber, @PathVariable("gameId") Long gameId){
+    @PostMapping(path = "/games/{gameId}")
+    public void playGame(HttpServletRequest request, @PathVariable("gameId") Long gameId){
         try{
             ScoreRequest scoreRequest = new ObjectMapper().readValue(request.getInputStream(), ScoreRequest.class);
-            patientService.playGame(gameId, patientNumber, scoreRequest);
+            patientService.playGame(gameId, scoreRequest);
         }catch (IOException ioExc){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad Request", ioExc);
         }catch (GameNotFoundException gnfExc){

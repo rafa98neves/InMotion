@@ -25,5 +25,5 @@ application:
         token-prefix: Bearer
     database:
         encryption:
-            password: ${ENCRYPTION_PASSWORD:wGmvaZsXKTdeTmGFWtg}
-            salt: ${ENCRYPTION_SALT:EekXfBTY}
+            password: ${ENCRYPTION_PASSWORD:!zSzpECW}EjN>ysDd2h}}
+            salt: ${ENCRYPTION_SALT:83f0409d8a6a}

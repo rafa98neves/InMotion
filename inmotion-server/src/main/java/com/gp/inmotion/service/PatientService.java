@@ -32,7 +32,7 @@ public class PatientService {
     }
 
     private Patient getPatient(Long patientId){
-        return patientRepository.findByNumber(patientId).orElseThrow(
+        return patientRepository.findById(patientId).orElseThrow(
                 () -> new UsernameNotFoundException("Patient with id " + patientId + " was not found!")
         );
     }
@@ -66,7 +66,9 @@ public class PatientService {
 
     public List<GamesPlayedResponse> getGamesByPatient() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).get();
+        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).orElseThrow(
+                () -> new UsernameNotFoundException("Token is invalid!")
+        );
 
         List<GamePlayed> gamesPlayed = gamePlayedRepository.getAllByPlayer(patient);
         List<GamesPlayedResponse> responses = new ArrayList<>();
@@ -77,9 +79,11 @@ public class PatientService {
         return responses;
     }
 
-    public void playGame(Long gameId, Long patientNumber, ScoreRequest playGameRequest) throws GameNotFoundException{
+    public void playGame(Long gameId, ScoreRequest playGameRequest) throws GameNotFoundException{
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).get();
+        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).orElseThrow(
+                () -> new UsernameNotFoundException("Token is invalid!")
+        );
 
         Game game = gameRepository.findById(gameId).orElseThrow(
                 () -> new GameNotFoundException("Game with id " + gameId + " was not found!")
@@ -92,7 +96,9 @@ public class PatientService {
 
     public List<Game> getRecommendedGames(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).get();
+        Patient patient = patientRepository.findByEmail((String) authentication.getPrincipal()).orElseThrow(
+                () -> new UsernameNotFoundException("Token is invalid!")
+        );
 
         return patient.getRecommendedGames();
     }
