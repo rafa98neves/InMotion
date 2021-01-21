@@ -15,36 +15,39 @@
 
     <!-- Patient personal information-->
     <div class="container">
-      <div class="form-control">
-          <label class="label-name">Name</label>
-          <p class="info-name">{{user.name}}</p>
-      </div>
+      <div class="left">
+        <div class="form-control">
+            <label class="label-name">Name</label>
+            <p class="info-name">{{user.name}}</p>
+        </div>
 
-      <div class="form-control">
-        <label class="label-email">Email</label>
-        <p class="info-email">{{user.email}}</p>
-      </div>
+        <div class="form-control">
+          <label class="label-email">Email</label>
+          <p class="info-email">{{user.email}}</p>
+        </div>
 
-      <div class="form-control" v-if="role=='PATIENT'">
-          <label class="label-date">Date of Birth</label>
-          <p class="info-date">{{user.birthdate}}</p>
-      </div>
+        <div class="form-control" v-if="role=='PATIENT'">
+            <label class="label-date">Date of Birth</label>
+            <p class="info-date">{{user.birthdate}}</p>
+        </div>
 
-      <div class="form-control" v-if="role=='PATIENT'">
-          <label class="label-gender">Gender</label>
-          <p class="info-gender">{{user.gender}}</p>
+        <div class="form-control" v-if="role=='PATIENT'">
+            <label class="label-gender">Gender</label>
+            <p class="info-gender">{{user.gender}}</p>
+        </div>
       </div>
+      <div class="right">
+        <div class="form-control" v-if="role=='PATIENT'">
+          <label class="control-label">Diagnosis</label>
+          <div class ="text-box">{{user.diagnosis}}</div>
+        </div>
 
-      <div class="form-control" v-if="role=='PATIENT'">
-        <label class="control-label">Diagnosis</label>
-        <div class ="text-box">{{user.diagnosis}}</div>
-      </div>
-
-      <div class="form-control" v-if="role=='PATIENT'">
-        <label class="label-medication">Medication</label>
-        <select class=info-medication >
-          <option v-for="item in user.medicationList" :key="item">{{ item.diag }}</option>
-        </select>
+        <div class="form-control" v-if="role=='PATIENT'">
+          <label class="label-medication">Medication</label>
+          <select multiple size=4 class=info-medication >
+            <option v-for="item in user.medicationList" :key="item" disabled>{{ item }}</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -80,6 +83,8 @@ export default {
       
       const user = await accountService.getInfo();
       this.user = user;
+
+      this.user.medicationList = ["Ben-u-Ron", "Brufen", "test", "test", "test", "test"]
 
       this.loading = false;
       this.$refs.layout.setLoading(this.loading);
@@ -147,12 +152,38 @@ export default {
   }
   .text-box{
     border: 1px solid black;
-    padding: 1%;
+    padding: 1% 40% 20% 1%;
     height: 10%; /* maximum height of the box, feel free to change this! */
     width: 50%;
     overflow-y: scroll;
   }
+
   .control-label {  
     float:left;
+  }
+
+  .left{
+    position: absolute;
+    top: 25%;
+    width: 50%;
+  }
+  
+  .right {
+    position: absolute;
+    top: 25%;
+    left: 40%;
+    width: 40%;
+  }
+
+  .right select{
+    width: 50%;
+  }
+
+  select option:disabled{
+    color: black;
+  }
+
+  .form-control{
+    margin-bottom: 5%;
   }
 </style>

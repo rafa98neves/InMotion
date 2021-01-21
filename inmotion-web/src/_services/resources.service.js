@@ -136,7 +136,7 @@ async function getRecommendedGamesById(id) {
 
 async function registerRecommendedGames(patientId, gameId, context) {
     var api = utils.createHttp();
-    await api.post('/therapist/patients/'+ patientId +'/recommendedgames/'+ gameId)
+    await api.post('/therapists/patients/'+ patientId +'/recommendedgames/'+ gameId)
         .then(response => {
             if(response.status == 200){ 
                 context.$toast.success("Success!", { position: "bottom"} )

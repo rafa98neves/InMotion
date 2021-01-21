@@ -235,11 +235,11 @@ async function getRoles() {
 
 async function setTherapist(id, type, context) {
     var api = utils.createHttp(); 
-    await api.post('/management/therapist/'+id+'/'+type)
+    await api.post('/management/therapists/'+id+'/'+type)
         .then(response => {
             if(response.status == 200){
                 context.$toast.success("User accepted", { position: "bottom"} )
-                context.$forceUpdate();
+                context.awaitUserInfo();
             }})
         .catch(error => {
             if(error.response == undefined){

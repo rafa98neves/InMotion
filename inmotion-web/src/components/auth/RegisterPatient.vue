@@ -55,8 +55,8 @@
           </div>
           <div class="form-control" id="med">
             <label>Medication</label><br>
-            <select v-model="medications" multiple size=8>
-              <option v-for="med in medicationList" v-bind:key="med">
+            <select v-model="medications" multiple size=8 >
+              <option v-for="med in medicationList" v-bind:key="med" v-bind:value="med.id">
                 {{ med.name }}
               </option>
             </select>
@@ -130,11 +130,10 @@ export default {
         diagnosis: this.diagnosis,
         gender : this.gender,
         email : this.email,
-        //medicationList : this.medications,
+        medicationList : this.medications,
         password : this.password,
         role : 'PATIENT'
       }
-      //console.log(user.medicationList)
       accountService.register(user,this);
     },
     verify(){
