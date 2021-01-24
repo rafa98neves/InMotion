@@ -35,7 +35,7 @@ public class ManagementService {
         List<Therapist> therapists = therapistRepository.findAllByEnabled(false);
         List<UserDetailsResponse> response = new ArrayList<>();
         for(Therapist therapist : therapists){
-            response.add(new UserDetailsResponse(therapist.getId(), therapist.getEmail(), therapist.getName()));
+            response.add(new UserDetailsResponse(therapist.getId(), therapist.getName(), therapist.getEmail()));
         }
         return response;
     }
