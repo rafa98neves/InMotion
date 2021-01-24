@@ -1,5 +1,7 @@
 package com.gp.inmotion.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,7 +14,8 @@ public class Medication {
 
     private String name;
 
-    @ManyToMany(mappedBy = "medicationList")
+    @JsonIgnore
+    @ManyToMany(mappedBy = "medicationList", fetch = FetchType.LAZY)
     private List<Patient> patientList;
 
 

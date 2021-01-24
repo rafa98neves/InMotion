@@ -1,12 +1,16 @@
 package com.gp.inmotion.controllers;
 
+import com.gp.inmotion.exceptions.MedicationNotFoundException;
 import com.gp.inmotion.models.Medication;
 import com.gp.inmotion.service.MedicationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.util.*;
 
 @RestController
@@ -27,6 +31,10 @@ public class MedicationController {
 
     @GetMapping("/{medicationId}")
     public Medication getMedicationById(@PathVariable("medicationId") Long medicationId){
-        return medicationService.getMedication(medicationId);
+        try{
+            return medicationService.getMedication(medicationId);
+        }catch (MedicationNotFoundException mnfExc){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Medication not found", mnfExc);
+        }
     }
 }
