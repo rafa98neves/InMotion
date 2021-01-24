@@ -26,13 +26,13 @@ public class Patient extends User{
     public Patient(){
     }
 
-    public Patient(User user, Long number, String diagnosis) {
+    public Patient(User user, Long number, String diagnosis, List<Medication> medicationList) {
         super(user.getEmail(), user.getPassword(), user.getName(), user.getGender(), user.getBirthdate(), user.getRole());
         this.setEnabled(true);
         this.number = number;
         this.diagnosis = diagnosis;
-        medicationList = new ArrayList<>();
-        recommendedGames = new ArrayList<>();
+        this.medicationList = medicationList;
+        this.recommendedGames = new ArrayList<>();
     }
 
     public Long getNumber() {

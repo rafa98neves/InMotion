@@ -1,41 +1,27 @@
 package com.gp.inmotion.payload;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import java.util.Date;
+import com.gp.inmotion.models.Medication;
+
+import java.util.*;
 
 public class RegisterRequest {
 
-    @NotNull
-    @NotEmpty
     private String name;
 
-    @NotNull
-    @NotEmpty
     private String email;
 
-    @NotNull
-    @NotEmpty
     private String password;
 
-    @NotNull
-    @NotEmpty
     private String role;
 
-    @NotNull
-    @NotEmpty
     private Long patientId;
 
-    @NotNull
-    @NotEmpty
+    private List<Medication> medicationList;
+
     private Date birthdate;
 
-    @NotNull
-    @NotEmpty
     private String gender;
 
-    @NotNull
-    @NotEmpty
     private String diagnosis;
 
     public RegisterRequest() {
@@ -103,5 +89,13 @@ public class RegisterRequest {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
+    }
+
+    public List<Medication> getMedicationList() {
+        return medicationList;
+    }
+
+    public void setMedicationList(List<Medication> medicationList) {
+        this.medicationList = medicationList;
     }
 }

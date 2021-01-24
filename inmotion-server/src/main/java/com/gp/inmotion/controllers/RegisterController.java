@@ -27,7 +27,7 @@ public class RegisterController {
     }
 
     @PostMapping
-    public void registerPatient(HttpServletRequest request){
+    public void register(HttpServletRequest request){
         try{
             RegisterRequest registerRequest = new ObjectMapper().readValue(request.getInputStream(), RegisterRequest.class);
             userService.register(registerRequest);
